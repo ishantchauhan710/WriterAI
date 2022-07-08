@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
     --colorPrimary: #00171f;
@@ -9,7 +9,7 @@
 }
 
 * {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0px;
     padding: 0px;
 }
@@ -20,7 +20,7 @@ body {
 
 .landing-page-header {
     background-color: var(--colorPrimary);
-    height: 70vh;
+    min-height: 100vh;
     color: var(--colorOnPrimary);
 }
 
@@ -66,17 +66,14 @@ body {
     flex: 0.2;
 }
 
+
 .landing-page-header__navbar__buttons__button {
     background-color: var(--colorTransparent);
     color: var(--colorOnPrimary);
-    outline: none;
     font-size: 1.2rem;
     margin-left: 30px;
     font-weight: 500;
     padding: 10px 15px;
-    border-radius: 7px;
-    cursor: pointer;
-    transition: 1s all ease;
 }
 
 .landing-page-header__navbar__buttons__button:hover {
@@ -90,4 +87,54 @@ body {
 
 .landing-page-header__navbar__buttons__button--secondary {
     border: none;
+}
+
+.landing-page-header__heading {
+    text-align: center;
+    padding: 30px 10%;
+    font-size: 2.6rem;
+    font-weight: 600;
+}
+
+.landing-page-header__subheading {
+    text-align: center;
+    padding: 20px 15%;
+    font-size: 1.3rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.landing-page-header__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.landing-page-header__buttons__button {
+    margin: 20px 20px;
+    font-size: 1.2rem;
+    color: var(--colorOnPrimary);
+    width: 200px;
+    padding: 15px 15px;
+}
+
+.landing-page-header__buttons__button--primary {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--colorTransparent);
+}
+
+.landing-page-header__buttons__button--secondary {
+    background-color: var(--colorPrimaryHover);
+    border: 1px solid var(--colorOnPrimary);
+}
+
+
+
+
+.writerai-button {
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 1s all ease;
 }
