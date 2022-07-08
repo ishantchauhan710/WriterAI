@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --colorPrimary: #00171f;
+    --colorOnPrimary: #ffffff;
+    --colorPrimaryHover: rgba(255, 255, 255, 0.1);
+    --colorSecondary: #FDFFFC;
+    --colorTransparent: rgba(0, 0, 0, 0);
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: var(--colorSecondary);
+}
+
+.landing-page-header {
+    background-color: var(--colorPrimary);
+    height: 70vh;
+    color: var(--colorOnPrimary);
+}
+
+.landing-page-header__navbar {
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4vh 5vw;
+}
+
+.landing-page-header__navbar__logo {
+    font-weight: 600;
+    font-size: 2rem;
+    flex: 0.2;
+    cursor: pointer;
+}
+
+.landing-page-header__navbar__links {
+    flex: 0.6;
+}
+
+.landing-page-header__navbar__links ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-page-header__navbar__links ul li a {
+    color: var(--colorOnPrimary);
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin: 0px 20px;
+    font-weight: 500;
+}
+
+.landing-page-header__navbar__links ul li a:hover {
+    text-decoration: underline;
+}
+
+.landing-page-header__navbar__buttons {
+    flex: 0.2;
+}
+
+.landing-page-header__navbar__buttons__button {
+    background-color: var(--colorTransparent);
+    color: var(--colorOnPrimary);
+    outline: none;
+    font-size: 1.2rem;
+    margin-left: 30px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 1s all ease;
+}
+
+.landing-page-header__navbar__buttons__button:hover {
+    background-color: var(--colorPrimaryHover);
+    border-color: var(--colorTransparent);
+}
+
+.landing-page-header__navbar__buttons__button--primary {
+    border: 1px solid var(--colorOnPrimary);
+}
+
+.landing-page-header__navbar__buttons__button--secondary {
+    border: none;
+}
