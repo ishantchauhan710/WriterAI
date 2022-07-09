@@ -7,6 +7,11 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import TextField from "@mui/material/TextField";
 import GoogleButton from "react-google-button";
+import {
+  logInWithEmailAndPassword,
+  signInWithGoogle,
+  signUpWithEmailAndPassword,
+} from "../../../firebase/firebase";
 
 const style = {
   position: "absolute",
@@ -18,7 +23,48 @@ const style = {
   boxShadow: 24,
 };
 
-export default function AuthModal({ openAuthModal, setOpenAuthModal, authTab, setAuthTab }) {
+export default function AuthModal({
+  openAuthModal,
+  setOpenAuthModal,
+  authTab,
+  setAuthTab,
+}) {
+  const [signupUserName, setSignupUserName] = React.useState("");
+  const [signupUserEmail, setSignupUserEmail] = React.useState("");
+  const [signupUserPassword, setSignupUserPassword] = React.useState("");
+
+  const [loginUserEmail, setLoginUserEmail] = React.useState("");
+  const [loginUserPassword, setLoginUserPassword] = React.useState("");
+
+  const signUpUserWithEmailAndPassword = () => {
+    if (!signupUserName) {
+      console.log("Username cannot be blank");
+    } else if (!signupUserEmail) {
+      console.log("User Email cannot be blank");
+    } else if (!signupUserPassword) {
+      console.log("User Password cannot be blank");
+    } else {
+      signUpWithEmailAndPassword(
+        signupUserName,
+        signupUserEmail,
+        signupUserPassword
+      );
+    }
+  };
+
+  const loginUserWithEmailAndPassword = () => {
+    if (!loginUserEmail) {
+      console.log("User Email cannot be blank");
+    } else if (!loginUserPassword) {
+      console.log("User Password cannot be blank");
+    } else {
+      logInWithEmailAndPassword(loginUserEmail, loginUserPassword);
+    }
+  };
+
+  const signInUserWithGoogle = () => {
+    signInWithGoogle();
+  };
 
   const handleChange = (event, newValue) => {
     setAuthTab(newValue);
@@ -49,6 +95,7 @@ export default function AuthModal({ openAuthModal, setOpenAuthModal, authTab, se
                 variant="outlined"
                 fullWidth
                 style={{ marginTop: 15 }}
+                onChange={(e) => setLoginUserEmail(e.target.value)}
               />
 
               <TextField
@@ -58,9 +105,15 @@ export default function AuthModal({ openAuthModal, setOpenAuthModal, authTab, se
                 type="password"
                 fullWidth
                 style={{ marginTop: 15 }}
+                onChange={(e) => setLoginUserPassword(e.target.value)}
               />
 
-              <button class="writerai-button auth-modal__button">Login</button>
+              <button
+                onClick={() => loginUserWithEmailAndPassword()}
+                class="writerai-button auth-modal__button"
+              >
+                Login
+              </button>
 
               <GoogleButton
                 label="Login with Google"
@@ -70,6 +123,7 @@ export default function AuthModal({ openAuthModal, setOpenAuthModal, authTab, se
                   fontSize: "1.1rem",
                   fontWeight: "600",
                 }}
+                onClick={() => signInUserWithGoogle()}
               />
             </TabPanel>
 
@@ -79,6 +133,7 @@ export default function AuthModal({ openAuthModal, setOpenAuthModal, authTab, se
                 label="Full Name"
                 variant="outlined"
                 fullWidth
+                onChange={(e) => setSignupUserName(e.target.value)}
               />
 
               <TextField
@@ -87,6 +142,7 @@ export default function AuthModal({ openAuthModal, setOpenAuthModal, authTab, se
                 variant="outlined"
                 fullWidth
                 style={{ marginTop: 15 }}
+                onChange={(e) => setSignupUserEmail(e.target.value)}
               />
 
               <TextField
@@ -96,9 +152,13 @@ export default function AuthModal({ openAuthModal, setOpenAuthModal, authTab, se
                 type="password"
                 fullWidth
                 style={{ marginTop: 15 }}
+                onChange={(e) => setSignupUserPassword(e.target.value)}
               />
 
-              <button class="writerai-button auth-modal__button">
+              <button
+                onClick={() => signUpUserWithEmailAndPassword()}
+                class="writerai-button auth-modal__button"
+              >
                 Sign up
               </button>
 
@@ -110,6 +170,7 @@ export default function AuthModal({ openAuthModal, setOpenAuthModal, authTab, se
                   fontSize: "1.1rem",
                   fontWeight: "600",
                 }}
+                onClick={() => signInUserWithGoogle()}
               />
             </TabPanel>
           </TabContext>
