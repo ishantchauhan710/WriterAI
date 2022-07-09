@@ -10,6 +10,7 @@ import GoogleButton from "react-google-button";
 import {
   getUserToken,
   logInWithEmailAndPassword,
+  logoutUser,
   signInWithGoogle,
   signUpWithEmailAndPassword,
 } from "../../../firebase/firebase";
@@ -40,14 +41,15 @@ export default function AuthModal({
   const [loginUserEmail, setLoginUserEmail] = React.useState("");
   const [loginUserPassword, setLoginUserPassword] = React.useState("");
 
-  const parseResult = (result) => {
+  const parseResult = async (result) => {
     if (result === "TRUE") {
       notify("You are logged in successfully!", "success");
     } else {
       notify(result, "error");
     }
-    const token = getUserToken();
+    const token = await getUserToken();
     alert(token);
+    logoutUser();
   };
 
   const signUpUserWithEmailAndPassword = async () => {

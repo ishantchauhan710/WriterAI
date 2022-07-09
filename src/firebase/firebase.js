@@ -28,22 +28,7 @@ const googleProvider = new GoogleAuthProvider();
 
 const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
-    const user = result.user;
-    const userQuery = query(
-      collection(db, "users"),
-      where("uid", "==", user.uid)
-    );
-    const docs = await getDocs(userQuery);
-    if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        name: user.displayName,
-        authProvider: "google",
-        email: user.email,
-      });
-      return "TRUE";
-    }
+    await signInWithPopup(auth, googleProvider);
     return "TRUE";
   } catch (e) {
     return e.message;
@@ -52,14 +37,7 @@ const signInWithGoogle = async () => {
 
 const signUpWithEmailAndPassword = async (name, email, password) => {
   try {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    const user = result.user;
-    await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      name,
-      authProvider: "local",
-      email,
-    });
+    await createUserWithEmailAndPassword(auth, email, password);
     return "TRUE";
   } catch (e) {
     return e.message;
@@ -79,31 +57,15 @@ const logoutUser = () => {
   signOut(auth);
 };
 
-let token = null;
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    user.getIdToken(true).then(function(idToken) {
-    token = idToken
-  }).catch(function(error) {
-    console.log("Firebase: Unable togenerate token\n",error.message)
-  });
-  } else {
-    console.log("No user found");
-    token = null
-  }
-});
-
-const getUserToken = () => {
+const getUserToken = async () => {
+  const token = await getAuth().currentUser.getIdToken(true);
   return token;
-}
-
-
+};
 
 export {
   signInWithGoogle,
   signUpWithEmailAndPassword,
   logInWithEmailAndPassword,
   logoutUser,
-  getUserToken
+  getUserToken,
 };
