@@ -8,6 +8,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import TextField from "@mui/material/TextField";
 import GoogleButton from "react-google-button";
 import {
+  getUserToken,
   logInWithEmailAndPassword,
   signInWithGoogle,
   signUpWithEmailAndPassword,
@@ -45,6 +46,8 @@ export default function AuthModal({
     } else {
       notify(result, "error");
     }
+    const token = getUserToken();
+    alert(token);
   };
 
   const signUpUserWithEmailAndPassword = async () => {

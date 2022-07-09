@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 import {
@@ -43,7 +44,7 @@ const signInWithGoogle = async () => {
       });
       return "TRUE";
     }
-    return "User already exists";
+    return "TRUE";
   } catch (e) {
     return e.message;
   }
@@ -78,9 +79,31 @@ const logoutUser = () => {
   signOut(auth);
 };
 
+let token = null;
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    user.getIdToken(true).then(function(idToken) {
+    token = idToken
+  }).catch(function(error) {
+    console.log("Firebase: Unable togenerate token\n",error.message)
+  });
+  } else {
+    console.log("No user found");
+    token = null
+  }
+});
+
+const getUserToken = () => {
+  return token;
+}
+
+
+
 export {
   signInWithGoogle,
   signUpWithEmailAndPassword,
   logInWithEmailAndPassword,
   logoutUser,
+  getUserToken
 };
