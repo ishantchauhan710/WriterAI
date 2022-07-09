@@ -1,6 +1,7 @@
 .landing-page-header {
     width: 100vw;
-    height: 130vh;
+    min-height: 100vh;
+    padding-bottom: 20px;
     background-color: var(--colorPrimary);
     color: var(--colorOnPrimary);
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='2000' height='1000' preserveAspectRatio='none' viewBox='0 0 2000 1000'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1066%26quot%3b)' fill='none'%3e%3crect width='2000' height='1000' x='0' y='0' fill='rgba(10%2c 9%2c 8%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c629.904C116.094%2c638.376%2c205.425%2c534.93%2c304.274%2c473.46C404.776%2c410.962%2c528.929%2c371.458%2c584.032%2c266.718C639.963%2c160.403%2c625.159%2c31.095%2c598.638%2c-86.071C573.514%2c-197.064%2c521.22%2c-301.951%2c437.79%2c-379.347C359.1%2c-452.346%2c251.215%2c-474.584%2c148.017%2c-504.101C45.548%2c-533.41%2c-60.557%2c-584.315%2c-161.737%2c-550.826C-262.19%2c-517.577%2c-305.277%2c-404.184%2c-380.051%2c-329.316C-462.038%2c-247.226%2c-587.507%2c-200.121%2c-622.488%2c-89.5C-658.65%2c24.853%2c-632.24%2c158.519%2c-565.919%2c258.447C-502.604%2c353.845%2c-372.731%2c368.211%2c-277.012%2c431.039C-180.022%2c494.701%2c-115.709%2c621.46%2c0%2c629.904' fill='%23070706'%3e%3c/path%3e%3cpath d='M2000 1979.8609999999999C2179.949 1992.317 2307.281 1803.766 2434.137 1675.53 2538.951 1569.575 2588.232 1431.016 2667.676 1304.917 2762.163 1154.94 2966.569 1040.064 2945.362 864.078 2924.256 688.925 2714.024 608.6569999999999 2571.281 504.982 2457.111 422.05899999999997 2332.206 368.784 2199.068 322.03700000000003 2058.526 272.69000000000005 1920.725 212.20899999999995 1772.274 224.43499999999995 1602.8 238.39200000000005 1420.135 272.79499999999996 1302.7759999999998 395.852 1184.036 520.357 1150.237 705.6379999999999 1149.2730000000001 877.684 1148.383 1036.655 1214.5439999999999 1185.224 1297.595 1320.778 1373.3200000000002 1444.374 1497.141 1518.8049999999998 1602.843 1617.988 1736.1480000000001 1743.071 1817.635 1967.238 2000 1979.8609999999999' fill='%230d0b0a'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1066'%3e%3crect width='2000' height='1000' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
@@ -49,7 +50,7 @@
 }
 
 .landing-page-header__navbar__links ul li a:hover {
-    text-decoration: underline;
+    color: var(--colorSecondaryVariant);
 }
 
 .landing-page-header__navbar__buttons {
@@ -119,12 +120,12 @@
 }
 
 .landing-page-header__buttons__button--primary {
-    background-color: var(--colorTertiary);
+    background-color: var(--colorSecondary);
     border: 1px solid var(--colorTransparent);
 }
 
 .landing-page-header__buttons__button--primary:hover {
-    background-color: var(--colorTertiaryHover);
+    background-color: var(--colorSecondaryHover);
 }
 
 .landing-page-header__buttons__button--secondary {
@@ -136,28 +137,17 @@
     background-color: var(--colorPrimaryHover);
 }
 
-.landing-page-header__illustration-container {
-    background-color: var(--colorBackgroundVariant);
-    margin: 80px auto;
-    padding: 50px;
-    width: 80vw;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    box-shadow: 2px 5px 30px rgba(0, 0, 0, 0.25);
-    border: 7px solid rgba(0, 0, 0, 0.2);
-}
-
-.landing-page-header__illustration-container img {
-    max-width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .landing-page-footer {
-    height: 50vh;
+    overflow: hidden;
+    background-color: var(--colorSecondary);
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    padding: 40px 0px;
+}
+
+.landing-page-footer img {
+    height: 40px;
 }
 
 .auth-modal {
@@ -205,6 +195,15 @@
         width: 80vw;
     }
 
+    .landing-page-footer {
+        padding: 30px 0px;
+    }
+
+    .landing-page-footer img {
+        height: 25px;
+    }
+    
+
 }
 
 
@@ -227,15 +226,6 @@
         display: none;
     }
 
-    .landing-page-header {
-        height: 170vh;
-    }
-
-    .landing-page-header__illustration-container {
-        width: 90vw;
-        margin: 20px auto;
-    }
-
     .landing-page-header__heading {
         text-align: center;
         padding: 30px 10%;
@@ -256,6 +246,14 @@
         width: 90vw;
     }
 
+    .landing-page-footer {
+        padding: 30px 0px;
+    }
+
+    .landing-page-footer img {
+        height: 20px;
+    }
+
 }
 
 @media only screen and (max-width: 443px) and (min-width: 0px) {
@@ -268,5 +266,13 @@
         margin: 10px 0px;
     }
 
+
+    .landing-page-footer {
+        padding: 20px 0px;
+    }
+
+    .landing-page-footer img {
+        height: 4vw;
+    }
 
 }

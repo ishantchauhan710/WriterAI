@@ -6,15 +6,20 @@
     --colorPrimaryHover: rgba(0, 0, 0, 0.6);
     --colorPrimaryHoverVariant: rgba(0, 0, 0, 0.3);
 
-    --colorSecondary: #FF6600;
-    --colorSecondaryHover: #ff5100;
+    /* --colorSecondary: #FF6600;
+    --colorSecondaryHover: #ff5100; */
+
+    --colorSecondary: #1a48e2;
+    --colorSecondaryHover: #3e69f7;
     --colorOnSecondary: #ffffff;
+
+    --colorSecondaryVariant: #31cb52;
 
     --colorTertiary: rgba(255, 255, 255, 0.1);
     --colorTertiaryHover: rgba(255, 255, 255, 0.2);
     
     --colorTransparent: rgba(0, 0, 0, 0);
-    --colorBackground: #FAFAFA;
+    --colorBackground: #1a1817;
     --colorBackgroundVariant: #FDFFFC;
 
 }
@@ -27,6 +32,8 @@
 }
 
 body {
+    width: 100%;
+    overflow-x: hidden;
     background-color: var(--colorBackground);
 }
 
@@ -47,4 +54,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.writerai-text-tint-primary {
+    color: var(--colorSecondaryVariant);
 }

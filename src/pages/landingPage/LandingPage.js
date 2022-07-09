@@ -78,12 +78,19 @@ export const LandingPage = () => {
         </div>
 
         <div className="landing-page-header__heading">
-          Use the Power of Artificial Intelligence to write High Quality Blogs,
-          Emails and Letters.
+          Use the Power of{" "}
+          <span className="writerai-text-tint-primary">
+            Artificial Intelligence
+          </span>{" "}
+          to write High Quality Blogs, Emails and Letters.
         </div>
 
         <div className="landing-page-header__subheading">
-          WriterAI is a tool which automatically generates High Quality Content
+          <span className="writerai-text-tint-primary">WriterAI</span> is a tool
+          which automatically generates{" "}
+          <span className="writerai-text-tint-primary">
+            High Quality Content
+          </span>{" "}
           for your all needs! Just provide the AI with an overview of the topic
           and you will get the results instantly
         </div>
@@ -99,13 +106,14 @@ export const LandingPage = () => {
             Watch Demo
           </button>
         </div>
-
-        <div className="landing-page-header__illustration-container">
-          <img src="https://img.freepik.com/free-vector/blogging-illustration-concept_114360-788.jpg?size=626&ext=jpg&ga=GA1.2.555459057.1642934042" />
-        </div>
       </div>
 
-      <div className="landing-page-footer"></div>
+      <div className="landing-page-footer">
+        <img src="hashnode_white.png" />
+        <img style={{transform: "scale(1.3)"}} src="planetscale_white.png" />
+        <img style={{transform: "scale(1.3)"}} src="firebase_white.png" />
+        <img style={{transform: "scale(1.6)"}} src="linode_white.png" />
+      </div>
     </>
   );
 };
