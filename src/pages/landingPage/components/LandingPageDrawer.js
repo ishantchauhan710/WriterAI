@@ -37,12 +37,12 @@ export default function LandingPageDrawer({openLoginModal, openSignUpModal}) {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-      style={{ backgroundColor: "#fafafa", height: "100vh" }}
+      style={{ backgroundColor: "#0f1621", color: "#ffffff", height: "100vh" }}
     >
       <List>
         <ListItem key="Home" disablePadding>
           <ListItemButton>
-            <ListItemIcon>
+            <ListItemIcon style={{color:"#eeeeee"}}>
               <HomeRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
@@ -51,7 +51,7 @@ export default function LandingPageDrawer({openLoginModal, openSignUpModal}) {
 
         <ListItem key="About" disablePadding>
           <ListItemButton>
-            <ListItemIcon>
+            <ListItemIcon style={{color:"#eeeeee"}}>
               <InfoRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="About" />
@@ -60,7 +60,7 @@ export default function LandingPageDrawer({openLoginModal, openSignUpModal}) {
 
         <ListItem key="Contact" disablePadding>
           <ListItemButton>
-            <ListItemIcon>
+            <ListItemIcon style={{color:"#eeeeee"}}>
               <PermContactCalendarRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Contact" />
@@ -69,7 +69,7 @@ export default function LandingPageDrawer({openLoginModal, openSignUpModal}) {
 
         <ListItem key="SourceCode" disablePadding>
           <ListItemButton>
-            <ListItemIcon>
+            <ListItemIcon style={{color:"#eeeeee"}}>
               <GitHubIcon />
             </ListItemIcon>
             <ListItemText primary="Source Code" />
@@ -77,11 +77,11 @@ export default function LandingPageDrawer({openLoginModal, openSignUpModal}) {
         </ListItem>
       </List>
 
-      <Divider />
+      <Divider color="#999999" />
       <List>
         <ListItem onClick={() => openLoginModal()} key="Login" disablePadding>
           <ListItemButton>
-            <ListItemIcon>
+            <ListItemIcon style={{color:"#eeeeee"}}>
               <LoginIcon />
             </ListItemIcon>
             <ListItemText primary="Login" />
@@ -90,7 +90,7 @@ export default function LandingPageDrawer({openLoginModal, openSignUpModal}) {
 
         <ListItem onClick={() => openSignUpModal()} key="SignUp" disablePadding>
           <ListItemButton>
-            <ListItemIcon>
+            <ListItemIcon style={{color:"#eeeeee"}}>
               <HowToRegIcon />
             </ListItemIcon>
             <ListItemText primary="Sign Up" />

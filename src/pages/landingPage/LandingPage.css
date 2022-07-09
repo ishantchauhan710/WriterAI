@@ -75,7 +75,7 @@
 }
 
 .landing-page-header__navbar__buttons__button--primary:hover {
-    background-color: var(--colorTertiaryHover);
+    background-color: var(--colorSecondary);
 }
 
 
@@ -143,11 +143,11 @@
     display: flex;
     align-items: stretch;
     justify-content: space-around;
-    padding: 40px 0px;
+    padding: 30px 0px;
 }
 
 .landing-page-footer img {
-    height: 40px;
+    height: 30px;
 }
 
 .auth-modal {
