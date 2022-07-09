@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import AuthModal from "./components/AuthModal";
 import LandingPageDrawer from "./components/LandingPageDrawer";
 
 export const LandingPage = () => {
+
+  const [openAuthModal, setOpenAuthModal] = useState(false);
+
+  const openLoginModal = () => {
+    setOpenAuthModal(true)
+  }
+
+  const openSignUpModal = () => {
+    setOpenAuthModal(true)
+  }
+
   return (
     <>
+      <AuthModal openAuthModal={openAuthModal} setOpenAuthModal={setOpenAuthModal} />
       <div className="landing-page-header">
         <div className="landing-page-header__navbar">
           <div className="landing-page-header__navbar__logo">
-            <LandingPageDrawer />
+            <LandingPageDrawer openLoginModal={openLoginModal} openSignUpModal={openSignUpModal} />
             WriterAI
           </div>
 
@@ -29,10 +42,10 @@ export const LandingPage = () => {
           </div>
 
           <div className="landing-page-header__navbar__buttons">
-            <button className="writerai-button landing-page-header__navbar__buttons__button landing-page-header__navbar__buttons__button--secondary">
+            <button onClick={() => openLoginModal()} className="writerai-button landing-page-header__navbar__buttons__button landing-page-header__navbar__buttons__button--secondary">
               Login
             </button>
-            <button className="writerai-button landing-page-header__navbar__buttons__button landing-page-header__navbar__buttons__button--primary">
+            <button onClick={() => openSignUpModal()} className="writerai-button landing-page-header__navbar__buttons__button landing-page-header__navbar__buttons__button--primary">
               Sign Up
             </button>
           </div>
@@ -50,7 +63,7 @@ export const LandingPage = () => {
         </div>
 
         <div className="landing-page-header__buttons">
-          <button className="writerai-button landing-page-header__buttons__button landing-page-header__buttons__button--primary">
+          <button onClick={() => openSignUpModal()} className="writerai-button landing-page-header__buttons__button landing-page-header__buttons__button--primary">
             Get Started
           </button>
           <button className="writerai-button landing-page-header__buttons__button landing-page-header__buttons__button--secondary">

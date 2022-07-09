@@ -17,7 +17,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 
-export default function LandingPageDrawer() {
+export default function LandingPageDrawer({openLoginModal, openSignUpModal}) {
   const [state, setState] = React.useState({ left: false });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -79,7 +79,7 @@ export default function LandingPageDrawer() {
 
       <Divider />
       <List>
-        <ListItem key="Login" disablePadding>
+        <ListItem onClick={() => openLoginModal()} key="Login" disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <LoginIcon />
@@ -88,7 +88,7 @@ export default function LandingPageDrawer() {
           </ListItemButton>
         </ListItem>
 
-        <ListItem key="SignUp" disablePadding>
+        <ListItem onClick={() => openSignUpModal()} key="SignUp" disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <HowToRegIcon />
