@@ -15,6 +15,7 @@ import {
   signUpWithEmailAndPassword,
 } from "../../../firebase/firebase";
 import { AppState } from "../../../AppContext";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -41,6 +42,8 @@ export default function AuthModal({
   const [loginUserEmail, setLoginUserEmail] = React.useState("");
   const [loginUserPassword, setLoginUserPassword] = React.useState("");
 
+  const navigate = useNavigate();
+
   const parseResult = async (result) => {
     if (result === "TRUE") {
       notify("You are logged in successfully!", "success");
@@ -48,8 +51,10 @@ export default function AuthModal({
       notify(result, "error");
     }
     const token = await getUserToken();
-    alert(token);
-    logoutUser();
+    localStorage.setItem("userInfo", JSON.stringify(token));
+    navigate("/home");
+    // [FOR DEBUGGING] alert(token);
+    // [FOR DEBUGGING] logoutUser();
   };
 
   const signUpUserWithEmailAndPassword = async () => {

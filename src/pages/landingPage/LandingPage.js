@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { isUserLoggedIn } from "../../firebase/firebase";
 import AuthModal from "./components/AuthModal";
 import LandingPageDrawer from "./components/LandingPageDrawer";
 
 export const LandingPage = () => {
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [authTab, setAuthTab] = useState("1"); // 1: Login, 2: SignUp
+  const navigate = useNavigate();
 
   const openLoginModal = () => {
     setOpenAuthModal(true);
@@ -15,6 +18,13 @@ export const LandingPage = () => {
     setOpenAuthModal(true);
     setAuthTab("2");
   };
+
+  useEffect(() => {
+    const userLoggedIn = isUserLoggedIn();
+    if (userLoggedIn === true) {
+      navigate("/home");
+    }
+  }, []);
 
   return (
     <>

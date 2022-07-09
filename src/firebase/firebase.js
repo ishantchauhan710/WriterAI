@@ -62,10 +62,22 @@ const getUserToken = async () => {
   return token;
 };
 
+const isUserLoggedIn = () => {
+  const userInfoFromStorage = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+  if (userInfoFromStorage) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export {
   signInWithGoogle,
   signUpWithEmailAndPassword,
   logInWithEmailAndPassword,
   logoutUser,
   getUserToken,
+  isUserLoggedIn,
 };
