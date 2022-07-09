@@ -6,18 +6,20 @@ import { writerAiTheme } from "./style/style";
 import { AppState } from "./AppContext";
 import { Loading } from "./components/Loading";
 import { Notification } from "./components/Notification";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage } from "./pages/homePage/HomePage";
 
 function App() {
-  const {
-    loading,
-    showNotification
-  } = AppState();
+  const { loading, showNotification } = AppState();
 
   return (
     <ThemeProvider theme={writerAiTheme}>
-      <div className="App">
-        <LandingPage />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
       {loading && <Loading />}
       {showNotification && <Notification />}
     </ThemeProvider>
