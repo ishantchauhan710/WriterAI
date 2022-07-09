@@ -1,9 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isUserLoggedIn } from "../../firebase/firebase";
+import {
+  getUserToken,
+  isUserLoggedIn,
+  loggedInUserToken,
+  logoutUser,
+} from "../../firebase/firebase";
 
 export const HomePage = () => {
   const navigate = useNavigate();
+
+  const [token, setToken] = useState(null);
+
+  const logout = () => {
+    logoutUser();
+    navigate("/");
+  };
+
+  const getUserToken = () => {
+    const token = loggedInUserToken;
+    setToken(token);
+  };
 
   useEffect(() => {
     const userLoggedIn = isUserLoggedIn();
@@ -12,5 +29,15 @@ export const HomePage = () => {
     }
   }, []);
 
-  return <div>HomePage</div>;
+  useEffect(() => {
+    getUserToken();
+  }, []);
+
+  return (
+    <div>
+      Token: {token} <br />
+      <br />
+      <button onClick={() => logout()}>Logout</button>
+    </div>
+  );
 };

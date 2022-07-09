@@ -10,20 +10,11 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
-} from "firebase/firestore";
 
 import { firebaseConfig } from "./firebaseConfig";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
 const signInWithGoogle = async () => {
@@ -55,6 +46,7 @@ const logInWithEmailAndPassword = async (email, password) => {
 
 const logoutUser = () => {
   signOut(auth);
+  localStorage.setItem("userInfo", null);
 };
 
 const getUserToken = async () => {
@@ -73,6 +65,13 @@ const isUserLoggedIn = () => {
   }
 };
 
+const loggedInUserToken = () => {
+  const userToken = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+  return userToken;
+};
+
 export {
   signInWithGoogle,
   signUpWithEmailAndPassword,
@@ -80,4 +79,5 @@ export {
   logoutUser,
   getUserToken,
   isUserLoggedIn,
+  loggedInUserToken
 };
