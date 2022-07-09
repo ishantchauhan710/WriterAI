@@ -1,13 +1,15 @@
 import React from "react";
-import Lottie from "lottie-react";
-import landingPageAnim from "../../res/animations/landing_page_anim.json";
+import LandingPageDrawer from "./components/LandingPageDrawer";
 
 export const LandingPage = () => {
   return (
     <>
       <div className="landing-page-header">
         <div className="landing-page-header__navbar">
-          <div className="landing-page-header__navbar__logo">WriterAI</div>
+          <div className="landing-page-header__navbar__logo">
+            <LandingPageDrawer />
+            WriterAI
+          </div>
 
           <div className="landing-page-header__navbar__links">
             <ul>
