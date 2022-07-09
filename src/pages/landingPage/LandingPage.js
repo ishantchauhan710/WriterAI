@@ -90,7 +90,7 @@ export const LandingPage = () => {
           </button>
         </div>
 
-        <div class="landing-page-header__illustration-container">
+        <div className="landing-page-header__illustration-container">
           <img src="https://img.freepik.com/free-vector/blogging-illustration-concept_114360-788.jpg?size=626&ext=jpg&ga=GA1.2.555459057.1642934042" />
         </div>
       </div>

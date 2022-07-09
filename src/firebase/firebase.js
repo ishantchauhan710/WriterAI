@@ -41,10 +41,11 @@ const signInWithGoogle = async () => {
         authProvider: "google",
         email: user.email,
       });
+      return "TRUE";
     }
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
+    return "User already exists";
+  } catch (e) {
+    return e.message;
   }
 };
 
@@ -58,18 +59,18 @@ const signUpWithEmailAndPassword = async (name, email, password) => {
       authProvider: "local",
       email,
     });
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
+    return "TRUE";
+  } catch (e) {
+    return e.message;
   }
 };
 
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
+    return "TRUE";
+  } catch (e) {
+    return e.message;
   }
 };
 

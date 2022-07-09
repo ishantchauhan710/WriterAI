@@ -12,6 +12,7 @@ import {
   signInWithGoogle,
   signUpWithEmailAndPassword,
 } from "../../../firebase/firebase";
+import { AppState } from "../../../AppContext";
 
 const style = {
   position: "absolute",
@@ -29,6 +30,8 @@ export default function AuthModal({
   authTab,
   setAuthTab,
 }) {
+  const { setLoading, notify } = AppState();
+
   const [signupUserName, setSignupUserName] = React.useState("");
   const [signupUserEmail, setSignupUserEmail] = React.useState("");
   const [signupUserPassword, setSignupUserPassword] = React.useState("");
@@ -36,7 +39,15 @@ export default function AuthModal({
   const [loginUserEmail, setLoginUserEmail] = React.useState("");
   const [loginUserPassword, setLoginUserPassword] = React.useState("");
 
-  const signUpUserWithEmailAndPassword = () => {
+  const parseResult = (result) => {
+    if (result === "TRUE") {
+      notify("You are logged in successfully!", "success");
+    } else {
+      notify(result, "error");
+    }
+  };
+
+  const signUpUserWithEmailAndPassword = async () => {
     if (!signupUserName) {
       console.log("Username cannot be blank");
     } else if (!signupUserEmail) {
@@ -44,26 +55,38 @@ export default function AuthModal({
     } else if (!signupUserPassword) {
       console.log("User Password cannot be blank");
     } else {
-      signUpWithEmailAndPassword(
+      setLoading(true);
+      const result = await signUpWithEmailAndPassword(
         signupUserName,
         signupUserEmail,
         signupUserPassword
       );
+      parseResult(result);
+      setLoading(false);
     }
   };
 
-  const loginUserWithEmailAndPassword = () => {
+  const loginUserWithEmailAndPassword = async () => {
     if (!loginUserEmail) {
       console.log("User Email cannot be blank");
     } else if (!loginUserPassword) {
       console.log("User Password cannot be blank");
     } else {
-      logInWithEmailAndPassword(loginUserEmail, loginUserPassword);
+      setLoading(true);
+      const result = await logInWithEmailAndPassword(
+        loginUserEmail,
+        loginUserPassword
+      );
+      parseResult(result);
+      setLoading(false);
     }
   };
 
-  const signInUserWithGoogle = () => {
-    signInWithGoogle();
+  const signInUserWithGoogle = async () => {
+    setLoading(true);
+    const result = await signInWithGoogle();
+    parseResult(result);
+    setLoading(false);
   };
 
   const handleChange = (event, newValue) => {
@@ -110,7 +133,7 @@ export default function AuthModal({
 
               <button
                 onClick={() => loginUserWithEmailAndPassword()}
-                class="writerai-button auth-modal__button"
+                className="writerai-button auth-modal__button"
               >
                 Login
               </button>
@@ -157,7 +180,7 @@ export default function AuthModal({
 
               <button
                 onClick={() => signUpUserWithEmailAndPassword()}
-                class="writerai-button auth-modal__button"
+                className="writerai-button auth-modal__button"
               >
                 Sign up
               </button>
