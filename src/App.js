@@ -8,6 +8,7 @@ import { Loading } from "./components/Loading";
 import { Notification } from "./components/Notification";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/homePage/HomePage";
+import { CreatePage } from "./pages/createPage/CreatePage";
 
 function App() {
   const { loading, showNotification } = AppState();
@@ -17,7 +18,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/home" element={<CreatePage />} />
         </Routes>
       </BrowserRouter>
       {loading && <Loading />}
