@@ -198,3 +198,7 @@
     background-color: var(--colorSecondaryHover);
     border-color: var(--colorSecondaryHover);
 }
+
+.writerai-markdown-preview {
+    padding: 27px;
+}

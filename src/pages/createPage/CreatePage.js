@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AppState } from "../../AppContext";
-import AddMarkdownFab from "./components/AddMarkdownFab";
+import AddMarkdownFabMenu from "./components/AddMarkdownFabMenu";
+import ShowPreview from "./components/ShowPreview";
 const { Configuration, OpenAIApi } = require("openai");
 
 export const CreatePage = () => {
@@ -9,6 +10,9 @@ export const CreatePage = () => {
   const { setLoading, notify } = AppState();
 
   const [openMarkdownPanel,setOpenMarkdownPanel] = useState(false);
+  const [showPreview,setShowPreview] = useState(false);
+
+
   const [loadingAiContent, setLoadingAiContent] = useState(false);
 
   const [content,setContent] = useState('');
@@ -74,12 +78,13 @@ export const CreatePage = () => {
           />
         </div>
         <div className="writerai-header__buttons">
-          <button className="writerai-button writerai-header__button--secondary">
+          <button onClick={() => setShowPreview(true)} className="writerai-button writerai-header__button--secondary">
             Preview
           </button>
           <button className="writerai-button writerai-header__button--primary">
             Save
           </button>
+          <ShowPreview open={showPreview} setOpen={setShowPreview} content={content} />
         </div>
       </div>
       <div className="writerai-document">
@@ -92,7 +97,7 @@ export const CreatePage = () => {
             onChange={(e) => setContent(e.target.value)}
           />
 
-          <AddMarkdownFab open={openMarkdownPanel} setOpen={setOpenMarkdownPanel} content={content} setContent={setContent} />
+          <AddMarkdownFabMenu open={openMarkdownPanel} setOpen={setOpenMarkdownPanel} content={content} setContent={setContent} />
           <div onClick={() => setOpenMarkdownPanel(true)} className="writerai-header__fab">+</div>
         </div>
         <div className="writerai-generate">
