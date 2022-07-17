@@ -12,13 +12,18 @@ export const CreatePage = () => {
           />
         </div>
         <div className="writerai-header__buttons">
-        <button className="writerai-button writerai-header__button--secondary">Preview</button>
-        <button className="writerai-button writerai-header__button--primary">Save</button>
-          
+          <button className="writerai-button writerai-header__button--secondary">
+            Preview
+          </button>
+          <button className="writerai-button writerai-header__button--primary">
+            Save
+          </button>
         </div>
       </div>
       <div className="writerai-document">
-        <div className="writerai-writer">Write</div>
+        <div className="writerai-writer">
+          <textarea className="writerai-writer__input" type="text" placeholder="Write your content here" />
+        </div>
         <div className="writerai-generate">Write</div>
       </div>
     </div>
