@@ -21,11 +21,8 @@ export default function AddMarkdownFabMenu({
   setOpen,
   content,
   setContent,
+  handleSplitScreen,
 }) {
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -97,6 +94,11 @@ export default function AddMarkdownFabMenu({
     },
   ];
 
+  const handleSplit = () => {
+    handleSplitScreen(2);
+    setOpen(false);
+  };
+
   const addMarkdown = (markdownText) => {
     setContent(content + "\n" + markdownText + "\n<br/>\n");
     setOpen(false);
@@ -126,6 +128,10 @@ export default function AddMarkdownFabMenu({
           </Toolbar>
         </AppBar>
         <List>
+          <ListItem button onClick={() => handleSplit()}>
+            <ListItemText primary="Text" secondary="Add an AI generated text" />
+          </ListItem>
+          <Divider />
           {markdownObj.map((item) => (
             <>
               <ListItem

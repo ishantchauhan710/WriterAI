@@ -7,7 +7,7 @@
     --colorPrimaryHoverVariant: rgba(0, 0, 0, 0.3);
 
     --colorSecondaryTint: #FF6600;
-    --colorSecondaryTintHover: #ff5100; 
+    --colorSecondaryTintHover: #ff5100;
 
     --colorSecondary: #1a48e2;
     --colorSecondaryHover: #3e69f7;
@@ -17,7 +17,7 @@
 
     --colorTertiary: rgba(255, 255, 255, 0.1);
     --colorTertiaryHover: rgba(255, 255, 255, 0.2);
-    
+
     --colorTransparent: rgba(0, 0, 0, 0);
     --colorBackground: #1a1817;
     --colorBackgroundVariant: #FDFFFC;
@@ -66,7 +66,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(27, 27, 27,0.2);
+    background: rgba(27, 27, 27, 0.2);
 }
 
 ::-webkit-scrollbar-thumb {

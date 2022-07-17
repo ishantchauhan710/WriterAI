@@ -9,13 +9,26 @@ export const CreatePage = () => {
   const [generatedAiContent, setGeneratedAiContent] = useState([]);
   const { setLoading, notify } = AppState();
 
-  const [openMarkdownPanel,setOpenMarkdownPanel] = useState(false);
-  const [showPreview,setShowPreview] = useState(false);
-
+  const [openMarkdownPanel, setOpenMarkdownPanel] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
   const [loadingAiContent, setLoadingAiContent] = useState(false);
 
-  const [content,setContent] = useState('');
+  const [content, setContent] = useState("");
+
+  const [splitGenerator, setSplitGenerator] = useState(false);
+  const [splitWriter, setSplitWriter] = useState(true);
+
+  // 1 -> Show Writer, 2 -> Show Generator
+  const handleSplitScreen = (splitCode) => {
+    if (splitCode === 1) {
+      setSplitGenerator(false);
+      setSplitWriter(true);
+    } else {
+      setSplitGenerator(true);
+      setSplitWriter(false);
+    }
+  };
 
   const generateAiContent = async () => {
     // setGeneratedAiContent([
@@ -73,22 +86,33 @@ export const CreatePage = () => {
         <div className="writerai-header__input-name">
           <input
             type="text"
-            className="writerai-header__document-name"
+            className="hide-inline writerai-header__document-name"
             placeholder="Document Title"
           />
         </div>
         <div className="writerai-header__buttons">
-          <button onClick={() => setShowPreview(true)} className="writerai-button writerai-header__button--secondary">
+          <button
+            onClick={() => setShowPreview(true)}
+            className="writerai-button writerai-header__button--secondary"
+          >
             Preview
           </button>
           <button className="writerai-button writerai-header__button--primary">
             Save
           </button>
-          <ShowPreview open={showPreview} setOpen={setShowPreview} content={content} />
+          <ShowPreview
+            open={showPreview}
+            setOpen={setShowPreview}
+            content={content}
+          />
         </div>
       </div>
       <div className="writerai-document">
-        <div className="writerai-writer">
+        <div
+          className={`writerai-writer ${
+            splitWriter === true ? "show-responsive" : "hide-responsive"
+          }`}
+        >
           <textarea
             className="writerai-writer__input"
             placeholder="Write your content here"
@@ -97,10 +121,27 @@ export const CreatePage = () => {
             onChange={(e) => setContent(e.target.value)}
           />
 
-          <AddMarkdownFabMenu open={openMarkdownPanel} setOpen={setOpenMarkdownPanel} content={content} setContent={setContent} />
-          <div onClick={() => setOpenMarkdownPanel(true)} className="writerai-header__fab">+</div>
+          <AddMarkdownFabMenu
+            open={openMarkdownPanel}
+            setOpen={setOpenMarkdownPanel}
+            content={content}
+            setContent={setContent}
+            handleSplitScreen={handleSplitScreen}
+          />
+          <div
+            onClick={() => setOpenMarkdownPanel(true)}
+            className="writerai-header__fab"
+          >
+            +
+          </div>
         </div>
-        <div className="writerai-generate">
+        <div
+          className={`writerai-generate ${
+            splitGenerator === true
+              ? "show-responsive-vertical"
+              : "hide-responsive"
+          }`}
+        >
           <div className="writerai-generate__container">
             <textarea
               className="writerai-generate__input"
@@ -119,6 +160,12 @@ export const CreatePage = () => {
               ) : (
                 <>Generate</>
               )}
+            </button>
+            <button
+              onClick={() => handleSplitScreen(1)}
+              className="writerai-button writerai-split-create-content-button"
+            >
+              Go Back
             </button>
           </div>
           <div className="writerai-ai-results">
