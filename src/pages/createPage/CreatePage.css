@@ -1,0 +1,55 @@
+.writerai-create-page {
+    background-color: #ffffff;
+    height: 100vh;
+}
+
+.writerai-header {
+    background-color: var(--colorPrimary);
+    color: var(--colorOnPrimary);
+    padding: 20px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.writerai-header__input-name, .writerai-header__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.writerai-header__document-name {
+    padding: 0px 15px;
+    outline: none;
+    font-size: 1.3rem;
+    background-color: var(--colorTransparent);
+    color: var(--colorOnPrimary);
+    font-weight: 500;
+    border: none;
+}
+
+.writerai-header__button--secondary, .writerai-header__button--primary {
+    padding: 7px 20px;
+    font-size: 1.1rem;
+}
+
+.writerai-header__button--primary {
+   background-color: var(--colorSecondary);
+   color: var(--colorOnSecondary); 
+   border-color: var(--colorTransparent);
+}
+
+.writerai-header__button--primary:hover {
+    background-color: var(--colorSecondaryHover);
+ }
+
+.writerai-header__button--secondary {
+    background-color: var(--colorTertiary);
+    color: var(--colorOnSecondary); 
+    border-color: var(--colorTransparent);
+    margin-right: 20px;
+}
+
+.writerai-header__button--secondary:hover {
+    background-color: var(--colorTertiaryHover);
+}

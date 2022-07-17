@@ -1,5 +1,6 @@
 import "./App.css";
 import "./pages/landingPage/LandingPage.css";
+import "./pages/createPage/CreatePage.css";
 import { LandingPage } from "./pages/landingPage/LandingPage";
 import { ThemeProvider } from "@mui/material";
 import { writerAiTheme } from "./style/style";
