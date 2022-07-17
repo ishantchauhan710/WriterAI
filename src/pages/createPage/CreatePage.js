@@ -22,9 +22,12 @@ export const CreatePage = () => {
       </div>
       <div className="writerai-document">
         <div className="writerai-writer">
-          <textarea className="writerai-writer__input" type="text" placeholder="Write your content here" />
+          <textarea className="writerai-writer__input" placeholder="Write your content here" />
         </div>
-        <div className="writerai-generate">Write</div>
+        <div className="writerai-generate">
+          <textarea className="writerai-generate__input" placeholder="Write something to generate content using AI" />
+          <button className="writerai-button writerai-generate__button">Generate</button>
+        </div>
       </div>
     </div>
   );
