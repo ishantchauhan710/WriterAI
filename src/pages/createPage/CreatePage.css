@@ -172,7 +172,7 @@
 .writerai-ai-result__content {
     text-align: center;
     font-size: 1.1rem;
-    color: var(--colorPrimary)
+    color: var(--colorPrimary);
 }
 
 .writerai-ai-result__buttons {

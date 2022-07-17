@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AppState } from "../../AppContext";
+import AddMarkdownFab from "./components/AddMarkdownFab";
 const { Configuration, OpenAIApi } = require("openai");
 
 export const CreatePage = () => {
@@ -7,7 +8,10 @@ export const CreatePage = () => {
   const [generatedAiContent, setGeneratedAiContent] = useState([]);
   const { setLoading, notify } = AppState();
 
-  const [loadingAiContent,setLoadingAiContent] = useState(false);
+  const [openMarkdownPanel,setOpenMarkdownPanel] = useState(false);
+  const [loadingAiContent, setLoadingAiContent] = useState(false);
+
+  const [content,setContent] = useState('');
 
   const generateAiContent = async () => {
     // setGeneratedAiContent([
@@ -18,7 +22,7 @@ export const CreatePage = () => {
     //   "Elementum nibh tellus molestie nunc. Malesuada fames ac turpis egestas maecenas pharetra convallis posuere morbi. A arcu cursus vitae congue mauris rhoncus aenean vel elit.",
     // ]);
 
-    if(loadingAiContent) {
+    if (loadingAiContent) {
       return;
     }
 
@@ -84,9 +88,12 @@ export const CreatePage = () => {
             className="writerai-writer__input"
             placeholder="Write your content here"
             spellCheck="false"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
 
-          <div className="writerai-header__fab">+</div>
+          <AddMarkdownFab open={openMarkdownPanel} setOpen={setOpenMarkdownPanel} content={content} setContent={setContent} />
+          <div onClick={() => setOpenMarkdownPanel(true)} className="writerai-header__fab">+</div>
         </div>
         <div className="writerai-generate">
           <div className="writerai-generate__container">
@@ -100,7 +107,13 @@ export const CreatePage = () => {
               onClick={() => generateAiContent()}
               className="writerai-button writerai-generate__button"
             >
-              {loadingAiContent===true?(<><i class="fa fa-circle-o-notch fa-spin"></i>Generating...</>):(<>Generate</>)}
+              {loadingAiContent === true ? (
+                <>
+                  <i class="fa fa-circle-o-notch fa-spin"></i>Generating...
+                </>
+              ) : (
+                <>Generate</>
+              )}
             </button>
           </div>
           <div className="writerai-ai-results">
