@@ -11,13 +11,13 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
-import ReactMarkdown from 'react-markdown'
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ShowPreview({ open, setOpen, content}) {
+export default function ShowPreview({ open, setOpen, content }) {
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -50,9 +50,7 @@ export default function ShowPreview({ open, setOpen, content}) {
           </Toolbar>
         </AppBar>
         <div className="writerai-markdown-preview">
-          <ReactMarkdown>
-            {content}
-          </ReactMarkdown>
+          <MarkdownPreview source={content} />
         </div>
       </Dialog>
     </div>

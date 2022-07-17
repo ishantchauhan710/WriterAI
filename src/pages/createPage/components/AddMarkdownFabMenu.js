@@ -16,7 +16,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AddMarkdownFabMenu({ open, setOpen, content, setContent }) {
+export default function AddMarkdownFabMenu({
+  open,
+  setOpen,
+  content,
+  setContent,
+}) {
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -30,60 +35,70 @@ export default function AddMarkdownFabMenu({ open, setOpen, content, setContent 
       id: 0,
       title: "Heading",
       description: "Insert headings ranging from h1 to h6",
-      markdownContent: "# Heading",
+      markdownContent:
+        "# Heading 1\n## Heading 2\n### Heading 3\n#### Heading 4",
     },
     {
       id: 1,
       title: "Special Text",
-      description: "Insert a bold and italic text",
-      markdownContent: "** bold **",
+      description: "Insert a bold text",
+      markdownContent: "**bold** *italic*",
     },
     {
       id: 2,
       title: "Block Quote",
       description: "Insert a blockquote",
-      markdownContent: "> Lorem Ipsum",
+      markdownContent: "> Lorem Ipsum\n",
     },
     {
       id: 3,
-      title: " Orderd List",
-      description: "Insert an ordered list",
-      markdownContent: "** bold **",
+      title: "Hyperlink",
+      description: "Insert a hyperlink",
+      markdownContent: "<a href='www.yoururl.com'>Link Text</a>",
     },
     {
       id: 4,
-      title: "Unordered list",
-      description: "Insert an unordered list",
-      markdownContent: "> Lorem Ipsum",
+      title: "Image",
+      description: "Insert an image",
+      markdownContent:
+        "<img src='https://cdn.pixabay.com/photo/2017/06/26/12/39/husky-2443664__340.jpg'/>",
     },
     {
       id: 5,
-      title: "Code",
-      description: "Insert a block of code",
-      markdownContent: "# Heading",
+      title: "Table",
+      description: "Insert a table template",
+      markdownContent:
+        "| Col1 | Col1 | Col1 |\n|------|------|------|\n| Col2 | Col2 | Col2 |\n| Col3 | Col3 | Col3 |",
     },
     {
       id: 6,
-      title: "Hyperlink",
-      description: "Insert a hyperlink",
-      markdownContent: "> Lorem Ipsum",
+      title: " Orderd List",
+      description: "Insert an ordered list",
+      markdownContent: "1. Item 1\n2. Item 2\n3. Item 3",
     },
     {
       id: 7,
-      title: "Image",
-      description: "Insert an image",
-      markdownContent: "# Heading",
+      title: "Unordered list",
+      description: "Insert an unordered list",
+      markdownContent: "* Item 1\n* Item 2\n* Item 3",
     },
     {
       id: 8,
+      title: "Code",
+      description: "Insert a block of code",
+      markdownContent:
+        "```document.getElementById('test').innerHTML='Hello World'```",
+    },
+    {
+      id: 9,
       title: "Line",
       description: "Insert a horizontal line",
-      markdownContent: "> Lorem Ipsum",
+      markdownContent: "***",
     },
   ];
 
   const addMarkdown = (markdownText) => {
-    setContent(content + "\n" + markdownText);
+    setContent(content + "\n" + markdownText + "\n<br/>\n");
     setOpen(false);
   };
 

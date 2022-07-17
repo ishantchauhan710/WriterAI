@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "@uiw/react-markdown-preview": "^4.0.23",
     "firebase": "^9.9.0",
     "lottie-react": "^2.3.1",
     "openai": "^3.0.0",
