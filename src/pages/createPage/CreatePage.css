@@ -114,3 +114,7 @@
 .writerai-generate__button:hover {
     background-color: var(--colorPrimaryHover);
 }
+
+.writerai-ai-results {
+    margin-top: 20px;
+}
