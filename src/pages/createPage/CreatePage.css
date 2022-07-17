@@ -74,6 +74,7 @@
     flex: 0.5;
     background-color: #eeeeee;
     padding: 10px;
+    overflow-y: scroll;
 }
 
 .writerai-writer__input {
@@ -118,3 +119,41 @@
 .writerai-ai-results {
     margin-top: 20px;
 }
+
+.writerai-ai-result {
+    background-color: #ffffff;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 7px;
+    box-shadow: 2px 4px 4px rgba(0,0,0,0.06);
+}
+
+.writerai-ai-result__content {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.writerai-ai-result__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0px;
+}
+
+.writerai-ai-result__button--primary {
+    margin: 0px 10px;
+    padding: 5px 20px;
+    font-size: 1rem;
+}
+
+.writerai-ai-result__button--primary {
+    background-color: var(--colorSecondary);
+    color: var(--colorOnSecondary);
+    border-color: var(--colorSecondary);
+}
+
+.writerai-ai-result__button--primary:hover {
+    background-color: var(--colorSecondaryHover);
+    border-color: var(--colorSecondaryHover);
+}
+
