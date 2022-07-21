@@ -66,14 +66,23 @@
 /* Main Container */
 .home-page__main {
     padding: 0px 2vw;
+    height: 100%;
 }
 
 /* Header */
 
 .home-page__header {
+    height: 12vh;
     color: var(--colorText1);
     font-weight: 600;
     font-size: 1.7rem;
     padding: 20px 0px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Tab Content */
+.home-page__tab-data {
+    height: calc(100vh - (12vh + 6vh));
+    background-color: red;
+    margin-top: 20px;
 }
