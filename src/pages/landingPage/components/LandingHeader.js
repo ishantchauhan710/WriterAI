@@ -21,6 +21,10 @@ const LandingHeader = () => {
           </li>
         </ul>
       </div>
+      <div className="landing-page__header__buttons">
+        <button className="landing-page__header__button landing-page__header__button--secondary writerai-button">Login</button>
+        <button className="landing-page__header__button landing-page__header__button--primary writerai-button">Sign Up</button>
+      </div>
     </div>
   );
 };

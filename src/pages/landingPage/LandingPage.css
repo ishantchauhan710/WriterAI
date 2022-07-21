@@ -1,3 +1,5 @@
+/* Header */
+
 .landing-page__header {
     display: flex;
     color: var(--colorText1);
@@ -5,7 +7,8 @@
 }
 
 .landing-page__header__logo,
-.landing-page__header__links {
+.landing-page__header__links,
+.landing-page__header__buttons {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +22,7 @@
 }
 
 .landing-page__header__links {
-    flex: 0.8;
+    flex: 0.6;
 }
 
 .landing-page__header__links ul {
@@ -32,8 +35,36 @@
 }
 
 .landing-page__header__links ul li a {
-    color: var(--colorText1);
+    color: var(--colorText2);
     text-decoration: none;
-    font-size: 1.2rem;
-    text-transform: uppercase;
+    font-size: 1.15rem;
+}
+
+.landing-page__header__buttons {
+    flex: 0.2;
+}
+
+.landing-page__header__button {
+    padding: 7px 20px;
+    margin: 0px 10px;
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.landing-page__header__button--secondary {
+    background-color: var(--colorTransparent);
+    border: none;
+    color: var(--colorText1);
+}
+
+.landing-page__header__button--primary {
+    background-color: var(--colorTransparent);
+    border: 1px solid var(--colorPrimary);
+    color: var(--colorPrimary);
+}
+
+/* Home */
+
+.landing-page__home {
+    min-height: 100vh;
 }
