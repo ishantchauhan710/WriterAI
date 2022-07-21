@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import landingPageAnimation from "../../../res/animations/landing_page_anim.json"
+import landingPageAnimation from "../../../res/animations/landing_page_anim.json";
 import React from "react";
 
 export const LandingHome = () => {
@@ -29,7 +29,11 @@ export const LandingHome = () => {
       </div>
 
       <div className="landing-page__home__right">
-        <Lottie style={{width: "100%", height: "100%"}} animationData={landingPageAnimation} loop={true} />
+        <Lottie
+          style={{ width: "100%", height: "100%" }}
+          animationData={landingPageAnimation}
+          loop={true}
+        />
       </div>
     </div>
   );
