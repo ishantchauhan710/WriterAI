@@ -66,5 +66,59 @@
 /* Home */
 
 .landing-page__home {
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.landing-page__home__left, .landing-page__home__right {
+    flex: 0.5;
+    height: 100%;
+    padding: 10vh 25px 25px 25px;
+}
+
+.landing-page__home__left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.landing-page__home__left__text-tertiary {
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--colorText2);
+}
+
+.landing-page__home__left__text-primary {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--colorText1);
+}
+
+.landing-page__home__left__text-secondary {
+    font-size: 1.1rem;
+    color: var(--colorText2)
+}
+
+.landing-page__home__left__button--primary {
+    padding: 7px 20px;
+    background-color: var(--colorPrimary);
+    color: var(--colorOnPrimary);
+    border: 1px solid var(--colorPrimary);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.landing-page__home__left__button--secondary {
+    padding: 7px 20px;
+    background-color: var(--colorTransparent);
+    color: var(--colorPrimary);
+    border: 1px solid var(--colorPrimary);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-left: 20px;
+}
+
