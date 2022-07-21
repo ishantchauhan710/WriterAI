@@ -3,9 +3,12 @@
 .landing-page__header {
     display: flex;
     color: var(--colorText1);
-    /* box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.10); */
     height: 12vh;
     width: 100%;
+    /* position: fixed;
+    z-index: 3;
+    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.10);
+    background-color: var(--colorBackground); */
 }
 
 .landing-page__header__logo,
@@ -21,6 +24,7 @@
     flex: 0.2;
     font-size: 2rem;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .landing-page__header__links {
@@ -42,6 +46,12 @@
     font-size: 1.15rem;
 }
 
+.landing-page__header__links ul li a:hover {
+    color: var(--colorSecondary);
+    text-decoration: none;
+    font-size: 1.15rem;
+}
+
 .landing-page__header__buttons {
     flex: 0.2;
 }
@@ -55,14 +65,24 @@
 
 .landing-page__header__button--secondary {
     background-color: var(--colorTransparent);
-    border: none;
+    border: 1px solid var(--colorTransparent);
     color: var(--colorText1);
+}
+
+.landing-page__header__button--secondary:hover {
+    background-color: var(--colorTransparentHover);
 }
 
 .landing-page__header__button--primary {
     background-color: var(--colorTransparent);
     border: 1px solid var(--colorPrimary);
     color: var(--colorPrimary);
+    transition: 0.7s all ease !important;
+}
+
+.landing-page__header__button--primary:hover {
+    background-color: var(--colorPrimary);
+    color: var(--colorOnPrimary);
 }
 
 /* Home */
@@ -78,7 +98,6 @@
 .landing-page__home__right {
     flex: 0.5;
     height: 100%;
-    padding: 50px;
 }
 
 .landing-page__home__left {
@@ -86,7 +105,14 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    padding: 50px 100px;
 }
+
+
+.landing-page__home__right {
+    padding: 50px;
+}
+
 
 .landing-page__home__left__text-tertiary {
     font-size: 1.4rem;
@@ -115,6 +141,11 @@
     font-weight: 500;
 }
 
+.landing-page__home__left__button--primary:hover {
+    background-color: var(--colorPrimaryHover);
+    border: 1px solid var(--colorPrimaryHover);
+}
+
 .landing-page__home__left__button--secondary {
     padding: 7px 20px;
     background-color: var(--colorTransparent);
@@ -123,6 +154,10 @@
     font-size: 1.2rem;
     font-weight: 500;
     margin-left: 20px;
+}
+
+.landing-page__home__left__button--secondary:hover {
+    background-color: var(--colorTransparentHover);
 }
 
 /* Features */
@@ -154,6 +189,19 @@
     text-align: center;
     padding: 25px;
     margin-top: 50px;
+    margin-inline: 10px;
+    cursor: pointer;
+    transition: 0.5s all ease;
+    width: 25%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.landing-page__features__feature:hover {
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.15);
 }
 
 .landing-page__features__feature-img {
@@ -163,18 +211,19 @@
 }
 
 .landing-page__features__feature-img-bg {
-    background-color: var(--colorPrimary);
+    background-color: var(--colorSecondary);
     border-radius: 100%;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.15);
 }
 
 .landing-page__features__feature-img-bg i {
     color: var(--colorOnPrimary);
-    font-size: 2.7rem;
+    font-size: 2.5rem;
 }
 
 .landing-page__features__feature-title {
@@ -192,18 +241,64 @@
 }
 
 
-/* Team */
+/* Built Using */
 
 .landing-page__poweredby {
     min-height: 100vh;
     height: auto;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
     padding: 75px 25px;
 }
 
+.landing-page__poweredby__heading {
+    font-weight: 600;
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+    color: var(--colorText1);
+    text-transform: uppercase;
+}
+
+
+.landing-page__poweredby__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 70px 25px;
+}
+
+.landing-page__poweredby__item {
+    display: flex;
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-inline: 20px;
+    height: 400px;
+    cursor: pointer;
+    transition: 0.5s all ease;
+    padding: 0px 20px;
+}
+
+.landing-page__poweredby__item:hover {
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.15);
+}
+
 .landing-page__poweredby__img {
-    width: 60%;
+    width: 150px;
+    height: 150px;
+}
+
+
+/* Footer */
+.landing-page__footer {
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.2);
+    color: var(--colorText1);
+    padding: 10px;
+    font-size: 1.1rem;
 }

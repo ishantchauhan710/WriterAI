@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --colorPrimary: #006ffe;
+    --colorPrimary: #006ba6;
     --colorOnPrimary: #ffffff;
     --colorBackground: #ffffff;
+    --colorPrimaryHover:rgb(0, 84, 129);
+    --colorTransparentHover: rgba(0, 0, 0, 0.05);
 
     --colorText1: #053159;
     --colorText2: #0c3868;
@@ -13,16 +15,14 @@
     --colorBackgroundCover: #f6f6f6;
 
 
+    --colorSecondary: #FF6600;
+    --colorSecondaryHover: #ff5100;
 
 
-    --colorPrimaryHover: rgba(0, 0, 0, 0.6);
-    --colorPrimaryHoverVariant: rgba(0, 0, 0, 0.3);
 
-    --colorSecondaryTint: #FF6600;
-    --colorSecondaryTintHover: #ff5100;
 
-    --colorSecondary: #326afb;
-    --colorSecondaryHover: #3e69f7;
+    --colorSecondaryTint: #326afb;
+    --colorSecondaryTintHover: #3e69f7;
     --colorOnSecondary: #ffffff;
 
     --colorSecondaryVariant: #31cb52;
