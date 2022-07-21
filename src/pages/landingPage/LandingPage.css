@@ -75,7 +75,7 @@
 .landing-page__home__left, .landing-page__home__right {
     flex: 0.5;
     height: 100%;
-    padding: 10vh 25px 25px 25px;
+    padding: 50px;
 }
 
 .landing-page__home__left {
