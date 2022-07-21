@@ -33,11 +33,29 @@ export const HomePage = () => {
     getUserToken();
   }, []);
 
+  const tabButtons = [
+    { icon: "note_add", label: "Projects", action: "" },
+    { icon: "people", label: "Shared", action: "" },
+    { icon: "publish", label: "Published", action: "" },
+    { icon: "account_circle", label: "Profile", action: "" },
+  ];
+
   return (
-    <div>
-      Token: {token} <br />
-      <br />
-      <button onClick={() => logout()}>Logout</button>
+    <div className="home-page">
+      <div className="home-page__tab">
+        {tabButtons.map((item) => (
+          <div className="home-page__tab-item">
+            <div className="home-page__tab-item__image">
+              <i class="material-icons home-page__tab-item__image__icon">{item.icon}</i>
+            </div>
+            <div className="home-page__tab-item__text">{item.label}</div>
+          </div>
+        ))}
+      </div>
+      <div className="home-page__main">
+        <div className="home-page__header">Header</div>
+        <div className="home-page__tab-data">Tab Data</div>
+      </div>
     </div>
   );
 };

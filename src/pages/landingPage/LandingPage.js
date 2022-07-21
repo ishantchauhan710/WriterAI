@@ -23,12 +23,12 @@ export const LandingPage = () => {
     setAuthTab("2");
   };
 
-  // useEffect(() => {
-  //   const userLoggedIn = isUserLoggedIn();
-  //   if (userLoggedIn === true) {
-  //     navigate("/home");
-  //   }
-  // }, []);
+  useEffect(() => {
+    const userLoggedIn = isUserLoggedIn();
+    if (userLoggedIn === true) {
+      navigate("/home");
+    }
+  }, []);
 
   return (
     <div className="landing-page">
