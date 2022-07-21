@@ -9,12 +9,12 @@
 /* Tab Buttons */
 
 .home-page__tab {
-    flex: 0.05;
+    width: 120px;
     background-color: var(--colorBackground);
 }
 
 .home-page__main {
-    flex: 0.95;
+    flex: 1;
 }
 
 .home-page__tab {
@@ -34,6 +34,7 @@
     padding: 20px;
     cursor: pointer;
     border-radius: 4px;
+    border-right: 3px solid var(--colorTransparent);
 }
 
 .home-page__tab-item__image__icon {
@@ -46,7 +47,7 @@
 }
 
 .home-page__tab-item--active {
-    border-right: 3px solid var(--colorPrimary);
+    border-right-color: var(--colorPrimary);
     border-radius: 0px;
 }
 
@@ -83,6 +84,5 @@
 /* Tab Content */
 .home-page__tab-data {
     height: calc(100vh - (12vh + 6vh));
-    background-color: red;
     margin-top: 20px;
 }

@@ -38,6 +38,11 @@ export const HomePage = () => {
   const [showPublishedTab, setShowPublishedTab] = useState(false);
   const [showProfileTab, setShowProfileTab] = useState(false);
 
+  const [activateProjectsTab, setActivateProjectsTab] = useState(false);
+  const [activateSharedTab, setActivateSharedTab] = useState(false);
+  const [activatePublishedTab, setActivatePublishedTab] = useState(false);
+  const [activateProfileTab, setActivateProfileTab] = useState(false);
+
   const showProjects = () => {
     setShowProjectsTab(true);
     setShowSharedTab(false);
@@ -70,27 +75,53 @@ export const HomePage = () => {
     showProjects();
   }, []);
 
-  const tabButtons = [
-    { icon: "note_add", label: "Projects", action: showProjects },
-    { icon: "people", label: "Shared", action: showShared },
-    { icon: "publish", label: "Published", action: showPublished },
-    { icon: "account_circle", label: "Profile", action: showProfile },
-  ];
 
   return (
     <div className="home-page">
       <div className="home-page__tab">
-        {tabButtons.map((item) => (
-          <div className="home-page__tab-item" onClick={() => item.action()}>
-            <div className="home-page__tab-item__image">
-              <i class="material-icons home-page__tab-item__image__icon">
-                {item.icon}
-              </i>
-            </div>
-            <div className="home-page__tab-item__text">{item.label}</div>
+        <div className={`home-page__tab-item ${showProjectsTab===true?"home-page__tab-item--active":""}`} onClick={() => showProjects()}>
+          <div className="home-page__tab-item__image">
+            <i className={`material-icons home-page__tab-item__image__icon ${showProjectsTab===true?"home-page__tab-item__image__icon--active":""}`}>
+              note_add
+            </i>
           </div>
-        ))}
+          <div className={`home-page__tab-item__text ${showProjectsTab===true?"home-page__tab-item__text--active":""}`}>Projects</div>
+        </div>
+
+        <div className={`home-page__tab-item ${showSharedTab===true?"home-page__tab-item--active":""}`} onClick={() => showShared()}>
+          <div className="home-page__tab-item__image">
+            <i className={`material-icons home-page__tab-item__image__icon ${showSharedTab===true?"home-page__tab-item__image__icon--active":""}`}>
+              people
+            </i>
+          </div>
+          <div className={`home-page__tab-item__text ${showSharedTab===true?"home-page__tab-item__text--active":""}`}>Shared</div>
+        </div>
+
+
+        <div className={`home-page__tab-item ${showPublishedTab===true?"home-page__tab-item--active":""}`} onClick={() => showPublished()}>
+          <div className="home-page__tab-item__image">
+            <i className={`material-icons home-page__tab-item__image__icon ${showPublishedTab===true?"home-page__tab-item__image__icon--active":""}`}>
+              publish
+            </i>
+          </div>
+          <div className={`home-page__tab-item__text ${showPublishedTab===true?"home-page__tab-item__text--active":""}`}>Published</div>
+        </div>
+
+
+        <div className={`home-page__tab-item ${showProfileTab===true?"home-page__tab-item--active":""}`} onClick={() => showProfile()}>
+          <div className="home-page__tab-item__image">
+            <i className={`material-icons home-page__tab-item__image__icon ${showProfileTab===true?"home-page__tab-item__image__icon--active":""}`}>
+              account_circle
+            </i>
+          </div>
+          <div className={`home-page__tab-item__text ${showProfileTab===true?"home-page__tab-item__text--active":""}`}>Profile</div>
+        </div>
+
+
+      
+
       </div>
+
       <div className="home-page__main">
         <div className="home-page__header">WriterAI</div>
 
