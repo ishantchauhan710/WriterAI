@@ -1,24 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import LandingPageDrawer from './LandingPageDrawer'
-import { isUserLoggedIn } from "../../../firebase/firebase";
-import AuthModal from "./AuthModal";
+import LandingPageDrawer from "./LandingPageDrawer";
 
-const LandingHeader = () => {
-
-  const [openAuthModal, setOpenAuthModal] = useState(false);
-  const [authTab, setAuthTab] = useState("1"); // 1: Login, 2: SignUp
-  const navigate = useNavigate();
-
-  const openLoginModal = () => {
-    setOpenAuthModal(true);
-    setAuthTab("1");
-  };
-
-  const openSignUpModal = () => {
-    setOpenAuthModal(true);
-    setAuthTab("2");
-  };
+const LandingHeader = ({openLoginModal,openSignUpModal}) => {
+ 
 
   return (
     <div className="landing-page__header">
@@ -46,10 +30,10 @@ const LandingHeader = () => {
         </ul>
       </div>
       <div className="landing-page__header__buttons">
-        <button className="landing-page__header__button landing-page__header__button--secondary writerai-button">
+        <button onClick={() => openLoginModal()} className="landing-page__header__button landing-page__header__button--secondary writerai-button">
           Login
         </button>
-        <button className="landing-page__header__button landing-page__header__button--primary writerai-button">
+        <button onClick={() => openSignUpModal()} className="landing-page__header__button landing-page__header__button--primary writerai-button">
           Sign Up
         </button>
       </div>

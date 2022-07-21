@@ -47,23 +47,23 @@ export default function AuthModal({
   const parseResult = async (result) => {
     if (result === "TRUE") {
       notify("You are logged in successfully!", "success");
+      const token = await getUserToken();
+      localStorage.setItem("userInfo", JSON.stringify(token));
+      navigate("/home");
+      // [FOR DEBUGGING] alert(token);
+      // [FOR DEBUGGING] logoutUser();
     } else {
       notify(result, "error");
     }
-    const token = await getUserToken();
-    localStorage.setItem("userInfo", JSON.stringify(token));
-    navigate("/home");
-    // [FOR DEBUGGING] alert(token);
-    // [FOR DEBUGGING] logoutUser();
   };
 
   const signUpUserWithEmailAndPassword = async () => {
     if (!signupUserName) {
-      console.log("Username cannot be blank");
+      notify("Name cannot be blank", "error");
     } else if (!signupUserEmail) {
-      console.log("User Email cannot be blank");
+      notify("Email cannot be blank", "error");
     } else if (!signupUserPassword) {
-      console.log("User Password cannot be blank");
+      notify("Password cannot be blank", "error");
     } else {
       setLoading(true);
       const result = await signUpWithEmailAndPassword(

@@ -105,9 +105,10 @@
 /* Side Menu */
 .landing-page__slider-menu-container {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: var(--colorPrimaryHover);
     border: none;
+    overflow-y: auto;
 }
 
 .landing-page__slider-menu-container ul {
@@ -117,7 +118,7 @@
 .landing-page__slider-menu-container ul li {
     padding: 10px 20px;
     width: 100%;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .landing-page__slider-menu-container ul li:hover {
@@ -245,6 +246,7 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    border-radius: 5px;
 }
 
 .landing-page__features__feature:hover {
@@ -329,6 +331,7 @@
     cursor: pointer;
     transition: 0.5s all ease;
     padding: 0px 20px;
+    border-radius: 5px;
 }
 
 .landing-page__poweredby__item:hover {
@@ -350,6 +353,28 @@
     font-size: 1.1rem;
 }
 
+/* Auth Modal */
+
+.auth-modal {
+    width: 50vw;
+}
+
+.auth-modal__button {
+    width: 100%;
+    margin-top: 20px;
+    background-color: var(--colorSecondary);
+    color: var(--colorOnSecondary);
+    padding: 10px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.auth-modal__button:hover {
+    background-color: var(--colorSecondaryHover);
+}
 
 /* Responsive Code */
 
@@ -366,6 +391,7 @@
     .landing-page-header__navbar__logo__drawer-toggle {
         display: flex;
     }
+
     .landing-page__header__button--primary {
         display: none;
     }
@@ -501,6 +527,9 @@
         height: 370px;
     }
 
+    .auth-modal {
+        width: 80vw;
+    }
 
 
 }
@@ -559,9 +588,12 @@
         font-size: 2rem;
     }
 
-    /* Footer */
     .landing-page__footer {
         font-size: 1rem;
+    }
+
+    .auth-modal {
+        width: 90vw;
     }
 
 
