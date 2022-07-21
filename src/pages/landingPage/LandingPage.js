@@ -5,6 +5,7 @@ import AuthModal from "./components/AuthModal";
 import { LandingFeatures } from "./components/LandingFeatures";
 import LandingHeader from "./components/LandingHeader";
 import { LandingHome } from "./components/LandingHome";
+import { LandingPoweredBy } from "./components/LandingPoweredBy";
 
 export const LandingPage = () => {
 
@@ -14,6 +15,7 @@ export const LandingPage = () => {
       <LandingHeader />
       <LandingHome />
       <LandingFeatures />
+      <LandingPoweredBy />
     </>
   );
 };
