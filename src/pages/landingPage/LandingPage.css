@@ -5,6 +5,19 @@
 
 /* Header */
 
+.landing-page-header__navbar__logo__drawer-toggle {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 100%;
+    margin-right: 20px;
+    font-size: 1.8rem;
+    display: none;
+}
+
 .landing-page__header {
     display: flex;
     color: var(--colorText1);
@@ -29,7 +42,6 @@
     flex: 0.2;
     font-size: 2rem;
     font-weight: 600;
-    cursor: pointer;
 }
 
 .landing-page__header__links {
@@ -319,6 +331,20 @@
 
 }
 
+
+@media only screen and (min-width: 0px) and (max-width: 417px) {
+    .landing-page-header__navbar__logo__drawer-toggle {
+        display: flex;
+    }
+    .landing-page__header__button--primary {
+        display: none;
+    }
+
+    .landing-page__header__logo {
+        flex: 1;
+    }
+}
+
 @media only screen and (min-width: 632px) and (max-width: 915px) {
 
     .landing-page__header__links {
@@ -498,7 +524,8 @@
         font-size: 1.2rem;
     }
 
-    .landing-page__features__heading, .landing-page__poweredby__heading {
+    .landing-page__features__heading,
+    .landing-page__poweredby__heading {
         font-size: 2rem;
     }
 
