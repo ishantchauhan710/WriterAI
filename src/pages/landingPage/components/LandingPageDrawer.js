@@ -17,7 +17,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 
-export default function LandingPageDrawer({openLoginModal, openSignUpModal}) {
+export default function LandingPageDrawer({ openLoginModal, openSignUpModal }) {
   const [state, setState] = React.useState({ left: false });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -37,66 +37,29 @@ export default function LandingPageDrawer({openLoginModal, openSignUpModal}) {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-      style={{ backgroundColor: "#0f1621", color: "#ffffff", height: "100vh" }}
     >
-      <List>
-        <ListItem key="Home" disablePadding>
-          <ListItemButton>
-            <ListItemIcon style={{color:"#eeeeee"}}>
-              <HomeRoundedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem key="About" disablePadding>
-          <ListItemButton>
-            <ListItemIcon style={{color:"#eeeeee"}}>
-              <InfoRoundedIcon />
-            </ListItemIcon>
-            <ListItemText primary="About" />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem key="Contact" disablePadding>
-          <ListItemButton>
-            <ListItemIcon style={{color:"#eeeeee"}}>
-              <PermContactCalendarRoundedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Contact" />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem key="SourceCode" disablePadding>
-          <ListItemButton>
-            <ListItemIcon style={{color:"#eeeeee"}}>
-              <GitHubIcon />
-            </ListItemIcon>
-            <ListItemText primary="Source Code" />
-          </ListItemButton>
-        </ListItem>
-      </List>
-
-      <Divider color="#999999" />
-      <List>
-        <ListItem onClick={() => openLoginModal()} key="Login" disablePadding>
-          <ListItemButton>
-            <ListItemIcon style={{color:"#eeeeee"}}>
-              <LoginIcon />
-            </ListItemIcon>
-            <ListItemText primary="Login" />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem onClick={() => openSignUpModal()} key="SignUp" disablePadding>
-          <ListItemButton>
-            <ListItemIcon style={{color:"#eeeeee"}}>
-              <HowToRegIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sign Up" />
-          </ListItemButton>
-        </ListItem>
-      </List>
+      <div className="landing-page__slider-menu-container">
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Features</a>
+          </li>
+          <li>
+            <a href="#">Developers</a>
+          </li>
+          <li>
+            <a href="#">Github</a>
+          </li>
+          <li>
+            <a href="#">Login</a>
+          </li>
+          <li>
+            <a href="#">Sign Up</a>
+          </li>
+        </ul>
+      </div>
     </Box>
   );
 
