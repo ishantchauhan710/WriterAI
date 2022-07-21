@@ -6,6 +6,8 @@
     display: flex;
 }
 
+/* Tab Buttons */
+
 .home-page__tab {
     flex: 0.05;
     background-color: var(--colorBackground);
@@ -59,4 +61,19 @@
 
 .home-page__tab-item:hover {
     background-color: var(--colorTransparentHover);
+}
+
+/* Main Container */
+.home-page__main {
+    padding: 0px 2vw;
+}
+
+/* Header */
+
+.home-page__header {
+    color: var(--colorText1);
+    font-weight: 600;
+    font-size: 1.7rem;
+    padding: 20px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }

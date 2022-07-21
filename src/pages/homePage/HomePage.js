@@ -46,14 +46,16 @@ export const HomePage = () => {
         {tabButtons.map((item) => (
           <div className="home-page__tab-item">
             <div className="home-page__tab-item__image">
-              <i class="material-icons home-page__tab-item__image__icon">{item.icon}</i>
+              <i class="material-icons home-page__tab-item__image__icon">
+                {item.icon}
+              </i>
             </div>
             <div className="home-page__tab-item__text">{item.label}</div>
           </div>
         ))}
       </div>
       <div className="home-page__main">
-        <div className="home-page__header">Header</div>
+        <div className="home-page__header">WriterAI</div>
         <div className="home-page__tab-data">Tab Data</div>
       </div>
     </div>
