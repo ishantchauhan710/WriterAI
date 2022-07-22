@@ -90,9 +90,34 @@ export const CreatePage = () => {
           <input placeholder="Project Name" type="text" />
         </div>
         <div className="create-page__header__action-button-container">
-          <button className="create-page__header__action-button--secondary writerai-button">Preview</button>
-          <button className="create-page__header__action-button--primary writerai-button">Save</button>
+          <button className="create-page__header__action-button--secondary writerai-button">
+            Preview
+          </button>
+          <button className="create-page__header__action-button--primary writerai-button">
+            Save
+          </button>
         </div>
+      </div>
+
+      <div className="create-page__body">
+        <div className="create-page__body__editor">
+          <div
+            spellcheck="false"
+            className="create-page__body__editor__title"
+            contenteditable="plaintext-only"
+          >
+            Project Title
+          </div>
+          <div
+            spellcheck="false"
+            className="create-page__body__editor__content"
+            contenteditable="plaintext-only"
+          >
+            Write your content here...
+          </div>
+        </div>
+
+        <div className="create-page__body__generator">Generator</div>
       </div>
     </div>
   );
