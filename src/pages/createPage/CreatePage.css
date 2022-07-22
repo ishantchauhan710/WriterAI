@@ -99,10 +99,14 @@
 
 .create-page__body__editor {
     flex: 0.6;
-    padding: 25px 50px;
     height: calc(100vh - 10vh);
-    overflow-y: scroll;
     position: relative;
+}
+
+.create-page__body__editor__scrollable-body {
+    padding: 25px 50px;
+    overflow-y: scroll;
+    height: 100%;
 }
 
 .create-page__body__editor::-webkit-scrollbar {
@@ -283,6 +287,10 @@
     background-color: var(--colorTransparentHover);
 }
 
+.writerai-markdown-preview {
+    padding: 80px 15px;
+}
+
 
 /* Responsive Code */
 
@@ -392,5 +400,6 @@
     .create-page__body__generator__button--secondary {
         display: inline
     }
+
 
 }

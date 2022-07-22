@@ -34,7 +34,7 @@ export default function ShowPreview({ open, setOpen, content }) {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: "relative" }}>
+        <AppBar sx={{ position: "fixed" }}>
           <Toolbar>
             <IconButton
               edge="start"

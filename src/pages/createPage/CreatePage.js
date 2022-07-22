@@ -20,7 +20,6 @@ export const CreatePage = () => {
   const [splitGenerator, setSplitGenerator] = useState(false);
   const [splitWriter, setSplitWriter] = useState(true);
 
-
   const navigate = useNavigate();
 
   // 1 -> Show Writer, 2 -> Show Generator
@@ -33,7 +32,6 @@ export const CreatePage = () => {
       setSplitWriter(false);
     }
   };
-
 
   const generateAiContent = async () => {
     // setGeneratedAiContent([
@@ -87,16 +85,26 @@ export const CreatePage = () => {
 
   return (
     <div class="create-page">
-      <ShowPreview open={showPreview} setOpen={setShowPreview} content={content} />
+      <ShowPreview
+        open={showPreview}
+        setOpen={setShowPreview}
+        content={content}
+      />
       <div className="create-page__header">
-        <div onClick={() => navigate('/home')} className="create-page__header__back-button-container">
+        <div
+          onClick={() => navigate("/home")}
+          className="create-page__header__back-button-container"
+        >
           <i className="material-icons">arrow_back</i>
         </div>
         <div className="create-page__header__title">
           <input placeholder="Project Name" type="text" />
         </div>
         <div className="create-page__header__action-button-container">
-          <button onClick={() => setShowPreview(true)} className="create-page__header__action-button--secondary writerai-button create-page__header__action-button-preview">
+          <button
+            onClick={() => setShowPreview(true)}
+            className="create-page__header__action-button--secondary writerai-button create-page__header__action-button-preview"
+          >
             Preview
           </button>
           <button className="create-page__header__action-button--primary writerai-button">
@@ -108,32 +116,38 @@ export const CreatePage = () => {
       <div className="create-page__body">
         <div
           className={`create-page__body__editor ${
-            splitWriter === true ? "show-responsive-vertical" : "hide-responsive-vertical"
+            splitWriter === true
+              ? "show-responsive-vertical"
+              : "hide-responsive-vertical"
           }`}
         >
-          <div
-            spellcheck="false"
-            className="create-page__body__editor__title"
-            contenteditable="plaintext-only"
-            placeholder="Project Title"
-          />
-          <div
-            spellcheck="false"
-            className="create-page__body__editor__content"
-            contenteditable="plaintext-only"
-            placeholder="Write your content here..."
-            onBlur={(e) => setContent(e.currentTarget.textContent)}
-          >
-            {content}
+          <div className="create-page__body__editor__scrollable-body">
+            <div
+              spellcheck="false"
+              className="create-page__body__editor__title"
+              contenteditable="plaintext-only"
+              placeholder="Project Title"
+            />
+            <div
+              spellcheck="false"
+              className="create-page__body__editor__content"
+              contenteditable="plaintext-only"
+              placeholder="Write your content here..."
+              onBlur={(e) => setContent(e.currentTarget.textContent)}
+            >
+              {content}
+            </div>
           </div>
-          <OptionsFab content={content} setContent={setContent} handleSplitScreen={handleSplitScreen} />
+          <OptionsFab
+            content={content}
+            setContent={setContent}
+            handleSplitScreen={handleSplitScreen}
+          />
         </div>
 
         <div
           className={`create-page__body__generator ${
-            splitGenerator === true
-              ? "show-responsive"
-              : "hide-responsive"
+            splitGenerator === true ? "show-responsive" : "hide-responsive"
           }`}
         >
           <div className="create-page__body__generator__field">
@@ -143,7 +157,10 @@ export const CreatePage = () => {
               onChange={(e) => setAiInput(e.target.value)}
             />
             <div className="create-page__body__generator__buttons">
-              <button onClick={() => handleSplitScreen(1)} className="writerai-button create-page__body__generator__button--secondary">
+              <button
+                onClick={() => handleSplitScreen(1)}
+                className="writerai-button create-page__body__generator__button--secondary"
+              >
                 Back
               </button>
               <button
