@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ProfileTab = () => {
+export const ProfileTab = ({logout}) => {
   return (
     <div id="tabProfile" className="home-page__tab-data">
       <div className="home-page__tab-data__section-label">Profile</div>
@@ -30,7 +30,7 @@ export const ProfileTab = () => {
         </tr>
       </table>
       <div className="home-page__tab-data__button_container">
-        <button className="writerai-button">Logout</button>
+        <button onClick={() => logout()} className="writerai-button">Logout</button>
       </div>
     </div>
   );

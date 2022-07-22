@@ -118,6 +118,10 @@ export const HomePage = () => {
     navigate("/");
   };
 
+  const createNew= () => {
+    navigate("/create");
+  };
+
   const getUserToken = () => {
     const token = loggedInUserToken;
     setToken(token);
@@ -293,7 +297,9 @@ export const HomePage = () => {
           <div className="home-page__header__logo ">WriterAi</div>
 
           <div className="home-page__header__buttons">
-            <button className="writerai-button">Create New</button>
+            {showProfileTab === false && (
+              <button onClick={() => createNew()} className="writerai-button">Create New</button>
+            )}
           </div>
         </div>
 
@@ -310,7 +316,7 @@ export const HomePage = () => {
             <ProjectTab projects={projects} label="Published By You" />
           )}
 
-          {showProfileTab === true && <ProfileTab />}
+          {showProfileTab === true && <ProfileTab logout={logout} />}
         </div>
       </div>
     </div>
