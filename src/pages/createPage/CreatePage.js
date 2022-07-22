@@ -46,12 +46,12 @@ export const CreatePage = () => {
     const inputText = aiInput;
 
     if (!inputText) {
-      notify("Input text cannot be blank");
+      notify("Input text cannot be empty");
       return;
     }
 
-    if (inputText.split(" ").length <= 5) {
-      notify("Input string should contain atleast five words");
+    if (inputText.split(" ").length < 5) {
+      notify("Input text should contain atleast five words");
       return;
     }
 
@@ -117,7 +117,35 @@ export const CreatePage = () => {
           </div>
         </div>
 
-        <div className="create-page__body__generator">Generator</div>
+        <div className="create-page__body__generator">
+          <div className="create-page__body__generator__field">
+            <textarea
+              spellCheck={false}
+              placeholder="Write something to make the AI work"
+              rows="3"
+              onChange={(e) => setAiInput(e.target.value)}
+            />
+            <div className="create-page__body__generator__buttons">
+              <button
+                onClick={() => generateAiContent()}
+                className="writerai-button"
+              >
+                    {loadingAiContent === true ? (<><i style={{marginRight: 10}} className="fa fa-circle-o-notch fa-spin"></i>Generating...</>):(<>Generate</>)}
+              </button>
+            </div>
+          </div>
+
+          <div className="create-page__body__generator__results">
+            {generatedAiContent.map((item) => (
+              <div className="create-page__body__generator__result">
+                <div className="create-page__body__generator__result__data">{item.text}</div>
+                <div className="create-page__body__generator__result__action_buttons">
+                  <button onClick={() => copyTextToClipboard(item.text)} className="writerai-button"><i className="material-icons">content_copy</i>Copy</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

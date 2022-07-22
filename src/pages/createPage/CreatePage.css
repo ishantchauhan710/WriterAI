@@ -96,16 +96,16 @@
 }
 
 .create-page__body__editor {
-    flex: 0.5;    
+    flex: 0.6;    
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 25px 50px;
     height: calc(100vh - 10vh);
     overflow-y: scroll;
 }
 
 .create-page__body__editor::-webkit-scrollbar {
-    width: 3px !important;
+    width: 2px !important;
 }
 
 .create-page__body__editor::-webkit-scrollbar-track {
@@ -122,11 +122,11 @@
 
 
 .create-page__body__generator {
-    flex: 0.5;
+    flex: 0.4;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    padding: 20px;
+    padding: 25px 50px;
     height: calc(100vh - 10vh);
 }
 
@@ -154,3 +154,94 @@
     display: block;
 }
 
+.create-page__body__generator__field {
+    width: 100%;
+    box-shadow: 2px 4px 12px rgba(27, 27, 27, 0.15);
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.create-page__body__generator__field textarea {
+    width: 100%;
+    resize: none;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    color: var(--colorText1);
+}
+
+.create-page__body__generator__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.create-page__body__generator__buttons button {
+    padding: 5px 20px;
+    background-color: var(--colorPrimary);
+    border: 1px solid var(--colorPrimary);
+    color: var(--colorOnPrimary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.create-page__body__generator__buttons button:hover {
+    background-color: var(--colorPrimaryHover);
+    border: 1px solid var(--colorPrimaryHover);
+}
+
+.create-page__body__generator__results {
+    margin-top: 30px;
+}
+
+.create-page__body__generator__result {
+    width: 100%;
+    box-shadow: 2px 4px 12px rgba(27, 27, 27, 0.15);
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.create-page__body__generator__result__data {
+    font-size: 1.05rem;
+    color: var(--colorText1);
+}
+
+.create-page__body__generator__result__action_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.create-page__body__generator__result__action_buttons button {
+    padding: 3px 12px;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    cursor: pointer;
+    color: var(--colorText1);
+    border: 1px solid var(--colorText1);
+    background-color: var(--colorTransparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-page__body__generator__result__action_buttons button i {
+    font-size: 1.2rem;
+    margin: 5px;
+}
+
+.create-page__body__generator__result__action_buttons button:hover {
+    color: var(--colorText1);
+    border: 1px solid var(--colorText1);
+    background-color: var(--colorTransparentHover);
+}
