@@ -204,6 +204,49 @@
 }
 
 
+/* Profile Tab */
+
+.home-page__tab-data__table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--colorText1);
+}
+
+.home-page__tab-data__table td,
+.home-page__tab-data__table th {
+    padding: 8px;
+    border: 1px solid #dddddd;
+}
+
+.home-page__tab-data__table tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+.home-page__tab-data__table tr:hover {
+    background-color: #dddddd;
+}
+
+.home-page__tab-data__button_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.home-page__tab-data__button_container button {
+    background-color: var(--colorSecondary);
+    color: var(--colorOnSecondary);
+    padding: 5px 20px;
+    border: 1px solid var(--colorSecondary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.home-page__tab-data__button_container button:hover {
+    background-color: var(--colorSecondaryHover);
+    border: 1px solid var(--colorSecondaryHover);
+}
+
 /* Responsive Code */
 
 
@@ -291,48 +334,4 @@
         padding: 0px 10px;
     }
 
-}
-
-
-/* Profile Tab */
-
-.home-page__tab-data__table {
-    width: 100%;
-    border-collapse: collapse;
-    color: var(--colorText1);
-}
-
-.home-page__tab-data__table td,
-.home-page__tab-data__table th {
-    padding: 8px;
-    border: 1px solid #dddddd;
-}
-
-.home-page__tab-data__table tr:nth-child(even) {
-    background-color: #f5f5f5;
-}
-
-.home-page__tab-data__table tr:hover {
-    background-color: #dddddd;
-}
-
-.home-page__tab-data__button_container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.home-page__tab-data__button_container button {
-    background-color: var(--colorSecondary);
-    color: var(--colorOnSecondary);
-    padding: 5px 20px;
-    border: 1px solid var(--colorSecondary);
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.home-page__tab-data__button_container button:hover {
-    background-color: var(--colorSecondaryHover);
-    border: 1px solid var(--colorSecondaryHover);
 }

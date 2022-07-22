@@ -81,108 +81,17 @@ export const CreatePage = () => {
   };
 
   return (
-    <div class="writerai-create-page">
-      <div className="writerai-header">
-        <div className="writerai-header__input-name">
-          <input
-            type="text"
-            className="hide-inline writerai-header__document-name"
-            placeholder="Document Title"
-          />
+    <div class="create-page">
+      <div className="create-page__header">
+        <div className="create-page__header__back-button-container">
+          <i className="material-icons">arrow_back</i>
         </div>
-        <div className="writerai-header__buttons">
-          <button
-            onClick={() => setShowPreview(true)}
-            className="writerai-button writerai-header__button--secondary"
-          >
-            Preview
-          </button>
-          <button className="writerai-button writerai-header__button--primary">
-            Save
-          </button>
-          <ShowPreview
-            open={showPreview}
-            setOpen={setShowPreview}
-            content={content}
-          />
+        <div className="create-page__header__title">
+          <input placeholder="Project Name" type="text" />
         </div>
-      </div>
-      <div className="writerai-document">
-        <div
-          className={`writerai-writer ${
-            splitWriter === true ? "show-responsive" : "hide-responsive"
-          }`}
-        >
-          <textarea
-            className="writerai-writer__input"
-            placeholder="Write your content here"
-            spellCheck="false"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-
-          <AddMarkdownFabMenu
-            open={openMarkdownPanel}
-            setOpen={setOpenMarkdownPanel}
-            content={content}
-            setContent={setContent}
-            handleSplitScreen={handleSplitScreen}
-          />
-          <div
-            onClick={() => setOpenMarkdownPanel(true)}
-            className="writerai-header__fab"
-          >
-            +
-          </div>
-        </div>
-        <div
-          className={`writerai-generate ${
-            splitGenerator === true
-              ? "show-responsive-vertical"
-              : "hide-responsive"
-          }`}
-        >
-          <div className="writerai-generate__container">
-            <textarea
-              className="writerai-generate__input"
-              placeholder="Write something to generate content using AI"
-              onChange={(e) => setAiInput(e.target.value)}
-              spellCheck="false"
-            />
-            <button
-              onClick={() => generateAiContent()}
-              className="writerai-button writerai-generate__button"
-            >
-              {loadingAiContent === true ? (
-                <>
-                  <i class="fa fa-circle-o-notch fa-spin"></i>Generating...
-                </>
-              ) : (
-                <>Generate</>
-              )}
-            </button>
-            <button
-              onClick={() => handleSplitScreen(1)}
-              className="writerai-button writerai-split-create-content-button"
-            >
-              Go Back
-            </button>
-          </div>
-          <div className="writerai-ai-results">
-            {generatedAiContent.map((item) => (
-              <div className="writerai-ai-result">
-                <div className="writerai-ai-result__content">{item.text}</div>
-                <div className="writerai-ai-result__buttons">
-                  <button
-                    onClick={() => copyTextToClipboard(item.text)}
-                    className="writerai-button writerai-ai-result__button--primary"
-                  >
-                    Copy
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="create-page__header__action-button-container">
+          <button className="create-page__header__action-button--secondary writerai-button">Preview</button>
+          <button className="create-page__header__action-button--primary writerai-button">Save</button>
         </div>
       </div>
     </div>
