@@ -101,6 +101,7 @@
     flex: 0.6;
     height: calc(100vh - 10vh);
     position: relative;
+    padding: 0px;
 }
 
 .create-page__body__editor__scrollable-body {
@@ -109,20 +110,20 @@
     height: 100%;
 }
 
-.create-page__body__editor::-webkit-scrollbar {
+.create-page__body__editor__scrollable-body::-webkit-scrollbar {
     width: 2px !important;
 }
 
-.create-page__body__editor::-webkit-scrollbar-track {
+.create-page__body__editor__scrollable-body::-webkit-scrollbar-track {
     background: rgba(27, 27, 27, 0.1);
 }
 
-.create-page__body__editor::-webkit-scrollbar-thumb {
+.create-page__body__editor__scrollable-body::-webkit-scrollbar-thumb {
     background: #999;
     border-radius: 10px;
 }
 
-.create-page__body__editor::-webkit-scrollbar-thumb:hover {
+.create-page__body__editor__scrollable-body::-webkit-scrollbar-thumb:hover {
     background: #aaa;
 }
 
@@ -348,7 +349,7 @@
         flex: 0.4;
     }
 
-    .create-page__body__editor {
+    .create-page__body__editor__scrollable-bodyr {
         padding: 25px;
     }
 

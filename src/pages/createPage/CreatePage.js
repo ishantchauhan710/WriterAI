@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppState } from "../../AppContext";
+import YesNoDialog from "../../components/YesNoDialog";
 import OptionsFab from "./components/OptionsFab";
 import ShowPreview from "./components/ShowPreview";
 const { Configuration, OpenAIApi } = require("openai");
@@ -19,6 +20,8 @@ export const CreatePage = () => {
 
   const [splitGenerator, setSplitGenerator] = useState(false);
   const [splitWriter, setSplitWriter] = useState(true);
+
+  const [showBackDialog,setShowBackDialog] = useState(false);
 
   const navigate = useNavigate();
 
@@ -90,9 +93,10 @@ export const CreatePage = () => {
         setOpen={setShowPreview}
         content={content}
       />
+      <YesNoDialog open={showBackDialog} setOpen={setShowBackDialog} title="Go Back" message="Are you sure you want to go back? All your data will be lost" yesAction={() => navigate('/home')} />
       <div className="create-page__header">
         <div
-          onClick={() => navigate("/home")}
+          onClick={() => setShowBackDialog(true)}
           className="create-page__header__back-button-container"
         >
           <i className="material-icons">arrow_back</i>
