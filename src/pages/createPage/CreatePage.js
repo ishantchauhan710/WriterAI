@@ -105,16 +105,14 @@ export const CreatePage = () => {
             spellcheck="false"
             className="create-page__body__editor__title"
             contenteditable="plaintext-only"
-          >
-            Project Title
-          </div>
+            placeholder="Project Title"
+          />
           <div
             spellcheck="false"
             className="create-page__body__editor__content"
             contenteditable="plaintext-only"
-          >
-            Write your content here...
-          </div>
+            placeholder="Write your content here..."
+          />
         </div>
 
         <div className="create-page__body__generator">
@@ -130,7 +128,17 @@ export const CreatePage = () => {
                 onClick={() => generateAiContent()}
                 className="writerai-button"
               >
-                    {loadingAiContent === true ? (<><i style={{marginRight: 10}} className="fa fa-circle-o-notch fa-spin"></i>Generating...</>):(<>Generate</>)}
+                {loadingAiContent === true ? (
+                  <>
+                    <i
+                      style={{ marginRight: 10 }}
+                      className="fa fa-circle-o-notch fa-spin"
+                    ></i>
+                    Generating...
+                  </>
+                ) : (
+                  <>Generate</>
+                )}
               </button>
             </div>
           </div>
@@ -138,9 +146,16 @@ export const CreatePage = () => {
           <div className="create-page__body__generator__results">
             {generatedAiContent.map((item) => (
               <div className="create-page__body__generator__result">
-                <div className="create-page__body__generator__result__data">{item.text}</div>
+                <div className="create-page__body__generator__result__data">
+                  {item.text}
+                </div>
                 <div className="create-page__body__generator__result__action_buttons">
-                  <button onClick={() => copyTextToClipboard(item.text)} className="writerai-button"><i className="material-icons">content_copy</i>Copy</button>
+                  <button
+                    onClick={() => copyTextToClipboard(item.text)}
+                    className="writerai-button"
+                  >
+                    <i className="material-icons">content_copy</i>Copy
+                  </button>
                 </div>
               </div>
             ))}

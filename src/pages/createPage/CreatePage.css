@@ -20,7 +20,7 @@
     align-items: center;
     justify-content: center;
     border-right: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 20px 0px;
+    padding: 25px 0px;
     cursor: pointer;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .create-page__body__editor {
-    flex: 0.6;    
+    flex: 0.6;
     display: flex;
     flex-direction: column;
     padding: 25px 50px;
@@ -116,6 +116,7 @@
     background: #999;
     border-radius: 10px;
 }
+
 .create-page__body__editor::-webkit-scrollbar-thumb:hover {
     background: #aaa;
 }
@@ -132,10 +133,16 @@
 
 
 
-.create-page__body__editor__title, .create-page__body__editor__content {
+.create-page__body__editor__title,
+.create-page__body__editor__content {
     border: none;
     outline: none;
-    resize: none;
+}
+
+[contenteditable=plaintext-only]:empty:before {
+    content: attr(placeholder);
+    display: block;
+    cursor: text;
 }
 
 .create-page__body__editor__title {
