@@ -72,12 +72,47 @@
 
 .home-page__header {
     height: 12vh;
+    padding: 20px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+.home-page__header__logo, .home-page__header__buttons {
+    flex: 0.5;
+}
+
+.home-page__header__logo {
     color: var(--colorText1);
     font-weight: 600;
     font-size: 1.7rem;
-    padding: 20px 0px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
+
+.home-page__header__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.home-page__header__buttons button {
+    background-color: var(--colorPrimary);
+    color: var(--colorOnPrimary);
+    padding: 7px 20px;
+    border: 1px solid var(--colorPrimary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+
+.home-page__header__buttons button:hover {
+    background-color: var(--colorPrimaryHover);
+    border-color: var(--colorPrimaryHover);
+}
+
 
 /* Tab Content */
 .home-page__tab-data {

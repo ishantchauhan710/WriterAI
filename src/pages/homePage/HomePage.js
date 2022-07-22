@@ -189,12 +189,18 @@ export const HomePage = () => {
       </div>
 
       <div className="home-page__main">
-        <div className="home-page__header">WriterAI</div>
+        <div className="home-page__header">
+          <div className="home-page__header__logo ">
+            WriterAi
+          </div>
+
+          <div className="home-page__header__buttons">
+            <button className="writerai-button">Create New</button>
+          </div>
+        </div>
 
         <div className="home-page__tab-data-wrapper">
-          {showProjectsTab === true && (
-            <ProjectTab />
-          )}
+          {showProjectsTab === true && <ProjectTab />}
 
           {showSharedTab === true && (
             <div id="tabShared" className="home-page__tab-data">
