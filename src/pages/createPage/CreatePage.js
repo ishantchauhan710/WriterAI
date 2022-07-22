@@ -90,7 +90,7 @@ export const CreatePage = () => {
           <input placeholder="Project Name" type="text" />
         </div>
         <div className="create-page__header__action-button-container">
-          <button className="create-page__header__action-button--secondary writerai-button">
+          <button className="create-page__header__action-button--secondary writerai-button create-page__header__action-button-preview">
             Preview
           </button>
           <button className="create-page__header__action-button--primary writerai-button">
@@ -120,7 +120,6 @@ export const CreatePage = () => {
             <textarea
               spellCheck={false}
               placeholder="Write something to make the AI work"
-              rows="3"
               onChange={(e) => setAiInput(e.target.value)}
             />
             <div className="create-page__body__generator__buttons">
