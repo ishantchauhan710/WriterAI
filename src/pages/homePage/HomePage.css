@@ -72,13 +72,14 @@
 
 .home-page__header {
     height: 12vh;
-    padding: 20px 10px;
+    padding: 20px 0px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
 }
 
-.home-page__header__logo, .home-page__header__buttons {
+.home-page__header__logo,
+.home-page__header__buttons {
     flex: 0.5;
 }
 
@@ -237,6 +238,7 @@
         justify-content: center;
         flex-direction: column;
     }
+
 }
 
 
@@ -272,4 +274,56 @@
         border-radius: 0px;
     }
 
+    .home-page__header {
+        padding: 20px 10px;
+    }
+
+    .home-page__tab-data {
+        padding: 0px 10px;
+    }
+
+}
+
+
+/* Profile Tab */
+
+.home-page__tab-data__table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--colorText1);
+}
+
+.home-page__tab-data__table td,
+.home-page__tab-data__table th {
+    padding: 8px;
+    border: 1px solid #dddddd;
+}
+
+.home-page__tab-data__table tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+.home-page__tab-data__table tr:hover {
+    background-color: #dddddd;
+}
+
+.home-page__tab-data__button_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.home-page__tab-data__button_container button {
+    background-color: var(--colorSecondary);
+    color: var(--colorOnSecondary);
+    padding: 5px 20px;
+    border: 1px solid var(--colorSecondary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.home-page__tab-data__button_container button:hover {
+    background-color: var(--colorSecondaryHover);
+    border: 1px solid var(--colorSecondaryHover);
 }

@@ -6,9 +6,109 @@ import {
   loggedInUserToken,
   logoutUser,
 } from "../../firebase/firebase";
+import { ProfileTab } from "./components/ProfileTab";
 import { ProjectTab } from "./components/ProjectTab";
 
 export const HomePage = () => {
+  const projects = [
+    {
+      id: 1,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/07/05/18/10/butterfly-7303688__480.jpg",
+    },
+    {
+      id: 2,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/06/02/00/04/dog-7236774__340.jpg",
+    },
+    {
+      id: 3,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/06/07/21/00/chicken-7249273__340.jpg",
+    },
+    {
+      id: 4,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/07/05/18/10/butterfly-7303688__480.jpg",
+    },
+    {
+      id: 5,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/06/02/00/04/dog-7236774__340.jpg",
+    },
+    {
+      id: 6,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/06/07/21/00/chicken-7249273__340.jpg",
+    },
+    {
+      id: 7,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/07/05/18/10/butterfly-7303688__480.jpg",
+    },
+    {
+      id: 8,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/06/02/00/04/dog-7236774__340.jpg",
+    },
+    {
+      id: 9,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/06/07/21/00/chicken-7249273__340.jpg",
+    },
+    {
+      id: 10,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/07/05/18/10/butterfly-7303688__480.jpg",
+    },
+    {
+      id: 11,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/06/02/00/04/dog-7236774__340.jpg",
+    },
+    {
+      id: 12,
+      title: "Lorem Ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image:
+        "https://cdn.pixabay.com/photo/2022/06/07/21/00/chicken-7249273__340.jpg",
+    },
+  ];
+
   const navigate = useNavigate();
 
   const [token, setToken] = useState(null);
@@ -190,9 +290,7 @@ export const HomePage = () => {
 
       <div className="home-page__main">
         <div className="home-page__header">
-          <div className="home-page__header__logo ">
-            WriterAi
-          </div>
+          <div className="home-page__header__logo ">WriterAi</div>
 
           <div className="home-page__header__buttons">
             <button className="writerai-button">Create New</button>
@@ -200,25 +298,19 @@ export const HomePage = () => {
         </div>
 
         <div className="home-page__tab-data-wrapper">
-          {showProjectsTab === true && <ProjectTab />}
+          {showProjectsTab === true && (
+            <ProjectTab projects={projects} label="Your Projects" />
+          )}
 
           {showSharedTab === true && (
-            <div id="tabShared" className="home-page__tab-data">
-              Shared
-            </div>
+            <ProjectTab projects={projects} label="Shared" />
           )}
 
           {showPublishedTab === true && (
-            <div id="tabPublished" className="home-page__tab-data">
-              Published
-            </div>
+            <ProjectTab projects={projects} label="Published By You" />
           )}
 
-          {showProfileTab === true && (
-            <div id="tabProfile" className="home-page__tab-data">
-              Profile
-            </div>
-          )}
+          {showProfileTab === true && <ProfileTab />}
         </div>
       </div>
     </div>
