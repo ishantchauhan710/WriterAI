@@ -96,21 +96,38 @@
 }
 
 .create-page__body__editor {
-    flex: 0.55;    
+    flex: 0.5;    
     display: flex;
     flex-direction: column;
     padding: 50px;
     height: calc(100vh - 10vh);
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
+.create-page__body__editor::-webkit-scrollbar {
+    width: 3px !important;
+}
+
+.create-page__body__editor::-webkit-scrollbar-track {
+    background: rgba(27, 27, 27, 0.1);
+}
+
+.create-page__body__editor::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 10px;
+}
+.create-page__body__editor::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+
 .create-page__body__generator {
-    flex: 0.45;
+    flex: 0.5;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
     padding: 20px;
     height: calc(100vh - 10vh);
-    overflow-y: auto;
 }
 
 
@@ -136,3 +153,4 @@
     height: 100%;
     display: block;
 }
+
