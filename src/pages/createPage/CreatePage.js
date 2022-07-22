@@ -113,8 +113,11 @@ export const CreatePage = () => {
             className="create-page__body__editor__content"
             contenteditable="plaintext-only"
             placeholder="Write your content here..."
-          />
-          <OptionsFab />
+            onBlur={(e) => setContent(e.currentTarget.textContent)}
+          >
+            {content}
+          </div>
+          <OptionsFab content={content} setContent={setContent} />
         </div>
 
         <div className="create-page__body__generator">

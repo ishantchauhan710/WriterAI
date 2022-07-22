@@ -16,17 +16,53 @@ import AddLinkOutlinedIcon from "@mui/icons-material/AddLinkOutlined";
 import CodeOutlinedIcon from "@mui/icons-material/CodeOutlined";
 
 const actions = [
-  { icon: <SmartToyOutlinedIcon />, name: "AiText" },
-  { icon: <AddPhotoAlternateOutlinedIcon />, name: "Image" },
-  { icon: <TableViewOutlinedIcon />, name: "Table" },
-  { icon: <AddLinkOutlinedIcon />, name: "Hyperlink" },
-  { icon: <CodeOutlinedIcon />, name: "Code" },
+  {
+    icon: <SmartToyOutlinedIcon />,
+    name: "AiText",
+    markdownContent: "AitextAction",
+  },
+  {
+    icon: <AddPhotoAlternateOutlinedIcon />,
+    name: "Image",
+    markdownContent:
+      "<img src='https://cdn.pixabay.com/photo/2017/06/26/12/39/husky-2443664__340.jpg'/>",
+  },
+  {
+    icon: <TableViewOutlinedIcon />,
+    name: "Table",
+    markdownContent:
+      "| Col1 | Col1 | Col1 |\n|------|------|------|\n| Col2 | Col2 | Col2 |\n| Col3 | Col3 | Col3 |",
+  },
+  {
+    icon: <AddLinkOutlinedIcon />,
+    name: "Hyperlink",
+    markdownContent: "<a href='www.yoururl.com'>Link Text</a>",
+  },
+  {
+    icon: <CodeOutlinedIcon />,
+    name: "Code",
+    markdownContent:
+      "```document.getElementById('test').innerHTML='Hello World'```",
+  },
 ];
 
-export default function OptionsFab() {
+export default function OptionsFab({ content, setContent }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const addMarkdown = (markdownText) => {
+    setContent(content + "\n" + markdownText + "\n<br/>\n");
+    setOpen(false);
+  };
+
+  const handleFabItemClick = (markdown) => {
+    if (markdown === "AiText") {
+    } else {
+      addMarkdown(markdown);
+    }
+    handleClose();
+  };
 
   return (
     <>
@@ -57,7 +93,7 @@ export default function OptionsFab() {
             icon={action.icon}
             tooltipTitle={action.name}
             tooltipOpen
-            onClick={handleClose}
+            onClick={(e) => handleFabItemClick(action.markdownContent)}
             FabProps={{
               sx: {
                 color: "primaryVariant.contrastText",
