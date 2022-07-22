@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AppState } from "../../AppContext";
 import AddMarkdownFabMenu from "./components/AddMarkdownFabMenu";
 import OptionsFab from "./components/OptionsFab";
@@ -30,6 +30,7 @@ export const CreatePage = () => {
       setSplitWriter(false);
     }
   };
+
 
   const generateAiContent = async () => {
     // setGeneratedAiContent([
@@ -101,7 +102,11 @@ export const CreatePage = () => {
       </div>
 
       <div className="create-page__body">
-        <div className="create-page__body__editor">
+        <div
+          className={`create-page__body__editor ${
+            splitWriter === true ? "show-responsive-vertical" : "hide-responsive-vertical"
+          }`}
+        >
           <div
             spellcheck="false"
             className="create-page__body__editor__title"
@@ -117,10 +122,16 @@ export const CreatePage = () => {
           >
             {content}
           </div>
-          <OptionsFab content={content} setContent={setContent} />
+          <OptionsFab content={content} setContent={setContent} handleSplitScreen={handleSplitScreen} />
         </div>
 
-        <div className="create-page__body__generator">
+        <div
+          className={`create-page__body__generator ${
+            splitGenerator === true
+              ? "show-responsive"
+              : "hide-responsive"
+          }`}
+        >
           <div className="create-page__body__generator__field">
             <textarea
               spellCheck={false}
@@ -128,9 +139,12 @@ export const CreatePage = () => {
               onChange={(e) => setAiInput(e.target.value)}
             />
             <div className="create-page__body__generator__buttons">
+              <button onClick={() => handleSplitScreen(1)} className="writerai-button create-page__body__generator__button--secondary">
+                Back
+              </button>
               <button
                 onClick={() => generateAiContent()}
-                className="writerai-button"
+                className="writerai-button create-page__body__generator__button--primary"
               >
                 {loadingAiContent === true ? (
                   <>

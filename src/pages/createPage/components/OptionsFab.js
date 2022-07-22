@@ -46,7 +46,7 @@ const actions = [
   },
 ];
 
-export default function OptionsFab({ content, setContent }) {
+export default function OptionsFab({ content, setContent, handleSplitScreen }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -57,7 +57,8 @@ export default function OptionsFab({ content, setContent }) {
   };
 
   const handleFabItemClick = (markdown) => {
-    if (markdown === "AiText") {
+    if (markdown === "AitextAction") {
+        handleSplitScreen(2)
     } else {
       addMarkdown(markdown);
     }

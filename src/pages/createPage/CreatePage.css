@@ -99,8 +99,6 @@
 
 .create-page__body__editor {
     flex: 0.6;
-    display: flex;
-    flex-direction: column;
     padding: 25px 50px;
     height: calc(100vh - 10vh);
     overflow-y: scroll;
@@ -127,14 +125,30 @@
 
 .create-page__body__generator {
     flex: 0.4;
-    display: flex;
     flex-direction: column;
     overflow-y: scroll;
     padding: 25px 50px;
     height: calc(100vh - 10vh);
 }
 
+.show-responsive {
+    display: flex;
+}
 
+.show-responsive-vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Show everything on big screens and only hide components on small screens */
+.hide-responsive {
+    display: flex;
+}
+
+.hide-responsive-vertical {
+    display: flex;
+    flex-direction: column;
+}
 
 .create-page__body__editor__title,
 .create-page__body__editor__content {
@@ -192,7 +206,8 @@
     margin-top: 20px;
 }
 
-.create-page__body__generator__buttons button {
+
+.create-page__body__generator__button--primary {
     padding: 5px 20px;
     background-color: var(--colorPrimary);
     border: 1px solid var(--colorPrimary);
@@ -201,9 +216,20 @@
     font-weight: 500;
 }
 
-.create-page__body__generator__buttons button:hover {
+.create-page__body__generator__button--primary:hover {
     background-color: var(--colorPrimaryHover);
     border: 1px solid var(--colorPrimaryHover);
+}
+
+.create-page__body__generator__button--secondary {
+    padding: 5px 20px;
+    background-color: var(--colorTransparent);
+    border: 1px solid var(--colorPrimary);
+    color: var(--colorPrimary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-right: 20px;
+    display: none;
 }
 
 .create-page__body__generator__results {
@@ -289,10 +315,6 @@
 
 @media only screen and (min-width: 0px) and (max-width: 600px) {
 
-    .create-page__header__back-button-container {
-        display: none;
-    }
-
     .create-page__header__action-button-preview {
         display: none;
     }
@@ -318,14 +340,6 @@
         flex: 0.4;
     }
 
-    .create-page__body__generator {
-        display: none;
-    }
-
-    .create-page__body__editor {
-        flex: 1;
-    }
-
     .create-page__body__editor {
         padding: 25px;
     }
@@ -334,7 +348,49 @@
         padding: 0px 20px;
     }
 
-   
 
+    .show-responsive {
+        display: flex;
+        flex: 1;
+    }
+
+    .show-responsive-vertical {
+        display: flex;
+        flex: 1;
+    }
+
+    /* Show everything on big screens and only hide components on small screens */
+    .hide-responsive {
+        display: none;
+    }
+
+    .hide-responsive-vertical {
+        display: none;
+        flex-direction: column;
+    }
+
+}
+
+@media only screen and (min-width: 0px) and (max-width: 765px) {
+    .create-page__body__generator__field textarea {
+        height: 8em;
+    }
+
+    .create-page__body__generator {
+        padding: 25px;
+    }
+
+    .create-page__header__back-button-container {
+        display: none;
+    }
+
+
+    .create-page__body__generator__buttons {
+        justify-content: center;
+    }
+
+    .create-page__body__generator__button--secondary {
+        display: inline
+    }
 
 }
