@@ -4,7 +4,7 @@
     --colorPrimary: #006ba6;
     --colorOnPrimary: #ffffff;
     --colorBackground: #ffffff;
-    --colorPrimaryHover: rgb(0, 84, 129);
+    --colorPrimaryHover: #005481;
     --colorTransparentHover: rgba(0, 0, 0, 0.05);
 
     --colorText1: #053159;
@@ -69,9 +69,7 @@ body {
     justify-content: center;
 }
 
-.writerai-text-tint-primary {
-    color: var(--colorSecondaryVariant);
-}
+
 
 
 /*Scroll Bar*/

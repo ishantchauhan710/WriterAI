@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AppState } from "../../AppContext";
 import AddMarkdownFabMenu from "./components/AddMarkdownFabMenu";
+import OptionsFab from "./components/OptionsFab";
 import ShowPreview from "./components/ShowPreview";
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -113,6 +114,7 @@ export const CreatePage = () => {
             contenteditable="plaintext-only"
             placeholder="Write your content here..."
           />
+          <OptionsFab />
         </div>
 
         <div className="create-page__body__generator">
