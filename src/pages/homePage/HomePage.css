@@ -71,7 +71,7 @@
 /* Header */
 
 .home-page__header {
-    height: 12vh;
+    height: max-content;
     padding: 20px 0px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
@@ -132,7 +132,7 @@
     display: grid;
     gap: 50px;
     grid-template-columns: repeat(5, auto);
-    padding: 10px;
+    padding: 10px 10px 10vh 10px;
 }
 
 .home-page__tab-data__content-card {
@@ -237,6 +237,12 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        padding-bottom: 30vh;
+    }
+
+    .home-page__tab-data__content-card {
+        width: 100%;
+        height: fit-content;
     }
 
 }
@@ -251,12 +257,15 @@
 
     .home-page__tab {
         width: 100%;
-        height: 10vh;
+        height: max-content;
         background-color: var(--colorBackground);
         display: flex;
         flex-direction: row;
         align-items: stretch;
         justify-content: center;
+        position: fixed;
+        z-index: 10;
+        bottom: 0;
     }
 
     .home-page__tab-item {
