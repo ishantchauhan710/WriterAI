@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppState } from "../../AppContext";
-import AddMarkdownFabMenu from "./components/AddMarkdownFabMenu";
 import OptionsFab from "./components/OptionsFab";
 import ShowPreview from "./components/ShowPreview";
 const { Configuration, OpenAIApi } = require("openai");
@@ -19,6 +19,9 @@ export const CreatePage = () => {
 
   const [splitGenerator, setSplitGenerator] = useState(false);
   const [splitWriter, setSplitWriter] = useState(true);
+
+
+  const navigate = useNavigate();
 
   // 1 -> Show Writer, 2 -> Show Generator
   const handleSplitScreen = (splitCode) => {
@@ -84,15 +87,16 @@ export const CreatePage = () => {
 
   return (
     <div class="create-page">
+      <ShowPreview open={showPreview} setOpen={setShowPreview} content={content} />
       <div className="create-page__header">
-        <div className="create-page__header__back-button-container">
+        <div onClick={() => navigate('/home')} className="create-page__header__back-button-container">
           <i className="material-icons">arrow_back</i>
         </div>
         <div className="create-page__header__title">
           <input placeholder="Project Name" type="text" />
         </div>
         <div className="create-page__header__action-button-container">
-          <button className="create-page__header__action-button--secondary writerai-button create-page__header__action-button-preview">
+          <button onClick={() => setShowPreview(true)} className="create-page__header__action-button--secondary writerai-button create-page__header__action-button-preview">
             Preview
           </button>
           <button className="create-page__header__action-button--primary writerai-button">
