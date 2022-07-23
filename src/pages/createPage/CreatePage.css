@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
     min-height: 10vh;
-    height: max-content
+    height: max-content;
 }
 
 .create-page__header__back-button-container {
@@ -56,10 +56,11 @@
 }
 
 .create-page__header__action-button-container {
-    flex: 0.2;
+    flex: 0.25;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    padding-right: 25px;
 }
 
 .create-page__header__action-button--primary {

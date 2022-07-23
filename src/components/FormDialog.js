@@ -16,6 +16,7 @@ export default function FormDialog({
   yesText,
   noText,
   yesActionFunction,
+  notify,
 }) {
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,9 +27,15 @@ export default function FormDialog({
   };
 
   const yesAction = () => {
-    yesActionFunction();
-    handleClose();
+    if (!input) {
+      notify("Please type something","error")
+    } else {
+      yesActionFunction();
+      handleClose();
+    }
   };
+
+  const [input, setInput] = React.useState("");
 
   return (
     <div>
@@ -43,7 +50,9 @@ export default function FormDialog({
             label={fieldPlaceholder}
             fullWidth
             variant="standard"
-            style={{marginTop: 10}}
+            style={{ marginTop: 10 }}
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
           />
         </DialogContent>
         <DialogActions>

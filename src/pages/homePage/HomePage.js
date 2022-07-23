@@ -9,6 +9,7 @@ import {
 } from "../../firebase/firebase";
 import { ProfileTab } from "./components/ProfileTab";
 import { ProjectTab } from "./components/ProjectTab";
+import { AppState } from "../../AppContext";
 
 export const HomePage = () => {
   const projects = [
@@ -116,6 +117,8 @@ export const HomePage = () => {
 
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
 
+  const { setLoading, notify } = AppState();
+
   const logout = () => {
     logoutUser();
     navigate("/");
@@ -199,6 +202,7 @@ export const HomePage = () => {
           yesText="Create"
           noText="Cancel"
           yesActionFunction={openCreatePage}
+          notify={notify}
         />
       )}
       <div className="home-page__tab">
