@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FormDialog from "../../components/FormDialog";
 import {
   getUserToken,
   isUserLoggedIn,
@@ -113,12 +114,18 @@ export const HomePage = () => {
 
   const [token, setToken] = useState(null);
 
+  const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
+
   const logout = () => {
     logoutUser();
     navigate("/");
   };
 
-  const createNew= () => {
+  const createNew = () => {
+    setShowNewProjectDialog(true);
+  };
+
+  const openCreatePage = () => {
     navigate("/create");
   };
 
@@ -182,6 +189,18 @@ export const HomePage = () => {
 
   return (
     <div className="home-page">
+      {showNewProjectDialog === true && (
+        <FormDialog
+          open={showNewProjectDialog}
+          setOpen={setShowNewProjectDialog}
+          title="Create Project"
+          message="Enter the name of the project you want to create?"
+          fieldPlaceholder="Eg. Hashnode Project Blog"
+          yesText="Create"
+          noText="Cancel"
+          yesActionFunction={openCreatePage}
+        />
+      )}
       <div className="home-page__tab">
         <div
           className={`home-page__tab-item ${
@@ -298,7 +317,9 @@ export const HomePage = () => {
 
           <div className="home-page__header__buttons">
             {showProfileTab === false && (
-              <button onClick={() => createNew()} className="writerai-button">Create New</button>
+              <button onClick={() => createNew()} className="writerai-button">
+                Create New
+              </button>
             )}
           </div>
         </div>
