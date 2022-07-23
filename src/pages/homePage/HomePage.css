@@ -210,11 +210,12 @@
     width: 100%;
     border-collapse: collapse;
     color: var(--colorText1);
+    font-size: 1.05rem;
 }
 
 .home-page__tab-data__table td,
 .home-page__tab-data__table th {
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #dddddd;
 }
 
@@ -238,7 +239,7 @@
     color: var(--colorOnSecondary);
     padding: 5px 20px;
     border: 1px solid var(--colorSecondary);
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 

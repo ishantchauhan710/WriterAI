@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import YesNoDialog from "../../../components/YesNoDialog";
 
 export const ProfileTab = ({logout}) => {
+
+  const [showLogoutDialog,setShowLogoutDialog] = useState(false);
+
   return (
     <div id="tabProfile" className="home-page__tab-data">
+      <YesNoDialog open={showLogoutDialog} setOpen={setShowLogoutDialog} title="Logout" message="Are you sure you want to log out?" yesAction={logout} />
       <div className="home-page__tab-data__section-label">Profile</div>
       <table className="home-page__tab-data__table">
         <tr>
@@ -30,7 +35,7 @@ export const ProfileTab = ({logout}) => {
         </tr>
       </table>
       <div className="home-page__tab-data__button_container">
-        <button onClick={() => logout()} className="writerai-button">Logout</button>
+        <button onClick={() => setShowLogoutDialog(true)} className="writerai-button">Logout</button>
       </div>
     </div>
   );
