@@ -21,7 +21,7 @@
 .landing-page__header {
     display: flex;
     color: var(--colorText1);
-    height: 12vh;
+    height: max-content;
     width: 100%;
     /* position: fixed;
     z-index: 3;
@@ -327,10 +327,10 @@
     flex-direction: column;
     text-align: center;
     margin-inline: 20px;
-    height: 500px;
+    height: max-content;
     cursor: pointer;
     transition: 0.5s all ease;
-    padding: 0px 20px;
+    padding: 30px 20px;
     border-radius: 5px;
 }
 

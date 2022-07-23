@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { ProjectMenuDialog } from "./ProjectMenuDialog";
 
-export const ProjectTab = ({projects, label}) => {
- 
+export const ProjectTab = ({ projects, label }) => {
   return (
     <div className="home-page__tab-data">
       <div className="home-page__tab-data__section-label">{label}</div>
@@ -10,6 +10,7 @@ export const ProjectTab = ({projects, label}) => {
           <div className="home-page__tab-data__content-card">
             <div className="home-page__tab-data__content-card__img">
               <img src={item.image} />
+              <ProjectMenuDialog />
               <div className="home-page__tab-data__content-card__menu_button">
                 <i className="material-icons">more_vert</i>
               </div>
