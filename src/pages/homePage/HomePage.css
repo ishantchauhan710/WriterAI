@@ -255,8 +255,6 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 2;
-    top: 0;
-    right: 0;
 }
 
 .home-page__popup-menu__data a {
@@ -357,6 +355,11 @@
 
     .home-page__tab-data {
         padding: 0px 10px;
+    }
+
+
+    .home-page__popup-menu__data {
+        margin-left: -140px;
     }
 
 }

@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
-export const ProjectMenuDialog = ({ open, setOpen, pos }) => {
+export const ProjectMenuDialog = ({ open, setOpen, pos, setPos }) => {
   const handleMenuClick = () => {
+    handleClose();
+  };
+
+  const handleClose = () => {
+    setPos({});
     setOpen(false);
   };
 
@@ -17,7 +22,7 @@ export const ProjectMenuDialog = ({ open, setOpen, pos }) => {
         const ref = componentRef.current;
         if (ref.style.display == "block" && !ref.contains(e.target)) {
           click = click + 1;
-          if (click >= 2) {
+          if (click > 1) {
             setOpen(false);
             click = 0;
           }
@@ -35,7 +40,7 @@ export const ProjectMenuDialog = ({ open, setOpen, pos }) => {
         top: pos.pageY,
       }}
       className="home-page__popup-menu__data"
-      onBlur={() => handleMenuClick()}
+      id="popupMenu"
     >
       <a onClick={() => handleMenuClick()} href="#">
         Share
