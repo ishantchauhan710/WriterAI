@@ -37,7 +37,6 @@ export default function LandingPageDrawer({ openLoginModal, openSignUpModal }) {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-      style={{backgroundColor: "#ff0000"}}
       style={{height: "100vh"}}
     >
       <div className="landing-page__slider-menu-container">

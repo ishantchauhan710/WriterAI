@@ -23,7 +23,7 @@ export const LandingFeatures = () => {
     {
       title: "Publish Content",
       description:
-        "You can directlt publish the content from WriterAI to multiple platforms such as Hashnode, Medium and Dev.to",
+        "You can directly publish the content from WriterAI to multiple platforms such as Hashnode, Medium and Dev.to",
       img: "publish",
     },
   ];
