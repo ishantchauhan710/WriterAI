@@ -10,6 +10,7 @@ import {
 import { ProfileTab } from "./components/ProfileTab";
 import { ProjectTab } from "./components/ProjectTab";
 import { AppState } from "../../AppContext";
+import { PublishTab } from "./components/PublishTab";
 
 export const HomePage = () => {
   const projects = [
@@ -150,39 +151,39 @@ export const HomePage = () => {
 
   const [showProjectsTab, setShowProjectsTab] = useState(false);
   const [showSharedTab, setShowSharedTab] = useState(false);
-  const [showPublishedTab, setShowPublishedTab] = useState(false);
+  const [showPublishTab, setShowPublishTab] = useState(false);
   const [showProfileTab, setShowProfileTab] = useState(false);
 
   const [activateProjectsTab, setActivateProjectsTab] = useState(false);
   const [activateSharedTab, setActivateSharedTab] = useState(false);
-  const [activatePublishedTab, setActivatePublishedTab] = useState(false);
+  const [activatePublishTab, setActivatePublishTab] = useState(false);
   const [activateProfileTab, setActivateProfileTab] = useState(false);
 
   const showProjects = () => {
     setShowProjectsTab(true);
     setShowSharedTab(false);
-    setShowPublishedTab(false);
+    setShowPublishTab(false);
     setShowProfileTab(false);
   };
 
   const showShared = () => {
     setShowProjectsTab(false);
     setShowSharedTab(true);
-    setShowPublishedTab(false);
+    setShowPublishTab(false);
     setShowProfileTab(false);
   };
 
-  const showPublished = () => {
+  const showPublish = () => {
     setShowProjectsTab(false);
     setShowSharedTab(false);
-    setShowPublishedTab(true);
+    setShowPublishTab(true);
     setShowProfileTab(false);
   };
 
   const showProfile = () => {
     setShowProjectsTab(false);
     setShowSharedTab(false);
-    setShowPublishedTab(false);
+    setShowPublishTab(false);
     setShowProfileTab(true);
   };
 
@@ -262,14 +263,14 @@ export const HomePage = () => {
 
         <div
           className={`home-page__tab-item ${
-            showPublishedTab === true ? "home-page__tab-item--active" : ""
+            showPublishTab === true ? "home-page__tab-item--active" : ""
           }`}
-          onClick={() => showPublished()}
+          onClick={() => showPublish()}
         >
           <div className="home-page__tab-item__image">
             <i
               className={`material-icons home-page__tab-item__image__icon ${
-                showPublishedTab === true
+                showPublishTab === true
                   ? "home-page__tab-item__image__icon--active"
                   : ""
               }`}
@@ -279,12 +280,12 @@ export const HomePage = () => {
           </div>
           <div
             className={`home-page__tab-item__text ${
-              showPublishedTab === true
+              showPublishTab === true
                 ? "home-page__tab-item__text--active"
                 : ""
             }`}
           >
-            Published
+            Publish
           </div>
         </div>
 
@@ -337,8 +338,8 @@ export const HomePage = () => {
             <ProjectTab projects={projects} label="Shared" />
           )}
 
-          {showPublishedTab === true && (
-            <ProjectTab projects={projects} label="Published By You" />
+          {showPublishTab === true && (
+            <PublishTab projects={projects} label="Publish Your Projects" />
           )}
 
           {showProfileTab === true && <ProfileTab logout={logout} />}
