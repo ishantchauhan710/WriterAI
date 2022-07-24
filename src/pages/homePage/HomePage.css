@@ -260,10 +260,41 @@
   display: block;
 }
 
-/* Change color of dropdown links on hover */
 .home-page__popup-menu__data a:hover {
   background-color: #ddd;
 }
+
+.home-page__tab-data__publish-form {
+  color: var(--colorText1);
+}
+
+.home-page__tab-data__publish-form__input-text, .home-page__tab-data__publish-form__input-dropdown {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 12px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+
+.home-page__tab-data__publish-form__button {
+  background-color: var(--colorSecondary);
+  color: var(--colorOnSecondary);
+  border: 1px solid var(--colorSecondary);
+  width: 100%;
+  padding: 7px 20px;
+  margin: 20px 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.home-page__tab-data__publish-form__button:hover {
+  background-color: var(--colorSecondaryHover);
+}
+
 
 /* Responsive Code */
 
