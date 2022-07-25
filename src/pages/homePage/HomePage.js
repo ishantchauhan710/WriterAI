@@ -201,7 +201,7 @@ export const HomePage = () => {
       },
     };
     const result = await axios.get(`${BASE_URL}/project/getProject`, config);
-    //console.log("Result: ",result);
+    console.log("Result: ",result);
     setProjects(result.data.data);
   };
 

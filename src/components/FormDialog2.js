@@ -7,7 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function FormDialog({
+export default function FormDialog2({
   open,
   setOpen,
   title,
@@ -17,6 +17,8 @@ export default function FormDialog({
   noText,
   yesActionFunction,
   notify,
+  input,
+  setInput
 }) {
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,12 +32,9 @@ export default function FormDialog({
     if (!input) {
       notify("Please type something","error")
     } else {
-      yesActionFunction();
       handleClose();
     }
   };
-
-  const [input, setInput] = React.useState("");
 
   return (
     <div>

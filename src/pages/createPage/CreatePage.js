@@ -29,6 +29,8 @@ export const CreatePage = () => {
 
   const [token, setToken] = useState(null);
 
+  const [coverImageUrl, setCoverImageUrl] = React.useState("");
+
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem("userInfo"));
     //console.log("Token in storage: ", userToken);
@@ -109,7 +111,11 @@ export const CreatePage = () => {
   const saveProject = async () => {
     //console.log("Token: ", token);
 
-    setLoading(true);
+    console.log("Cover: ",coverImageUrl)
+
+    if (!coverImageUrl) {
+      setCoverImageUrl("");
+    }
 
     const config = {
       headers: {
@@ -128,24 +134,29 @@ export const CreatePage = () => {
       notify("Project content cannot be blank", "error");
       return;
     } else {
-      const result = await axios.post(
-        `${BASE_URL}/project/insert`,
-        {
-          title: projectName,
-          description: title,
-          content: content,
-          coverImage: "",
-          timeStamp: new Date().getTime(),
-        },
-        config
-      );
+      try {
+        setLoading(true);
+        const result = await axios.post(
+          `${BASE_URL}/project/insert`,
+          {
+            title: projectName,
+            description: title,
+            content: content,
+            coverImage: coverImageUrl,
+            timeStamp: new Date().getTime(),
+          },
+          config
+        );
 
-      setLoading(false);
-      if (result.data.status === 200) {
-        notify("Project saved successfully", "success");
-        navigate("/home");
-      } else {
-        notify("An unknown error occurred", "error");
+        if (result.data.status === 200) {
+          notify("Project saved successfully", "success");
+          navigate("/home");
+        } else {
+          notify("An unknown error occurred", "error");
+        }
+        setLoading(false);
+      } catch (e) {
+        notify(e.message, "error");
       }
     }
   };
@@ -229,6 +240,8 @@ export const CreatePage = () => {
             content={content}
             setContent={setContent}
             handleSplitScreen={handleSplitScreen}
+            coverImageUrl={coverImageUrl}
+            setCoverImageUrl={setCoverImageUrl}
           />
         </div>
 

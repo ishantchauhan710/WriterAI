@@ -4,22 +4,25 @@ import Backdrop from "@mui/material/Backdrop";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
+import CollectionsIcon from "@mui/icons-material/Collections";
 
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import TableViewOutlinedIcon from "@mui/icons-material/TableViewOutlined";
 import AddLinkOutlinedIcon from "@mui/icons-material/AddLinkOutlined";
 import CodeOutlinedIcon from "@mui/icons-material/CodeOutlined";
+import FormDialog2 from "../../../components/FormDialog2";
 
 const actions = [
   {
     icon: <SmartToyOutlinedIcon />,
     name: "AiText",
     markdownContent: "AitextAction",
+  },
+  {
+    icon: <CollectionsIcon />,
+    name: "Cover",
+    markdownContent: "CoverImageAction",
   },
   {
     icon: <AddPhotoAlternateOutlinedIcon />,
@@ -46,10 +49,12 @@ const actions = [
   },
 ];
 
-export default function OptionsFab({ content, setContent, handleSplitScreen }) {
+export default function OptionsFab({ content, setContent, handleSplitScreen, coverImageUrl, setCoverImageUrl }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [showCoverImageDialog, setShowCoverImageDialog] = React.useState(false);
 
   const addMarkdown = (markdownText) => {
     setContent(content + "\n" + markdownText + "\n<br/>\n");
@@ -58,15 +63,34 @@ export default function OptionsFab({ content, setContent, handleSplitScreen }) {
 
   const handleFabItemClick = (markdown) => {
     if (markdown === "AitextAction") {
-        handleSplitScreen(2)
+      handleSplitScreen(2);
+      handleClose();
+    } else if (markdown === "CoverImageAction") {
+      setShowCoverImageDialog(true);
+      handleClose();
     } else {
       addMarkdown(markdown);
     }
     handleClose();
   };
 
+  const setCoverImage = (url) => {
+    setCoverImage(url);
+  };
+
   return (
     <>
+      <FormDialog2
+        open={showCoverImageDialog}
+        setOpen={setShowCoverImageDialog}
+        title="Add Cover Image"
+        message="Paste the URL of the image you want to set as this project's cover"
+        yesText="Ok"
+        noText="Cancel"
+        input={coverImageUrl}
+        setInput={setCoverImageUrl}
+        fieldPlaceholder="Paste URL here"
+      />
       <Backdrop
         sx={{ position: "absolute", width: "100%", height: "100%" }}
         style={{ backgroundColor: "rgba(0,0,0,0.1)" }}
