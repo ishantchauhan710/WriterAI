@@ -10,7 +10,7 @@ import axios from "axios";
 import { BASE_URL } from "../../other/Constants";
 
 export const HomePage = () => {
-  const projects = [
+  const projectss = [
     {
       id: 1,
       title: "Lorem Ipsum",
@@ -113,12 +113,7 @@ export const HomePage = () => {
 
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
 
-  const {
-    setLoading,
-    notify,
-    userDetails,
-    setUserDetails,
-  } = AppState();
+  const { setLoading, notify, userDetails, setUserDetails } = AppState();
 
   const logout = () => {
     logoutUser();
@@ -197,6 +192,19 @@ export const HomePage = () => {
 
   const [token, setToken] = useState(null);
 
+  const [projects, setProjects] = useState([]);
+
+  const getProjects = async () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const result = await axios.get(`${BASE_URL}/project/getProject`, config);
+    //console.log("Result: ",result);
+    setProjects(result.data.data);
+  };
+
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem("userInfo"));
     //console.log("Token in storage: ", userToken);
@@ -210,8 +218,11 @@ export const HomePage = () => {
   useEffect(() => {
     if (token) {
       getUser();
+      getProjects();
     }
   }, [token]);
+
+ 
 
   return (
     <div className="home-page">

@@ -23,7 +23,7 @@ export const ProjectTab = ({ projects, label }) => {
         {projects.map((item, index) => (
           <div key={index} className="home-page__tab-data__content-card">
             <div className="home-page__tab-data__content-card__img">
-              <img src={item.image} />
+              <img src={item.image!==""?"https://designshack.net/wp-content/uploads/placeholder-image.png":item.image} />
               <div
                 onClick={(e) => openMenu(e)}
                 className="home-page__tab-data__content-card__menu_button"
@@ -33,10 +33,10 @@ export const ProjectTab = ({ projects, label }) => {
             </div>
             <div className="home-page__tab-data__content-card__data">
               <div className="home-page__tab-data__content-card__data__title">
-                {item.title}
+                {item.description}
               </div>
               <div className="home-page__tab-data__content-card__data__description">
-                {item.description}
+                {item.content}
               </div>
             </div>
           </div>
