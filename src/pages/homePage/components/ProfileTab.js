@@ -18,11 +18,11 @@ export const ProfileTab = ({ logout, userDetails }) => {
         <tbody>
           <tr>
             <td>User Name</td>
-            <td>{userDetails.data?userDetails.data.username:"null"}</td>
+            <td>{userDetails.data ? userDetails.data.username : "null"}</td>
           </tr>
           <tr>
             <td>User Email</td>
-            <td>{userDetails.data?userDetails.data.email:"null"}</td>
+            <td>{userDetails.data ? userDetails.data.email : "null"}</td>
           </tr>
 
           <tr>
@@ -37,7 +37,7 @@ export const ProfileTab = ({ logout, userDetails }) => {
 
           <tr>
             <td>WriterAI Usage</td>
-            <td>{userDetails.data?userDetails.data.apiReqCount:"null"}</td>
+            <td>{userDetails.data ? userDetails.data.apiReqCount : "null"}</td>
           </tr>
         </tbody>
       </table>

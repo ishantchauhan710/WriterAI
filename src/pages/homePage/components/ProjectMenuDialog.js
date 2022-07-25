@@ -14,6 +14,7 @@ export const ProjectMenuDialog = ({ open, setOpen, pos, setPos }) => {
 
   let click = 0;
 
+  // Whenever user clicks outside the popup menu, we close the menu
   useEffect(() => {
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);

@@ -7,46 +7,38 @@ import { PublishTab } from "./components/PublishTab";
 import { BASE_URL } from "../../other/Constants";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import FormDialog from "../../components/FormDialog";
+import CreateNewProjectDialog from "./components/dialogs/CreateNewProjectDialog";
 
 export const HomePage = () => {
+  // States for showing dialog boxes, toggling tabs and storing data for token and projects
+  const { setLoading, notify, userDetails, setUserDetails } = AppState();
+  const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
+  const [showProjectsTab, setShowProjectsTab] = useState(false);
+  const [showSharedTab, setShowSharedTab] = useState(false);
+  const [showPublishTab, setShowPublishTab] = useState(false);
+  const [showProfileTab, setShowProfileTab] = useState(false);
+  const [token, setToken] = useState(null);
+  const [projects, setProjects] = useState([]);
 
   const navigate = useNavigate();
 
-  const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
-
-  const { setLoading, notify, userDetails, setUserDetails } = AppState();
-
+  // Function to logout a user
   const logout = () => {
     logoutUser();
     navigate("/");
   };
 
+  // Function to show new project dialog
   const createNew = () => {
     setShowNewProjectDialog(true);
   };
 
+  // Function to navigate to create project page
   const openCreatePage = () => {
     navigate("/create");
   };
 
-  useEffect(() => {
-    const userLoggedIn = isUserLoggedIn();
-    if (userLoggedIn !== true) {
-      navigate("/");
-    }
-  }, []);
-
-  const [showProjectsTab, setShowProjectsTab] = useState(false);
-  const [showSharedTab, setShowSharedTab] = useState(false);
-  const [showPublishTab, setShowPublishTab] = useState(false);
-  const [showProfileTab, setShowProfileTab] = useState(false);
-
-  const [activateProjectsTab, setActivateProjectsTab] = useState(false);
-  const [activateSharedTab, setActivateSharedTab] = useState(false);
-  const [activatePublishTab, setActivatePublishTab] = useState(false);
-  const [activateProfileTab, setActivateProfileTab] = useState(false);
-
+  // Functions to toggle different tabs
   const showProjects = () => {
     setShowProjectsTab(true);
     setShowSharedTab(false);
@@ -75,38 +67,60 @@ export const HomePage = () => {
     setShowProfileTab(true);
   };
 
+  // Function to get user's details from DB
+  const getUser = async () => {
+    setLoading(true);
+
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const response = await axios.get(`${BASE_URL}/user/getUser`, config);
+      console.log("Response: ", response);
+      setUserDetails(response.data);
+      setLoading(false);
+    } catch (e) {
+      notify(e.message, "error");
+      setLoading(false);
+    }
+  };
+
+  // Function to get user's projects from DB
+  const getProjects = async () => {
+    setLoading(true);
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const result = await axios.get(`${BASE_URL}/project/getProject`, config);
+      console.log("Result: ", result);
+      setProjects(result.data.data);
+      setLoading(false);
+    } catch (e) {
+      notify(e.message, "error");
+      setLoading(false);
+    }
+  };
+
+  // When this page is opened, check if user is logged in. If not then navigate to landing page
+  useEffect(() => {
+    const userLoggedIn = isUserLoggedIn();
+    if (userLoggedIn !== true) {
+      navigate("/");
+    }
+  }, []);
+
+  // By default, show the project tab to user
   useEffect(() => {
     showProjects();
   }, []);
 
-  const getUser = async () => {
-    // console.log("Token: ", token);
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const response = await axios.get(`${BASE_URL}/user/getUser`, config);
-    console.log("Response: ", response);
-    setUserDetails(response.data);
-  };
-
-  const [token, setToken] = useState(null);
-
-  const [projects, setProjects] = useState([]);
-
-  const getProjects = async () => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const result = await axios.get(`${BASE_URL}/project/getProject`, config);
-    console.log("Result: ",result);
-    setProjects(result.data.data);
-  };
-
+  // When this page is opened, we get the local storage auth token and store it in a state variable
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem("userInfo"));
     //console.log("Token in storage: ", userToken);
@@ -117,6 +131,7 @@ export const HomePage = () => {
     }
   }, []);
 
+  // Whenever token's value changes from default null to a token contained value, we fetch user details and his projects
   useEffect(() => {
     if (token) {
       getUser();
@@ -124,12 +139,10 @@ export const HomePage = () => {
     }
   }, [token]);
 
- 
-
   return (
     <div className="home-page">
       {showNewProjectDialog === true && (
-        <FormDialog
+        <CreateNewProjectDialog
           open={showNewProjectDialog}
           setOpen={setShowNewProjectDialog}
           title="Create Project"

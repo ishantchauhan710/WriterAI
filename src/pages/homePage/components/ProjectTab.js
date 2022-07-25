@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { ProjectMenuDialog } from "./ProjectMenuDialog";
 
 export const ProjectTab = ({ projects, label }) => {
+  // We display this if no cover image of project exists
+  const NO_IMAGE_PLACEHOLDER =
+    "https://designshack.net/wp-content/uploads/placeholder-image.png";
+
   const [showPopupMenu, setShowPopupMenu] = useState(false);
   const [popupMenuPos, setPopupMenuPos] = useState({});
 
@@ -23,7 +27,11 @@ export const ProjectTab = ({ projects, label }) => {
         {projects.map((item, index) => (
           <div key={index} className="home-page__tab-data__content-card">
             <div className="home-page__tab-data__content-card__img">
-              <img src={item.coverPic===""?"https://designshack.net/wp-content/uploads/placeholder-image.png":item.coverPic} />
+              <img
+                src={
+                  item.coverPic === "" ? NO_IMAGE_PLACEHOLDER : item.coverPic
+                }
+              />
               <div
                 onClick={(e) => openMenu(e)}
                 className="home-page__tab-data__content-card__menu_button"

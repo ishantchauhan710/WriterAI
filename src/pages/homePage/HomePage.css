@@ -268,7 +268,8 @@
   color: var(--colorText1);
 }
 
-.home-page__tab-data__publish-form__input-text, .home-page__tab-data__publish-form__input-dropdown {
+.home-page__tab-data__publish-form__input-text,
+.home-page__tab-data__publish-form__input-dropdown {
   width: 100%;
   padding: 12px 20px;
   margin: 12px 0;
@@ -278,7 +279,6 @@
   box-sizing: border-box;
   outline: none;
 }
-
 
 .home-page__tab-data__publish-form__button {
   background-color: var(--colorSecondary);
@@ -294,7 +294,6 @@
 .home-page__tab-data__publish-form__button:hover {
   background-color: var(--colorSecondaryHover);
 }
-
 
 /* Responsive Code */
 
