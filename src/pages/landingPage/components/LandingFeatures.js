@@ -32,11 +32,11 @@ export const LandingFeatures = () => {
     <div className="landing-page__features">
       <div className="landing-page__features__heading">Features</div>
       <div className="landing-page__features__container">
-        {data.map((item) => (
-          <div className="landing-page__features__feature">
+        {data.map((item,index) => (
+          <div key={index} className="landing-page__features__feature">
             <div className="landing-page__features__feature-img">
               <div className="landing-page__features__feature-img-bg">
-                <i class="material-icons">{item.img}</i>
+                <i className="material-icons">{item.img}</i>
               </div>
             </div>
             <div className="landing-page__features__feature-title">

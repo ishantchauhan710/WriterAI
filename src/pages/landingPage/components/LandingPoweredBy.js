@@ -35,8 +35,8 @@ export const LandingPoweredBy = () => {
     <div className="landing-page__poweredby">
       <div className="landing-page__poweredby__heading">Built With</div>
       <div className="landing-page__poweredby__container">
-        {data.map((item) => (
-          <div className="landing-page__poweredby__item">
+        {data.map((item,index) => (
+          <div key={index} className="landing-page__poweredby__item">
             <div className="landing-page__features__feature-img">
               <img style={{padding: item.size}} className="landing-page__poweredby__img" src={item.img} />
             </div>
