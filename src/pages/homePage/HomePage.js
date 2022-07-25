@@ -186,7 +186,7 @@ export const HomePage = () => {
     // console.log("Token: ", token);
     const config = {
       headers: {
-        Authorization: `Bearer: ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
