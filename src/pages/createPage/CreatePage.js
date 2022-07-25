@@ -6,6 +6,7 @@ import OptionsFab from "./components/OptionsFab";
 import ShowPreview from "./components/ShowPreview";
 import axios from "axios";
 import { BASE_URL } from "../../other/Constants";
+import { isUserLoggedIn } from "../../firebase/firebase";
 const { Configuration, OpenAIApi } = require("openai");
 
 export const CreatePage = () => {
@@ -26,7 +27,15 @@ export const CreatePage = () => {
 
   const navigate = useNavigate();
 
-  // When this page is opened, get token from local storage and store it in a state variable
+  // When this page is opened, check if user is logged in. If not then navigate to landing page
+  useEffect(() => {
+    const userLoggedIn = isUserLoggedIn();
+    if (userLoggedIn !== true) {
+      navigate("/");
+    }
+  }, []);
+
+  // Get token from local storage and store it in a state variable
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem("userInfo"));
     //console.log("Token in storage: ", userToken);
