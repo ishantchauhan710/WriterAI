@@ -12,9 +12,31 @@ import { Notification } from "./components/Notification";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/homePage/HomePage";
 import { CreatePage } from "./pages/createPage/CreatePage";
+import { useEffect, useState } from "react";
+import { getUserToken } from "./firebase/firebase";
 
 function App() {
   const { loading, showNotification } = AppState();
+
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const tokenValue = localStorage.getItem("userInfo");
+    setToken(tokenValue);
+  }, []);
+
+  // Refresh Auth Token Every 10 Minutes
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      if (token) {
+        const newToken = await getUserToken();
+        localStorage.setItem("userInfo", JSON.stringify(newToken));
+        console.log("Token Refreshed", newToken);
+      }
+    }, 10*60*1000);
+
+    return () => clearInterval(interval);
+  }, [token]);
 
   return (
     <ThemeProvider theme={writerAiTheme}>
@@ -23,7 +45,6 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/create" element={<CreatePage />} />
-          
         </Routes>
       </BrowserRouter>
       {loading && <Loading />}
