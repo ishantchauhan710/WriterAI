@@ -4,6 +4,8 @@ import { AppState } from "../../AppContext";
 import YesNoDialog from "../../components/YesNoDialog";
 import OptionsFab from "./components/OptionsFab";
 import ShowPreview from "./components/ShowPreview";
+import axios from "axios";
+import { BASE_URL } from "../../other/Constants";
 const { Configuration, OpenAIApi } = require("openai");
 
 export const CreatePage = () => {
@@ -24,6 +26,18 @@ export const CreatePage = () => {
   const [showBackDialog, setShowBackDialog] = useState(false);
 
   const navigate = useNavigate();
+
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const userToken = JSON.parse(localStorage.getItem("userInfo"));
+    //console.log("Token in storage: ", userToken);
+
+    if (userToken) {
+      setToken(userToken);
+      //console.log("Token: ", token) [WILL GIVE NULL DUE TO SYNC EXECUTION];
+    }
+  }, []);
 
   // 1 -> Show Writer, 2 -> Show Generator
   const handleSplitScreen = (splitCode) => {
@@ -86,6 +100,56 @@ export const CreatePage = () => {
     notify("Text copied to cliboard", "success");
   };
 
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    setTitle(projectName);
+  }, []);
+
+  const saveProject = async () => {
+    //console.log("Token: ", token);
+
+    setLoading(true);
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    if (!projectName) {
+      setProjectName("Untitled");
+    }
+
+    if (!title) {
+      notify("Project title cannot be blank", "error");
+      return;
+    } else if (!content) {
+      notify("Project content cannot be blank", "error");
+      return;
+    } else {
+      const result = await axios.post(
+        `${BASE_URL}/project/insert`,
+        {
+          title: projectName,
+          description: title,
+          content: content,
+          coverImage: "",
+          timeStamp: new Date().getTime(),
+        },
+        config
+      );
+
+      setLoading(false);
+      if (result.data.status === 200) {
+        notify("Project saved successfully", "success");
+        navigate("/home");
+      } else {
+        notify("An unknown error occurred", "error");
+      }
+    }
+  };
+
   return (
     <div className="create-page">
       <ShowPreview
@@ -108,7 +172,12 @@ export const CreatePage = () => {
           <i className="material-icons">arrow_back</i>
         </div>
         <div className="create-page__header__title">
-          <input placeholder="Project Name" type="text" />
+          <input
+            placeholder="Project Name"
+            value={projectName}
+            onChange={(e) => setProjectName(e.target.value)}
+            type="text"
+          />
         </div>
         <div className="create-page__header__action-button-container">
           <button
@@ -117,7 +186,10 @@ export const CreatePage = () => {
           >
             Preview
           </button>
-          <button className="create-page__header__action-button--primary writerai-button">
+          <button
+            onClick={() => saveProject()}
+            className="create-page__header__action-button--primary writerai-button"
+          >
             Save
           </button>
         </div>
@@ -137,8 +209,11 @@ export const CreatePage = () => {
               className="create-page__body__editor__title"
               contentEditable="plaintext-only"
               placeholder="Project Title"
+              onBlur={(e) => setTitle(e.currentTarget.textContent)}
               suppressContentEditableWarning={true}
-            />
+            >
+              {title}
+            </div>
             <div
               spellCheck="false"
               className="create-page__body__editor__content"
