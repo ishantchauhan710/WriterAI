@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isUserLoggedIn } from "../../firebase/firebase";
-import AuthModal from "./components/AuthModal";
-import { LandingFeatures } from "./components/LandingFeatures";
-import { LandingFooter } from "./components/LandingFooter";
-import LandingHeader from "./components/LandingHeader";
-import { LandingHome } from "./components/LandingHome";
-import { LandingPoweredBy } from "./components/LandingPoweredBy";
+import AuthModal from "./components/other/AuthModal";
+import { LandingFeatures } from "./components/main/LandingFeatures";
+import { LandingFooter } from "./components/main/LandingFooter";
+import LandingHeader from "./components/main/LandingHeader";
+import { LandingHome } from "./components/main/LandingHome";
+import { LandingPoweredBy } from "./components/main/LandingPoweredBy";
 
 export const LandingPage = () => {
   const [openAuthModal, setOpenAuthModal] = useState(false);

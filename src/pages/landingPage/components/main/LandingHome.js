@@ -1,8 +1,8 @@
 import Lottie from "lottie-react";
-import landingPageAnimation from "../../../res/animations/landing_page_anim.json";
+import landingPageAnimation from "../../../../res/animations/landing_page_anim.json";
 import React from "react";
 
-export const LandingHome = ({openSignUpModal}) => {
+export const LandingHome = ({ openSignUpModal }) => {
   return (
     <div className="landing-page__home">
       <div className="landing-page__home__left">
@@ -19,7 +19,10 @@ export const LandingHome = ({openSignUpModal}) => {
           and you will get the results instantly.
         </div>
         <div className="landing-page__home__left__buttons">
-          <button onClick={() => openSignUpModal()} className="writerai-button landing-page__home__left__button--primary mv-10">
+          <button
+            onClick={() => openSignUpModal()}
+            className="writerai-button landing-page__home__left__button--primary mv-10"
+          >
             Try now
           </button>
           <button className="writerai-button landing-page__home__left__button--secondary mv-10">

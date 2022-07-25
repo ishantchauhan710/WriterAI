@@ -7,15 +7,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
-import PermContactCalendarRoundedIcon from "@mui/icons-material/PermContactCalendarRounded";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LoginIcon from "@mui/icons-material/Login";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
 
 export default function LandingPageDrawer({ openLoginModal, openSignUpModal }) {
   const [state, setState] = React.useState({ left: false });
@@ -37,7 +28,7 @@ export default function LandingPageDrawer({ openLoginModal, openSignUpModal }) {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-      style={{height: "100vh"}}
+      style={{ height: "100vh" }}
     >
       <div className="landing-page__slider-menu-container">
         <ul>

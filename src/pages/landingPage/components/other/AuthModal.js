@@ -16,11 +16,11 @@ import {
   logoutUser,
   signInWithGoogle,
   signUpWithEmailAndPassword,
-} from "../../../firebase/firebase";
-import { AppState } from "../../../AppContext";
+} from "../../../../firebase/firebase";
+import { AppState } from "../../../../AppContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL } from "../../../other/Constants";
+import { BASE_URL } from "../../../../other/Constants";
 
 const style = {
   position: "absolute",
@@ -49,15 +49,15 @@ export default function AuthModal({
 
   const navigate = useNavigate();
 
+  // Handles Auth Response, True or False
   const parseResult = async (result, action) => {
     if (result === "TRUE") {
       const token = await getUserToken();
+      // Uid to be stored in DB
       const uid = getUserId();
 
-      // console.log("Token: ", token);
-      // console.log("Id: ", uid);
-
       if (action === "SIGNUP_EMAIL_PASSWORD") {
+        // If user has signed up via firebase email pwd, store it in db
         const response = await axios.post(
           `${BASE_URL}/user/insert?email=${signupUserEmail}&username=${signupUserName}&userId=${uid}`
         );
@@ -65,29 +65,29 @@ export default function AuthModal({
         const status = response.data.status;
 
         if (status === 200) {
-          // console.log("Sucess");
           notify("Account created successfully!", "success");
         } else {
           notify("Unable to create account", "error");
         }
       } else if (action === "SIGNUP_GOOGLE") {
-        console.log("Google");
+        // If user logs in using google signin prompt, we get user details and save them to db
         const user = getUser();
-        //console.log("User: ", user);
 
         try {
           const response = await axios.post(
             `${BASE_URL}/user/insert?email=${user.email}&username=${user.displayName}&userId=${user.uid}`
           );
         } catch (e) {
-          // NO-OP
+          // An error here usually means user already exists in db, we dont need to take any actions here
         }
 
         notify("You are successfully logged in!", "success");
       } else {
+        // If user simply logs in via email and password, dont save his details in db
         notify("You are successfully logged in!", "success");
       }
 
+      // For all 3 success cases, save auth token in local storage and redirect user to home page
       localStorage.setItem("userInfo", JSON.stringify(token));
       navigate("/home");
     } else {
@@ -134,15 +134,16 @@ export default function AuthModal({
     setLoading(true);
     await signInWithGoogle();
     const result = getGoogleSignInResult();
-    //console.log(`Result: ${result}`);
     parseResult(result, "SIGNUP_GOOGLE");
     setLoading(false);
   };
 
+  // This function will be called when a user changes the auth tab in modal
   const handleChange = (event, newValue) => {
     setAuthTab(newValue);
   };
 
+  // Function to close auth tab modal
   const handleClose = () => setOpenAuthModal(false);
 
   return (

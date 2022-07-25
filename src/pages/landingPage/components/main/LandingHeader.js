@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LandingPageDrawer from "./LandingPageDrawer";
 
-const LandingHeader = ({openLoginModal,openSignUpModal}) => {
- 
-
+const LandingHeader = ({ openLoginModal, openSignUpModal }) => {
   return (
     <div className="landing-page__header">
       <div className="landing-page__header__logo">
@@ -30,10 +28,16 @@ const LandingHeader = ({openLoginModal,openSignUpModal}) => {
         </ul>
       </div>
       <div className="landing-page__header__buttons">
-        <button onClick={() => openLoginModal()} className="landing-page__header__button landing-page__header__button--secondary writerai-button">
+        <button
+          onClick={() => openLoginModal()}
+          className="landing-page__header__button landing-page__header__button--secondary writerai-button"
+        >
           Login
         </button>
-        <button onClick={() => openSignUpModal()} className="landing-page__header__button landing-page__header__button--primary writerai-button">
+        <button
+          onClick={() => openSignUpModal()}
+          className="landing-page__header__button landing-page__header__button--primary writerai-button"
+        >
           Sign Up
         </button>
       </div>
