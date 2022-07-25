@@ -11,8 +11,10 @@ import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternate
 import TableViewOutlinedIcon from "@mui/icons-material/TableViewOutlined";
 import AddLinkOutlinedIcon from "@mui/icons-material/AddLinkOutlined";
 import CodeOutlinedIcon from "@mui/icons-material/CodeOutlined";
-import FormDialog2 from "../../../components/FormDialog2";
+import AddCoverImageDialog from "./dialogs/AddCoverImageDialog";
 
+// An array of FAB Options
+// Since all options are used to add markdown values in editor other than 2, we use those 2 using if-else cases to perform special tasks
 const actions = [
   {
     icon: <SmartToyOutlinedIcon />,
@@ -49,7 +51,13 @@ const actions = [
   },
 ];
 
-export default function OptionsFab({ content, setContent, handleSplitScreen, coverImageUrl, setCoverImageUrl }) {
+export default function OptionsFab({
+  content,
+  setContent,
+  handleSplitScreen,
+  coverImageUrl,
+  setCoverImageUrl,
+}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -80,7 +88,7 @@ export default function OptionsFab({ content, setContent, handleSplitScreen, cov
 
   return (
     <>
-      <FormDialog2
+      <AddCoverImageDialog
         open={showCoverImageDialog}
         setOpen={setShowCoverImageDialog}
         title="Add Cover Image"

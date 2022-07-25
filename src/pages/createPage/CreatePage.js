@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppState } from "../../AppContext";
 import YesNoDialog from "../../components/YesNoDialog";
@@ -9,28 +9,24 @@ import { BASE_URL } from "../../other/Constants";
 const { Configuration, OpenAIApi } = require("openai");
 
 export const CreatePage = () => {
+  // State variables to store data for ai generator input, ai results, text editor title, content, split window state and other stuff
+
   const [aiInput, setAiInput] = useState("");
   const [generatedAiContent, setGeneratedAiContent] = useState([]);
-  const { setLoading, notify, projectName, setProjectName } = AppState();
-
-  const [openMarkdownPanel, setOpenMarkdownPanel] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
-
   const [loadingAiContent, setLoadingAiContent] = useState(false);
-
   const [content, setContent] = useState("");
-
   const [splitGenerator, setSplitGenerator] = useState(false);
   const [splitWriter, setSplitWriter] = useState(true);
-
   const [showBackDialog, setShowBackDialog] = useState(false);
+  const [title, setTitle] = useState("");
+  const { setLoading, notify, projectName, setProjectName } = AppState();
+  const [token, setToken] = useState(null);
+  const [coverImageUrl, setCoverImageUrl] = useState("");
 
   const navigate = useNavigate();
 
-  const [token, setToken] = useState(null);
-
-  const [coverImageUrl, setCoverImageUrl] = React.useState("");
-
+  // When this page is opened, get token from local storage and store it in a state variable
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem("userInfo"));
     //console.log("Token in storage: ", userToken);
@@ -41,6 +37,7 @@ export const CreatePage = () => {
     }
   }, []);
 
+  // Function to split writer and generator screens on small screen devices
   // 1 -> Show Writer, 2 -> Show Generator
   const handleSplitScreen = (splitCode) => {
     if (splitCode === 1) {
@@ -52,21 +49,17 @@ export const CreatePage = () => {
     }
   };
 
+  // Function to generate content using AI
   const generateAiContent = async () => {
-    // setGeneratedAiContent([
-    //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna et pharetra.",
-    //   "Dictum at tempor commodo ullamcorper a lacus vestibulum sed. Id aliquet risus feugiat in ante metus. Eget nunc lobortis mattis aliquam faucibus purus in massa tempor.",
-    //   "Viverra maecenas accumsan lacus vel facilisis volutpat est velit egestas. Duis at tellus at urna condimentum mattis pellentesque id nibh.",
-    //   "Nunc lobortis mattis aliquam faucibus purus. Turpis egestas maecenas pharetra convallis posuere morbi leo urna. Suspendisse potenti nullam ac tortor vitae.",
-    //   "Elementum nibh tellus molestie nunc. Malesuada fames ac turpis egestas maecenas pharetra convallis posuere morbi. A arcu cursus vitae congue mauris rhoncus aenean vel elit.",
-    // ]);
-
+    // If AI is fetching data, prevent from making repeated API calls
     if (loadingAiContent) {
       return;
     }
 
+    // Store the input field text in a variable
     const inputText = aiInput;
 
+    // Validate the input data for null value and minimum words
     if (!inputText) {
       notify("Input text cannot be empty");
       return;
@@ -77,12 +70,18 @@ export const CreatePage = () => {
       return;
     }
 
+    // Show loading progress bar
     setLoadingAiContent(true);
 
+    // Initialize the AI configuration variable
     const configuration = new Configuration({
       apiKey: process.env.REACT_APP_AI_API_KEY,
     });
+
+    // Create the AI Instance
     const openai = new OpenAIApi(configuration);
+
+    // Get data from AI and store it in respective state variables
     const response = await openai.createCompletion({
       model: "text-davinci-002",
       prompt: inputText,
@@ -93,36 +92,30 @@ export const CreatePage = () => {
     });
     const content = response.data.choices;
     setGeneratedAiContent(content);
-    console.log("Content: ", response.data.choices);
+    //console.log("Content: ", response.data.choices);
     setLoadingAiContent(false);
   };
 
+  // Function to copy AI generated text results to clipboard
   const copyTextToClipboard = (text) => {
     navigator.clipboard.writeText(text);
     notify("Text copied to cliboard", "success");
   };
 
-  const [title, setTitle] = useState("");
-
+  // A project will have a name, a title and a content body
+  // By default, we set the project name and title as the user opens the page
   useEffect(() => {
     setTitle(projectName);
   }, []);
 
+  // Function to save project to database
   const saveProject = async () => {
-    //console.log("Token: ", token);
-
-    console.log("Cover: ",coverImageUrl)
-
+    // If user hasnt set up cover image, we assign it a blank value
     if (!coverImageUrl) {
       setCoverImageUrl("");
     }
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
+    // Validate project variables for null values
     if (!projectName) {
       setProjectName("Untitled");
     }
@@ -134,6 +127,13 @@ export const CreatePage = () => {
       notify("Project content cannot be blank", "error");
       return;
     } else {
+      // Make the API Call
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
       try {
         setLoading(true);
         const result = await axios.post(
@@ -157,6 +157,7 @@ export const CreatePage = () => {
         setLoading(false);
       } catch (e) {
         notify(e.message, "error");
+        setLoading(false);
       }
     }
   };
