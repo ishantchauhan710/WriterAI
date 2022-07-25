@@ -9,7 +9,7 @@ const { Configuration, OpenAIApi } = require("openai");
 export const CreatePage = () => {
   const [aiInput, setAiInput] = useState("");
   const [generatedAiContent, setGeneratedAiContent] = useState([]);
-  const { setLoading, notify } = AppState();
+  const { setLoading, notify, projectName, setProjectName } = AppState();
 
   const [openMarkdownPanel, setOpenMarkdownPanel] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -87,7 +87,7 @@ export const CreatePage = () => {
   };
 
   return (
-    <div class="create-page">
+    <div className="create-page">
       <ShowPreview
         open={showPreview}
         setOpen={setShowPreview}
@@ -133,17 +133,19 @@ export const CreatePage = () => {
         >
           <div className="create-page__body__editor__scrollable-body">
             <div
-              spellcheck="false"
+              spellCheck="false"
               className="create-page__body__editor__title"
-              contenteditable="plaintext-only"
+              contentEditable="plaintext-only"
               placeholder="Project Title"
+              suppressContentEditableWarning={true}
             />
             <div
-              spellcheck="false"
+              spellCheck="false"
               className="create-page__body__editor__content"
-              contenteditable="plaintext-only"
+              contentEditable="plaintext-only"
               placeholder="Write your content here..."
               onBlur={(e) => setContent(e.currentTarget.textContent)}
+              suppressContentEditableWarning={true}
             >
               {content}
             </div>

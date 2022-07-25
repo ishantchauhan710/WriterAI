@@ -9,8 +9,8 @@ const AppContext = ({ children }) => {
   const [notificationMessage, setNotificationMessage] = useState("");
   const [notificationType, setNotificationType] = useState("error");
 
-
-  const [userDetails,setUserDetails] = useState({});
+  const [userDetails, setUserDetails] = useState({});
+  const [projectName, setProjectName] = useState('');
 
   const notify = (message, type = "error") => {
     if (!message) {
@@ -38,7 +38,9 @@ const AppContext = ({ children }) => {
         setNotificationType,
         notify,
         userDetails,
-        setUserDetails
+        setUserDetails,
+        projectName,
+        setProjectName,
       }}
     >
       {children}

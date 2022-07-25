@@ -113,7 +113,12 @@ export const HomePage = () => {
 
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
 
-  const { setLoading, notify, userDetails, setUserDetails } = AppState();
+  const {
+    setLoading,
+    notify,
+    userDetails,
+    setUserDetails,
+  } = AppState();
 
   const logout = () => {
     logoutUser();
@@ -357,7 +362,9 @@ export const HomePage = () => {
             <PublishTab projects={projects} label="Publish Your Projects" />
           )}
 
-          {showProfileTab === true && <ProfileTab userDetails={userDetails} logout={logout} />}
+          {showProfileTab === true && (
+            <ProfileTab userDetails={userDetails} logout={logout} />
+          )}
         </div>
       </div>
     </div>
