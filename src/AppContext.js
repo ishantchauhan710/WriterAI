@@ -9,6 +9,9 @@ const AppContext = ({ children }) => {
   const [notificationMessage, setNotificationMessage] = useState("");
   const [notificationType, setNotificationType] = useState("error");
 
+
+  const [userDetails,setUserDetails] = useState({});
+
   const notify = (message, type = "error") => {
     if (!message) {
       console.log("An unknown error occurred");
@@ -34,6 +37,8 @@ const AppContext = ({ children }) => {
         notificationType,
         setNotificationType,
         notify,
+        userDetails,
+        setUserDetails
       }}
     >
       {children}

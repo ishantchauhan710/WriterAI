@@ -83,12 +83,6 @@ const isUserLoggedIn = () => {
   }
 };
 
-const loggedInUserToken = () => {
-  const userToken = localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo"))
-    : null;
-  return userToken;
-};
 
 export {
   signInWithGoogle,
@@ -97,7 +91,6 @@ export {
   logoutUser,
   getUserToken,
   isUserLoggedIn,
-  loggedInUserToken,
   getUserId,
   getUser,
   getGoogleSignInResult,

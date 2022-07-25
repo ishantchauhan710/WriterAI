@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormDialog from "../../components/FormDialog";
-import {
-  getUserToken,
-  isUserLoggedIn,
-  loggedInUserToken,
-  logoutUser,
-} from "../../firebase/firebase";
+import { isUserLoggedIn, logoutUser } from "../../firebase/firebase";
 import { ProfileTab } from "./components/ProfileTab";
 import { ProjectTab } from "./components/ProjectTab";
 import { AppState } from "../../AppContext";
 import { PublishTab } from "./components/PublishTab";
+import axios from "axios";
+import { BASE_URL } from "../../other/Constants";
 
 export const HomePage = () => {
   const projects = [
@@ -114,11 +111,9 @@ export const HomePage = () => {
 
   const navigate = useNavigate();
 
-  const [token, setToken] = useState(null);
-
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
 
-  const { setLoading, notify } = AppState();
+  const { setLoading, notify, userDetails, setUserDetails } = AppState();
 
   const logout = () => {
     logoutUser();
@@ -133,20 +128,11 @@ export const HomePage = () => {
     navigate("/create");
   };
 
-  const getUserToken = () => {
-    const token = loggedInUserToken;
-    setToken(token);
-  };
-
   useEffect(() => {
     const userLoggedIn = isUserLoggedIn();
     if (userLoggedIn !== true) {
       navigate("/");
     }
-  }, []);
-
-  useEffect(() => {
-    getUserToken();
   }, []);
 
   const [showProjectsTab, setShowProjectsTab] = useState(false);
@@ -190,6 +176,37 @@ export const HomePage = () => {
   useEffect(() => {
     showProjects();
   }, []);
+
+  const getUser = async () => {
+    // console.log("Token: ", token);
+    const config = {
+      headers: {
+        Authorization: `Bearer: ${token}`,
+      },
+    };
+
+    const response = await axios.get(`${BASE_URL}/user/getUser`, config);
+    console.log("Response: ", response);
+    setUserDetails(response.data);
+  };
+
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const userToken = JSON.parse(localStorage.getItem("userInfo"));
+    //console.log("Token in storage: ", userToken);
+
+    if (userToken) {
+      setToken(userToken);
+      //console.log("Token: ", token) [WILL GIVE NULL DUE TO SYNC EXECUTION];
+    }
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      getUser();
+    }
+  }, [token]);
 
   return (
     <div className="home-page">
@@ -280,9 +297,7 @@ export const HomePage = () => {
           </div>
           <div
             className={`home-page__tab-item__text ${
-              showPublishTab === true
-                ? "home-page__tab-item__text--active"
-                : ""
+              showPublishTab === true ? "home-page__tab-item__text--active" : ""
             }`}
           >
             Publish
@@ -321,7 +336,7 @@ export const HomePage = () => {
           <div className="home-page__header__logo ">WriterAi</div>
 
           <div className="home-page__header__buttons">
-            {(showProfileTab === false && showPublishTab === false) && (
+            {showProfileTab === false && showPublishTab === false && (
               <button onClick={() => createNew()} className="writerai-button">
                 Create New
               </button>
@@ -342,7 +357,7 @@ export const HomePage = () => {
             <PublishTab projects={projects} label="Publish Your Projects" />
           )}
 
-          {showProfileTab === true && <ProfileTab logout={logout} />}
+          {showProfileTab === true && <ProfileTab userDetails={userDetails} logout={logout} />}
         </div>
       </div>
     </div>
