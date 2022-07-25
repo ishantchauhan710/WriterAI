@@ -321,7 +321,7 @@ export const HomePage = () => {
           <div className="home-page__header__logo ">WriterAi</div>
 
           <div className="home-page__header__buttons">
-            {showProfileTab === false && (
+            {(showProfileTab === false && showPublishTab === false) && (
               <button onClick={() => createNew()} className="writerai-button">
                 Create New
               </button>

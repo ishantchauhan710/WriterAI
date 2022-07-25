@@ -10,20 +10,29 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-
 import { firebaseConfig } from "./firebaseConfig";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
+let user;
+let googleSignInResult;
+
+let getGoogleSignInResult = () => {
+  return googleSignInResult;
+};
+
 const signInWithGoogle = async () => {
-  try {
-    await signInWithPopup(auth, googleProvider);
-    return "TRUE";
-  } catch (e) {
-    return e.message;
-  }
+  await signInWithPopup(auth, googleProvider)
+    .then((result) => {
+      user = result.user;
+      //console.log("Firebase google");
+      googleSignInResult = "TRUE";
+    })
+    .catch((error) => {
+      googleSignInResult = error.message;
+    });
 };
 
 const signUpWithEmailAndPassword = async (name, email, password) => {
@@ -54,6 +63,15 @@ const getUserToken = async () => {
   return token;
 };
 
+const getUserId = () => {
+  const id = getAuth().currentUser.uid;
+  return id;
+};
+
+const getUser = () => {
+  return user;
+};
+
 const isUserLoggedIn = () => {
   const userInfoFromStorage = localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
@@ -79,5 +97,8 @@ export {
   logoutUser,
   getUserToken,
   isUserLoggedIn,
-  loggedInUserToken
+  loggedInUserToken,
+  getUserId,
+  getUser,
+  getGoogleSignInResult,
 };

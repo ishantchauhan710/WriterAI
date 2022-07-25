@@ -8,6 +8,9 @@ import TabPanel from "@mui/lab/TabPanel";
 import TextField from "@mui/material/TextField";
 import GoogleButton from "react-google-button";
 import {
+  getGoogleSignInResult,
+  getUser,
+  getUserId,
   getUserToken,
   logInWithEmailAndPassword,
   logoutUser,
@@ -16,6 +19,8 @@ import {
 } from "../../../firebase/firebase";
 import { AppState } from "../../../AppContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../../other/Constants";
 
 const style = {
   position: "absolute",
@@ -44,14 +49,47 @@ export default function AuthModal({
 
   const navigate = useNavigate();
 
-  const parseResult = async (result) => {
+  const parseResult = async (result, action) => {
     if (result === "TRUE") {
-      notify("You are logged in successfully!", "success");
       const token = await getUserToken();
+      const uid = getUserId();
+
+      // console.log("Token: ", token);
+      // console.log("Id: ", uid);
+
+      if (action === "SIGNUP_EMAIL_PASSWORD") {
+        const response = await axios.post(
+          `${BASE_URL}/user/insert?email=${signupUserEmail}&username=${signupUserName}&userId=${uid}`
+        );
+
+        const status = response.data.status;
+
+        if (status === 200) {
+          // console.log("Sucess");
+          notify("Account created successfully!", "success");
+        } else {
+          notify("Unable to create account", "error");
+        }
+      } else if (action === "SIGNUP_GOOGLE") {
+        console.log("Google");
+        const user = getUser();
+        //console.log("User: ", user);
+
+        try {
+          const response = await axios.post(
+            `${BASE_URL}/user/insert?email=${user.email}&username=${user.displayName}&userId=${user.uid}`
+          );
+        } catch (e) {
+          // NO-OP
+        }
+
+        notify("You are successfully logged in!", "success");
+      } else {
+        notify("You are successfully logged in!", "success");
+      }
+
       localStorage.setItem("userInfo", JSON.stringify(token));
       navigate("/home");
-      // [FOR DEBUGGING] alert(token);
-      // [FOR DEBUGGING] logoutUser();
     } else {
       notify(result, "error");
     }
@@ -71,31 +109,33 @@ export default function AuthModal({
         signupUserEmail,
         signupUserPassword
       );
-      parseResult(result);
+      parseResult(result, "SIGNUP_EMAIL_PASSWORD");
       setLoading(false);
     }
   };
 
   const loginUserWithEmailAndPassword = async () => {
     if (!loginUserEmail) {
-      console.log("User Email cannot be blank");
+      notify("Name cannot be blank", "error");
     } else if (!loginUserPassword) {
-      console.log("User Password cannot be blank");
+      notify("Password cannot be blank", "error");
     } else {
       setLoading(true);
       const result = await logInWithEmailAndPassword(
         loginUserEmail,
         loginUserPassword
       );
-      parseResult(result);
+      parseResult(result, "LOGIN_EMAIL_PASSWORD");
       setLoading(false);
     }
   };
 
   const signInUserWithGoogle = async () => {
     setLoading(true);
-    const result = await signInWithGoogle();
-    parseResult(result);
+    await signInWithGoogle();
+    const result = getGoogleSignInResult();
+    //console.log(`Result: ${result}`);
+    parseResult(result, "SIGNUP_GOOGLE");
     setLoading(false);
   };
 
