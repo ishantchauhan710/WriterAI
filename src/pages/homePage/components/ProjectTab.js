@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AppState } from "../../../AppContext";
 import { ProjectMenuDialog } from "./ProjectMenuDialog";
 
 export const ProjectTab = ({ projects, label }) => {
@@ -6,12 +7,19 @@ export const ProjectTab = ({ projects, label }) => {
   const NO_IMAGE_PLACEHOLDER =
     "https://designshack.net/wp-content/uploads/placeholder-image.png";
 
+  const { editMode, setEditMode, editProject, setEditProject } = AppState();
+
   const [showPopupMenu, setShowPopupMenu] = useState(false);
   const [popupMenuPos, setPopupMenuPos] = useState({});
 
   const openMenu = (pos) => {
     setPopupMenuPos(pos);
     setShowPopupMenu(true);
+  };
+
+  const edit = (project) => {
+    setEditMode(true);
+    setEditProject(project);
   };
 
   return (
@@ -25,7 +33,11 @@ export const ProjectTab = ({ projects, label }) => {
       />
       <div className="home-page__tab-data__new-card-container">
         {projects.map((item, index) => (
-          <div key={index} className="home-page__tab-data__content-card">
+          <div
+            onClick={() => edit(item)}
+            key={index}
+            className="home-page__tab-data__content-card"
+          >
             <div className="home-page__tab-data__content-card__img">
               <img
                 src={
@@ -41,14 +53,14 @@ export const ProjectTab = ({ projects, label }) => {
             </div>
             <div className="home-page__tab-data__content-card__data">
               <div className="home-page__tab-data__content-card__data__title">
-                {item.description}
+                {item.title}
               </div>
               <div className="home-page__tab-data__content-card__data__description">
-                {item.content}
+                {item.description}
               </div>
             </div>
           </div>
-        ))}
+        )).reverse()}
       </div>
     </div>
   );

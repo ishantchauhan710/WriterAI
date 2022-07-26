@@ -20,12 +20,14 @@ export const CreatePage = () => {
   const [splitGenerator, setSplitGenerator] = useState(false);
   const [splitWriter, setSplitWriter] = useState(true);
   const [showBackDialog, setShowBackDialog] = useState(false);
-  const [title, setTitle] = useState("");
   const { setLoading, notify, projectName, setProjectName } = AppState();
   const [token, setToken] = useState(null);
   const [coverImageUrl, setCoverImageUrl] = useState("");
+  const [title, setTitle] = useState("");
 
   const navigate = useNavigate();
+
+  const { editMode, setEditMode, editProject, setEditProject } = AppState();
 
   // When this page is opened, check if user is logged in. If not then navigate to landing page
   useEffect(() => {
@@ -45,6 +47,19 @@ export const CreatePage = () => {
       //console.log("Token: ", token) [WILL GIVE NULL DUE TO SYNC EXECUTION];
     }
   }, []);
+
+  // Also assign corresponding values to text fields if in edit mode
+  useEffect(() => {
+    if (editMode === true) {
+      setProjectName(editProject.title);
+      setTitle(editProject.description);
+      setContent(editProject.content);
+      setCoverImageUrl(editProject.coverPic);
+      // console.log(
+      //   `Edit Mode:\nName: ${editProject.title}\nTitle: ${editProject.description}\nContent: ${editProject.content}\n Img: ${editProject.coverPic}\n`
+      // );
+    }
+  }, [editProject]);
 
   // Function to split writer and generator screens on small screen devices
   // 1 -> Show Writer, 2 -> Show Generator
@@ -111,19 +126,25 @@ export const CreatePage = () => {
     notify("Text copied to cliboard", "success");
   };
 
+  // Function to reset state variables
+  const resetVariables = () => {
+    setTitle("");
+    setProjectName("");
+    setContent("");
+    setEditMode(false);
+    setEditProject({});
+  };
+
   // A project will have a name, a title and a content body
   // By default, we set the project name and title as the user opens the page
   useEffect(() => {
-    setTitle(projectName);
+    if (editMode===false) {
+      setTitle(projectName);
+    }
   }, []);
 
   // Function to save project to database
   const saveProject = async () => {
-    // If user hasnt set up cover image, we assign it a blank value
-    if (!coverImageUrl) {
-      setCoverImageUrl("");
-    }
-
     // Validate project variables for null values
     if (!projectName) {
       setProjectName("Untitled");
@@ -151,7 +172,7 @@ export const CreatePage = () => {
             title: projectName,
             description: title,
             content: content,
-            coverImage: coverImageUrl,
+            coverImage: coverImageUrl ? coverImageUrl : "",
             timeStamp: new Date().getTime(),
           },
           config
@@ -159,15 +180,75 @@ export const CreatePage = () => {
 
         if (result.data.status === 200) {
           notify("Project saved successfully", "success");
+          resetVariables();
           navigate("/home");
         } else {
           notify("An unknown error occurred", "error");
+          setLoading(false);
         }
-        //setLoading(false);
       } catch (e) {
         notify(e.message, "error");
-        //setLoading(false);
+        setLoading(false);
       }
+    }
+  };
+
+  // Function to update/edit project in database
+  const updateProject = async () => {
+    // Validate project variables for null values
+    if (!projectName) {
+      setProjectName("Untitled");
+    }
+
+    if (!title) {
+      notify("Project title cannot be blank", "error");
+      return;
+    } else if (!content) {
+      notify("Project content cannot be blank", "error");
+      return;
+    } else {
+      // Make the API Call
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      try {
+        setLoading(true);
+        console.log("Cover Image URL: ", coverImageUrl);
+        const result = await axios.put(
+          `${BASE_URL}/project/update?projectId=${editProject.id}`,
+          {
+            title: projectName,
+            description: title,
+            content: content,
+            coverImage: coverImageUrl ? coverImageUrl : "",
+            timeStamp: new Date().getTime(),
+          },
+          config
+        );
+
+        if (result.data.status === 200) {
+          notify("Project saved successfully", "success");
+          resetVariables();
+          navigate("/home");
+        } else {
+          notify("An unknown error occurred", "error");
+          setLoading(false);
+        }
+      } catch (e) {
+        notify(e.message, "error");
+        setLoading(false);
+      }
+    }
+  };
+
+  const handleProjectSave = () => {
+    if (editMode === true) {
+      updateProject();
+    } else {
+      saveProject();
     }
   };
 
@@ -183,7 +264,10 @@ export const CreatePage = () => {
         setOpen={setShowBackDialog}
         title="Go Back"
         message="Are you sure you want to go back? All your data will be lost"
-        yesAction={() => navigate("/home")}
+        yesAction={() => {
+          resetVariables();
+          navigate("/home");
+        }}
       />
       <div className="create-page__header">
         <div
@@ -208,7 +292,7 @@ export const CreatePage = () => {
             Preview
           </button>
           <button
-            onClick={() => saveProject()}
+            onClick={() => handleProjectSave()}
             className="create-page__header__action-button--primary writerai-button"
           >
             Save

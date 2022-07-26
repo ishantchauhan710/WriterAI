@@ -11,7 +11,16 @@ import CreateNewProjectDialog from "./components/dialogs/CreateNewProjectDialog"
 
 export const HomePage = () => {
   // States for showing dialog boxes, toggling tabs and storing data for token and projects
-  const { setLoading, notify, userDetails, setUserDetails } = AppState();
+  const {
+    setLoading,
+    notify,
+    userDetails,
+    setUserDetails,
+    editMode,
+    setEditMode,
+    editProject,
+    setEditProject,
+  } = AppState();
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
   const [showProjectsTab, setShowProjectsTab] = useState(false);
   const [showSharedTab, setShowSharedTab] = useState(false);
@@ -107,7 +116,12 @@ export const HomePage = () => {
     }
   };
 
-  // When this page is opened, check if user is logged in. If not then navigate to landing page
+  // Function to open a project
+  const openProject = (project) => {
+    navigate("/create");
+  };
+
+  // When this page is opened, check if user is logged in. If not then navigate to landing page.
   useEffect(() => {
     const userLoggedIn = isUserLoggedIn();
     if (userLoggedIn !== true) {
@@ -115,8 +129,10 @@ export const HomePage = () => {
     }
   }, []);
 
-  // By default, show the project tab to user
+  // By default, show the project tab to user. Also reset some state variables.
   useEffect(() => {
+    setEditMode(false);
+    setEditProject({});
     showProjects();
   }, []);
 
@@ -138,6 +154,13 @@ export const HomePage = () => {
       getProjects();
     }
   }, [token]);
+
+  // Whenever edit mode is enabled, navigate to create page
+  useEffect(() => {
+    if (editMode === true) {
+      openProject();
+    }
+  }, [editMode]);
 
   return (
     <div className="home-page">

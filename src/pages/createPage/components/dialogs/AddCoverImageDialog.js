@@ -50,8 +50,8 @@ export default function AddCoverImageDialog({
             fullWidth
             variant="standard"
             style={{ marginTop: 10 }}
-            onChange={(e) => setInput(e.target.value)}
             value={input}
+            onChange={(e) => setInput(e.target.value)}
           />
         </DialogContent>
         <DialogActions>

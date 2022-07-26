@@ -10,7 +10,10 @@ const AppContext = ({ children }) => {
   const [notificationType, setNotificationType] = useState("error");
 
   const [userDetails, setUserDetails] = useState({});
-  const [projectName, setProjectName] = useState('');
+  const [projectName, setProjectName] = useState("");
+
+  const [editMode, setEditMode] = useState(false);
+  const [editProject, setEditProject] = useState({});
 
   const notify = (message, type = "error") => {
     if (!message) {
@@ -41,6 +44,10 @@ const AppContext = ({ children }) => {
         setUserDetails,
         projectName,
         setProjectName,
+        editMode,
+        setEditMode,
+        editProject,
+        setEditProject,
       }}
     >
       {children}
