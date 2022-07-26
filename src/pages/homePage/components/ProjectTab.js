@@ -5,7 +5,7 @@ import { ProjectMenuDialog } from "./ProjectMenuDialog";
 export const ProjectTab = ({ projects, label }) => {
   // We display this if no cover image of project exists
   const NO_IMAGE_PLACEHOLDER =
-    "https://designshack.net/wp-content/uploads/placeholder-image.png";
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUjWAkNYLlQmBpc_dbcX-U_x5mQrZeBtDJYQ&usqp=CAU";
 
   const { editMode, setEditMode, editProject, setEditProject } = AppState();
 
@@ -32,35 +32,36 @@ export const ProjectTab = ({ projects, label }) => {
         setPos={setPopupMenuPos}
       />
       <div className="home-page__tab-data__new-card-container">
-        {projects.map((item, index) => (
-          <div
-            onClick={() => edit(item)}
-            key={index}
-            className="home-page__tab-data__content-card"
-          >
-            <div className="home-page__tab-data__content-card__img">
-              <img
-                src={
-                  item.coverPic === "" ? NO_IMAGE_PLACEHOLDER : item.coverPic
-                }
-              />
+        {projects
+          .map((item, index) => (
+            <div key={index} className="home-page__tab-data__content-card">
               <div
-                onClick={(e) => openMenu(e)}
-                className="home-page__tab-data__content-card__menu_button"
+                className="home-page__tab-data__content-card__img"
               >
-                <i className="material-icons">more_vert</i>
+                <img
+                  src={
+                    item.coverPic === "" ? NO_IMAGE_PLACEHOLDER : item.coverPic
+                  }
+                />
+                <div
+                  onClick={(e) => openMenu(e)}
+                  className="home-page__tab-data__content-card__menu_button"
+                >
+                  <i className="material-icons">more_vert</i>
+                </div>
+              </div>
+              <div className="home-page__tab-data__content-card__data"
+                onClick={() => edit(item)}>
+                <div className="home-page__tab-data__content-card__data__title">
+                  {item.title}
+                </div>
+                <div className="home-page__tab-data__content-card__data__description">
+                  {item.description}
+                </div>
               </div>
             </div>
-            <div className="home-page__tab-data__content-card__data">
-              <div className="home-page__tab-data__content-card__data__title">
-                {item.title}
-              </div>
-              <div className="home-page__tab-data__content-card__data__description">
-                {item.description}
-              </div>
-            </div>
-          </div>
-        )).reverse()}
+          ))
+          .reverse()}
       </div>
     </div>
   );

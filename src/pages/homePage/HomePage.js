@@ -27,7 +27,9 @@ export const HomePage = () => {
   const [showPublishTab, setShowPublishTab] = useState(false);
   const [showProfileTab, setShowProfileTab] = useState(false);
   const [token, setToken] = useState(null);
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState([], () => {
+    setLoading(false);
+  });
 
   const navigate = useNavigate();
 
@@ -109,7 +111,7 @@ export const HomePage = () => {
       const result = await axios.get(`${BASE_URL}/project/getProject`, config);
       //console.log("Result: ", result);
       setProjects(result.data.data);
-      setLoading(false);
+      //setLoading(false);
     } catch (e) {
       notify(e.message, "error");
       setLoading(false);

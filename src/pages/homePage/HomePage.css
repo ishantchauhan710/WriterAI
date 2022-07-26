@@ -138,7 +138,6 @@
   background-color: var(--colorBackground);
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  cursor: pointer;
 }
 
 .home-page__tab-data__content-card__img {
@@ -164,6 +163,7 @@
   justify-content: center;
   border-radius: 100%;
   padding: 3px;
+  cursor: pointer;
 }
 
 .home-page__tab-data__content-card__menu_button i {
@@ -173,6 +173,7 @@
 
 .home-page__tab-data__content-card__data {
   padding: 15px 10px;
+  cursor: pointer;
 }
 
 .home-page__tab-data__content-card__data__title {
