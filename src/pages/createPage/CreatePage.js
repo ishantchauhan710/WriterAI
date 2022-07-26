@@ -163,10 +163,10 @@ export const CreatePage = () => {
         } else {
           notify("An unknown error occurred", "error");
         }
-        setLoading(false);
+        //setLoading(false);
       } catch (e) {
         notify(e.message, "error");
-        setLoading(false);
+        //setLoading(false);
       }
     }
   };

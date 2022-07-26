@@ -79,7 +79,7 @@ export const HomePage = () => {
       };
 
       const response = await axios.get(`${BASE_URL}/user/getUser`, config);
-      console.log("Response: ", response);
+      //console.log("Response: ", response);
       setUserDetails(response.data);
       setLoading(false);
     } catch (e) {
@@ -90,15 +90,15 @@ export const HomePage = () => {
 
   // Function to get user's projects from DB
   const getProjects = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
       const result = await axios.get(`${BASE_URL}/project/getProject`, config);
-      console.log("Result: ", result);
+      //console.log("Result: ", result);
       setProjects(result.data.data);
       setLoading(false);
     } catch (e) {

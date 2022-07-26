@@ -6,6 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { AppState } from "../../../../AppContext";
 
 export default function CreateNewProjectDialog({
   open,
@@ -18,6 +19,8 @@ export default function CreateNewProjectDialog({
   yesActionFunction,
   notify,
 }) {
+  const { projectName, setProjectName } = AppState();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -27,15 +30,13 @@ export default function CreateNewProjectDialog({
   };
 
   const yesAction = () => {
-    if (!input) {
-      notify("Please type something","error")
+    if (!projectName) {
+      notify("Please type something", "error");
     } else {
       yesActionFunction();
       handleClose();
     }
   };
-
-  const [input, setInput] = React.useState("");
 
   return (
     <div>
@@ -51,8 +52,7 @@ export default function CreateNewProjectDialog({
             fullWidth
             variant="standard"
             style={{ marginTop: 10 }}
-            onChange={(e) => setInput(e.target.value)}
-            value={input}
+            onChange={(e) => setProjectName(e.target.value)}
           />
         </DialogContent>
         <DialogActions>

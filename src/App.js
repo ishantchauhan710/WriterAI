@@ -9,20 +9,26 @@ import { writerAiTheme } from "./style/style";
 import { AppState } from "./AppContext";
 import { Loading } from "./components/Loading";
 import { Notification } from "./components/Notification";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import { HomePage } from "./pages/homePage/HomePage";
 import { CreatePage } from "./pages/createPage/CreatePage";
 import { useEffect, useState } from "react";
 import { getUserToken } from "./firebase/firebase";
+import axios from "axios";
+import { BASE_URL } from "./other/Constants";
 
 function App() {
   const { loading, showNotification } = AppState();
-
   const [token, setToken] = useState("");
 
   useEffect(() => {
     const tokenValue = localStorage.getItem("userInfo");
     setToken(tokenValue);
+    //console.log("Storage Token: ", tokenValue);
   }, []);
 
   // Refresh Auth Token Every 10 Minutes
@@ -31,9 +37,10 @@ function App() {
       if (token) {
         const newToken = await getUserToken();
         localStorage.setItem("userInfo", JSON.stringify(newToken));
+        setToken(newToken);
         console.log("Token Refreshed", newToken);
       }
-    }, 10*60*1000);
+    }, 10 * 60 * 1000);
 
     return () => clearInterval(interval);
   }, [token]);
