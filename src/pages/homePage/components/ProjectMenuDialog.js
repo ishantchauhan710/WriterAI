@@ -6,6 +6,7 @@ export const ProjectMenuDialog = ({
   pos,
   setPos,
   setShowDeleteDialog,
+  setShowShareDialog
 }) => {
   const handleMenuClick = () => {
     handleClose();
@@ -43,6 +44,13 @@ export const ProjectMenuDialog = ({
     handleMenuClick();
   };
 
+  const handleShareClick = () => {
+    setShowShareDialog(true);
+    handleMenuClick();
+  };
+
+  
+
   return (
     <div
       ref={componentRef}
@@ -54,7 +62,7 @@ export const ProjectMenuDialog = ({
       className="home-page__popup-menu__data"
       id="popupMenu"
     >
-      <a onClick={() => handleMenuClick()} href="#">
+      <a onClick={() => handleShareClick()} href="#">
         Share
       </a>
       <a onClick={() => handleMenuClick()} href="#">

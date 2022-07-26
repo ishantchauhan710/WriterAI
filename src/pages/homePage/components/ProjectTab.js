@@ -7,7 +7,8 @@ export const ProjectTab = ({
   label,
   setShowDeleteDialog,
   setProjectToDelete,
-  projectToDelete,
+  setShowShareDialog,
+  setProjectToShare,
 }) => {
   // We display this if no cover image of project exists
   const NO_IMAGE_PLACEHOLDER =
@@ -22,6 +23,7 @@ export const ProjectTab = ({
     setPopupMenuPos(pos);
     setShowPopupMenu(true);
     setProjectToDelete(projectItem);
+    setProjectToShare(projectItem);
   };
 
   const edit = (project) => {
@@ -39,6 +41,7 @@ export const ProjectTab = ({
         setPos={setPopupMenuPos}
         setShowDeleteDialog={setShowDeleteDialog}
         setProjectToDelete={setProjectToDelete}
+        setShowShareDialog={setShowShareDialog}
       />
       <div className="home-page__tab-data__new-card-container">
         {projects

@@ -10,6 +10,7 @@ import axios from "axios";
 import CreateNewProjectDialog from "./components/dialogs/CreateNewProjectDialog";
 import YesNoDialog from "../../components/YesNoDialog";
 import { setRef } from "@mui/material";
+import ShareProjectDialog from "./components/dialogs/ShareProjectDialog";
 
 export const HomePage = () => {
   // States for showing dialog boxes, toggling tabs and storing data for token and projects
@@ -201,6 +202,42 @@ export const HomePage = () => {
     }
   }, [editMode]);
 
+  const [showShareDialog, setShowShareDialog] = useState(false);
+  const [shareProjectEmail, setShareProjectEmail] = useState("");
+  const [projectToShare, setProjectToShare] = useState("");
+
+  const shareProject = async () => {
+    // console.log("Share Project: ", projectToShare);
+
+    try {
+      setLoading(true);
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      console.log("Config: ", config);
+      console.log("Token: ", token);
+
+      const result = await axios.post(
+        `${BASE_URL}/project/share?toEmail=${shareProjectEmail}&projectId=${projectToShare.id}`,
+        {
+          data: "hello",
+        },
+        config
+      );
+      console.log("Result: ", result);
+
+      notify(`Project shared to ${shareProjectEmail} successfully!`, "success");
+      setLoading(false);
+    } catch (e) {
+      notify(e.response.data.message, "error");
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="home-page">
       <YesNoDialog
@@ -221,6 +258,20 @@ export const HomePage = () => {
         noText="Cancel"
         yesActionFunction={openCreatePage}
         notify={notify}
+      />
+
+      <ShareProjectDialog
+        open={showShareDialog}
+        setOpen={setShowShareDialog}
+        title="Share Project"
+        message="Enter the email address of the user whom you want to share your project with"
+        fieldPlaceholder="Eg. example@gmail.com"
+        yesText="Ok"
+        noText="Cancel"
+        yesActionFunction={shareProject}
+        notify={notify}
+        input={shareProjectEmail}
+        setInput={setShareProjectEmail}
       />
 
       <div className="home-page__tab">
@@ -351,6 +402,8 @@ export const HomePage = () => {
               setProjectToDelete={setProjectToDelete}
               projects={projects}
               label="Your Projects"
+              setShowShareDialog={setShowShareDialog}
+              setProjectToShare={setProjectToShare}
             />
           )}
 
