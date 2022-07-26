@@ -6,7 +6,8 @@ export const ProjectMenuDialog = ({
   pos,
   setPos,
   setShowDeleteDialog,
-  setShowShareDialog
+  setShowShareDialog,
+  setShowRevokeProjectDialog,
 }) => {
   const handleMenuClick = () => {
     handleClose();
@@ -49,7 +50,10 @@ export const ProjectMenuDialog = ({
     handleMenuClick();
   };
 
-  
+  const handleRevokeShareClick = () => {
+    setShowRevokeProjectDialog(true);
+    handleMenuClick();
+  };
 
   return (
     <div
@@ -65,7 +69,7 @@ export const ProjectMenuDialog = ({
       <a onClick={() => handleShareClick()} href="#">
         Share
       </a>
-      <a onClick={() => handleMenuClick()} href="#">
+      <a onClick={() => handleRevokeShareClick()} href="#">
         Revoke Access
       </a>
       <a onClick={() => handleDeleteClick()} href="#">

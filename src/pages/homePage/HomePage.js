@@ -11,6 +11,7 @@ import CreateNewProjectDialog from "./components/dialogs/CreateNewProjectDialog"
 import YesNoDialog from "../../components/YesNoDialog";
 import { setRef } from "@mui/material";
 import ShareProjectDialog from "./components/dialogs/ShareProjectDialog";
+import RevokeShareProjectDialog from "./components/dialogs/RevokeShareProjectDialog";
 
 export const HomePage = () => {
   // States for showing dialog boxes, toggling tabs and storing data for token and projects
@@ -33,6 +34,10 @@ export const HomePage = () => {
   const [projects, setProjects] = useState([]);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [refreshProjects, setRefreshProjects] = useState(false);
+
+  const [showShareDialog, setShowShareDialog] = useState(false);
+  const [shareProjectEmail, setShareProjectEmail] = useState("");
+  const [projectToShare, setProjectToShare] = useState("");
 
   const navigate = useNavigate();
 
@@ -153,6 +158,42 @@ export const HomePage = () => {
     }
   };
 
+  // Function to share a project with others
+  const shareProject = async () => {
+    // console.log("Share Project: ", projectToShare);
+
+    try {
+      setLoading(true);
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      console.log("Config: ", config);
+      console.log("Token: ", token);
+
+      const result = await axios.post(
+        `${BASE_URL}/project/share?toEmail=${shareProjectEmail}&projectId=${projectToShare.id}`,
+        {
+          data: "hello",
+        },
+        config
+      );
+      console.log("Result: ", result);
+
+      notify(`Project shared to ${shareProjectEmail} successfully!`, "success");
+      setLoading(false);
+    } catch (e) {
+      notify(e.response.data.message, "error");
+      setLoading(false);
+    }
+  };
+
+  const [revokeAccessProject, setRevokeAccessProject] = useState({});
+  const [showRevokeProjectDialog, setShowRevokeProjectDialog] = useState(false);
+
   // When this page is opened, check if user is logged in. If not then navigate to landing page.
   useEffect(() => {
     const userLoggedIn = isUserLoggedIn();
@@ -202,42 +243,6 @@ export const HomePage = () => {
     }
   }, [editMode]);
 
-  const [showShareDialog, setShowShareDialog] = useState(false);
-  const [shareProjectEmail, setShareProjectEmail] = useState("");
-  const [projectToShare, setProjectToShare] = useState("");
-
-  const shareProject = async () => {
-    // console.log("Share Project: ", projectToShare);
-
-    try {
-      setLoading(true);
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-      console.log("Config: ", config);
-      console.log("Token: ", token);
-
-      const result = await axios.post(
-        `${BASE_URL}/project/share?toEmail=${shareProjectEmail}&projectId=${projectToShare.id}`,
-        {
-          data: "hello",
-        },
-        config
-      );
-      console.log("Result: ", result);
-
-      notify(`Project shared to ${shareProjectEmail} successfully!`, "success");
-      setLoading(false);
-    } catch (e) {
-      notify(e.response.data.message, "error");
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="home-page">
       <YesNoDialog
@@ -265,13 +270,26 @@ export const HomePage = () => {
         setOpen={setShowShareDialog}
         title="Share Project"
         message="Enter the email address of the user whom you want to share your project with"
-        fieldPlaceholder="Eg. example@gmail.com"
         yesText="Ok"
         noText="Cancel"
         yesActionFunction={shareProject}
         notify={notify}
         input={shareProjectEmail}
         setInput={setShareProjectEmail}
+        fieldPlaceholder="Eg. example@gmail.com"
+      />
+
+      <RevokeShareProjectDialog
+        open={showRevokeProjectDialog}
+        setOpen={setShowRevokeProjectDialog}
+        title="Revoke Share Access"
+        message="Uncheck the users from whom you want to revoke the project's access"
+        yesText="Ok"
+        noText="Cancel"
+        notify={notify}
+        input={shareProjectEmail}
+        setInput={setShareProjectEmail}
+        project={revokeAccessProject}
       />
 
       <div className="home-page__tab">
@@ -404,6 +422,8 @@ export const HomePage = () => {
               label="Your Projects"
               setShowShareDialog={setShowShareDialog}
               setProjectToShare={setProjectToShare}
+              setRevokeAccessProject={setRevokeAccessProject}
+              setShowRevokeProjectDialog={setShowRevokeProjectDialog}
             />
           )}
 

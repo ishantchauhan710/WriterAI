@@ -296,6 +296,20 @@
   background-color: var(--colorSecondaryHover);
 }
 
+.home-page__revoke-share-email-list-container {
+  height: auto;
+  max-height: 150px;
+  overflow-y: auto;
+  margin: 15px 0px 0px 0px;
+}
+
+.home-page__revoke-share-email-list {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
 /* Responsive Code */
 
 @media only screen and (min-width: 1160px) and (max-width: 1399px) {
