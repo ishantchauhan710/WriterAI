@@ -1,6 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
-export const ProjectMenuDialog = ({ open, setOpen, pos, setPos }) => {
+export const ProjectMenuDialog = ({
+  open,
+  setOpen,
+  pos,
+  setPos,
+  setShowDeleteDialog,
+}) => {
   const handleMenuClick = () => {
     handleClose();
   };
@@ -32,6 +38,11 @@ export const ProjectMenuDialog = ({ open, setOpen, pos, setPos }) => {
     }
   }, []);
 
+  const handleDeleteClick = () => {
+    setShowDeleteDialog(true);
+    handleMenuClick();
+  };
+
   return (
     <div
       ref={componentRef}
@@ -49,7 +60,7 @@ export const ProjectMenuDialog = ({ open, setOpen, pos, setPos }) => {
       <a onClick={() => handleMenuClick()} href="#">
         Revoke Access
       </a>
-      <a onClick={() => handleMenuClick()} href="#">
+      <a onClick={() => handleDeleteClick()} href="#">
         Delete
       </a>
       <a onClick={() => handleMenuClick()} href="#">

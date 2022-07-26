@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { AppState } from "../../../AppContext";
 import { ProjectMenuDialog } from "./ProjectMenuDialog";
 
-export const ProjectTab = ({ projects, label }) => {
+export const ProjectTab = ({
+  projects,
+  label,
+  setShowDeleteDialog,
+  setProjectToDelete,
+  projectToDelete,
+}) => {
   // We display this if no cover image of project exists
   const NO_IMAGE_PLACEHOLDER =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUjWAkNYLlQmBpc_dbcX-U_x5mQrZeBtDJYQ&usqp=CAU";
@@ -12,9 +18,10 @@ export const ProjectTab = ({ projects, label }) => {
   const [showPopupMenu, setShowPopupMenu] = useState(false);
   const [popupMenuPos, setPopupMenuPos] = useState({});
 
-  const openMenu = (pos) => {
+  const openMenu = (pos, projectItem) => {
     setPopupMenuPos(pos);
     setShowPopupMenu(true);
+    setProjectToDelete(projectItem);
   };
 
   const edit = (project) => {
@@ -30,28 +37,30 @@ export const ProjectTab = ({ projects, label }) => {
         setOpen={setShowPopupMenu}
         pos={popupMenuPos}
         setPos={setPopupMenuPos}
+        setShowDeleteDialog={setShowDeleteDialog}
+        setProjectToDelete={setProjectToDelete}
       />
       <div className="home-page__tab-data__new-card-container">
         {projects
           .map((item, index) => (
             <div key={index} className="home-page__tab-data__content-card">
-              <div
-                className="home-page__tab-data__content-card__img"
-              >
+              <div className="home-page__tab-data__content-card__img">
                 <img
                   src={
                     item.coverPic === "" ? NO_IMAGE_PLACEHOLDER : item.coverPic
                   }
                 />
                 <div
-                  onClick={(e) => openMenu(e)}
+                  onClick={(e) => openMenu(e, item)}
                   className="home-page__tab-data__content-card__menu_button"
                 >
                   <i className="material-icons">more_vert</i>
                 </div>
               </div>
-              <div className="home-page__tab-data__content-card__data"
-                onClick={() => edit(item)}>
+              <div
+                className="home-page__tab-data__content-card__data"
+                onClick={() => edit(item)}
+              >
                 <div className="home-page__tab-data__content-card__data__title">
                   {item.title}
                 </div>

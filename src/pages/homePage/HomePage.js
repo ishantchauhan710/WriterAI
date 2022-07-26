@@ -8,6 +8,8 @@ import { BASE_URL } from "../../other/Constants";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CreateNewProjectDialog from "./components/dialogs/CreateNewProjectDialog";
+import YesNoDialog from "../../components/YesNoDialog";
+import { setRef } from "@mui/material";
 
 export const HomePage = () => {
   // States for showing dialog boxes, toggling tabs and storing data for token and projects
@@ -27,9 +29,9 @@ export const HomePage = () => {
   const [showPublishTab, setShowPublishTab] = useState(false);
   const [showProfileTab, setShowProfileTab] = useState(false);
   const [token, setToken] = useState(null);
-  const [projects, setProjects] = useState([], () => {
-    setLoading(false);
-  });
+  const [projects, setProjects] = useState([]);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [refreshProjects, setRefreshProjects] = useState(false);
 
   const navigate = useNavigate();
 
@@ -111,7 +113,7 @@ export const HomePage = () => {
       const result = await axios.get(`${BASE_URL}/project/getProject`, config);
       //console.log("Result: ", result);
       setProjects(result.data.data);
-      //setLoading(false);
+      setLoading(false);
     } catch (e) {
       notify(e.message, "error");
       setLoading(false);
@@ -121,6 +123,33 @@ export const HomePage = () => {
   // Function to open a project
   const openProject = (project) => {
     navigate("/create");
+  };
+
+  const [projectToDelete, setProjectToDelete] = useState({});
+
+  // Function to delete a project
+  const deleteProject = async () => {
+    //console.log("Delete Project: ", projectToDelete);
+
+    try {
+      setLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const result = await axios.delete(
+        `${BASE_URL}/project/delete?projectId=${projectToDelete.id}`,
+        config
+      );
+      console.log("Result: ", result);
+      setLoading(false);
+      notify("Project deleted successfully!", "success");
+      setRefreshProjects(true);
+    } catch (e) {
+      notify(e.message, "error");
+      setLoading(false);
+    }
   };
 
   // When this page is opened, check if user is logged in. If not then navigate to landing page.
@@ -149,13 +178,21 @@ export const HomePage = () => {
     }
   }, []);
 
-  // Whenever token's value changes from default null to a token contained value, we fetch user details and his projects
+  // Whenever token's value changes from default null to a token contained value, we fetch the user details
   useEffect(() => {
     if (token) {
       getUser();
       getProjects();
     }
   }, [token]);
+
+  // Also fetch the user projects whenever needed
+  useEffect(() => {
+    if (refreshProjects === true) {
+      getProjects();
+      setRefreshProjects(false);
+    }
+  }, [refreshProjects]);
 
   // Whenever edit mode is enabled, navigate to create page
   useEffect(() => {
@@ -166,19 +203,26 @@ export const HomePage = () => {
 
   return (
     <div className="home-page">
-      {showNewProjectDialog === true && (
-        <CreateNewProjectDialog
-          open={showNewProjectDialog}
-          setOpen={setShowNewProjectDialog}
-          title="Create Project"
-          message="Enter the name of the project you want to create?"
-          fieldPlaceholder="Eg. Hashnode Project Blog"
-          yesText="Create"
-          noText="Cancel"
-          yesActionFunction={openCreatePage}
-          notify={notify}
-        />
-      )}
+      <YesNoDialog
+        open={showDeleteDialog}
+        setOpen={setShowDeleteDialog}
+        title="Delete Project"
+        message="Are you sure you want to delete this project?"
+        yesAction={() => deleteProject()}
+      />
+
+      <CreateNewProjectDialog
+        open={showNewProjectDialog}
+        setOpen={setShowNewProjectDialog}
+        title="Create Project"
+        message="Enter the name of the project you want to create?"
+        fieldPlaceholder="Eg. Hashnode Project Blog"
+        yesText="Create"
+        noText="Cancel"
+        yesActionFunction={openCreatePage}
+        notify={notify}
+      />
+
       <div className="home-page__tab">
         <div
           className={`home-page__tab-item ${
@@ -302,7 +346,12 @@ export const HomePage = () => {
 
         <div className="home-page__tab-data-wrapper">
           {showProjectsTab === true && (
-            <ProjectTab projects={projects} label="Your Projects" />
+            <ProjectTab
+              setShowDeleteDialog={setShowDeleteDialog}
+              setProjectToDelete={setProjectToDelete}
+              projects={projects}
+              label="Your Projects"
+            />
           )}
 
           {showSharedTab === true && (
