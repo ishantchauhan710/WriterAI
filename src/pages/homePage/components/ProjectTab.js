@@ -48,8 +48,7 @@ export const ProjectTab = ({
         setShowRevokeProjectDialog={setShowRevokeProjectDialog}
       />
       <div className="home-page__tab-data__new-card-container">
-        {projects
-          .map((item, index) => (
+        {projects.map((item, index) => (
             <div key={index} className="home-page__tab-data__content-card">
               <div className="home-page__tab-data__content-card__img">
                 <img

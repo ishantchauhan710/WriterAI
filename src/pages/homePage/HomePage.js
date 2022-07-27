@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { isUserLoggedIn, logoutUser } from "../../firebase/firebase";
+import { isUserLoggedIn, logoutUser } from "../../security/firebase";
 import { ProfileTab } from "./components/ProfileTab";
 import { ProjectTab } from "./components/ProjectTab";
 import { AppState } from "../../AppContext";
@@ -509,7 +509,7 @@ export const HomePage = () => {
             <ProjectTab
               setShowDeleteDialog={setShowDeleteDialog}
               setProjectToDelete={setProjectToDelete}
-              projects={projects}
+              projects={projects?projects:[]}
               label="Your Projects"
               setShowShareDialog={setShowShareDialog}
               setProjectToShare={setProjectToShare}
@@ -519,12 +519,12 @@ export const HomePage = () => {
           )}
 
           {showSharedTab === true && (
-            <ShareTab projects={projectsSharedToMe} label="Shared To You" />
+            <ShareTab projects={projectsSharedToMe.length>0?projectsSharedToMe:[]} label="Shared To You" />
           )}
 
           {showDownloadTab === true && (
             <DownloadTab
-              projectList={[...projects, ...projectsSharedToMe]}
+              projectList={(projects.length>0 || projectsSharedToMe.length>0)?[...projects, ...projectsSharedToMe]:[]}
               notify={notify}
             />
           )}

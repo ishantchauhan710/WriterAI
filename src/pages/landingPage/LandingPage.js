@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isUserLoggedIn } from "../../firebase/firebase";
+import { isUserLoggedIn } from "../../security/firebase";
 import AuthModal from "./components/other/AuthModal";
 import { LandingFeatures } from "./components/main/LandingFeatures";
 import { LandingFooter } from "./components/main/LandingFooter";

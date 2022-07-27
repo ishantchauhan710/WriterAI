@@ -8,7 +8,7 @@ export const DownloadTab = ({ projectList, notify }) => {
   const [projectFormat, setProjectFormat] = useState("md");
 
   const downloadProject = () => {
-    if (!project) {
+    if (!project.title) {
       notify("No project selected", "error");
       return;
     }

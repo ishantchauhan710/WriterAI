@@ -6,7 +6,7 @@ import OptionsFab from "./components/OptionsFab";
 import ShowPreview from "./components/ShowPreview";
 import axios from "axios";
 import { BASE_URL } from "../../other/Constants";
-import { isUserLoggedIn } from "../../firebase/firebase";
+import { isUserLoggedIn } from "../../security/firebase";
 const { Configuration, OpenAIApi } = require("openai");
 
 export const CreatePage = () => {
@@ -395,8 +395,8 @@ export const CreatePage = () => {
           </div>
 
           <div className="create-page__body__generator__results">
-            {generatedAiContent.map((item) => (
-              <div className="create-page__body__generator__result">
+            {generatedAiContent.map((item, index) => (
+              <div key={index} className="create-page__body__generator__result">
                 <div className="create-page__body__generator__result__data">
                   {item.text}
                 </div>

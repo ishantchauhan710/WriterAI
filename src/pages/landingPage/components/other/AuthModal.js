@@ -16,7 +16,7 @@ import {
   logoutUser,
   signInWithGoogle,
   signUpWithEmailAndPassword,
-} from "../../../../firebase/firebase";
+} from "../../../../security/firebase";
 import { AppState } from "../../../../AppContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

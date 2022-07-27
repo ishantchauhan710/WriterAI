@@ -9,17 +9,14 @@ import { writerAiTheme } from "./style/style";
 import { AppState } from "./AppContext";
 import { Loading } from "./components/Loading";
 import { Notification } from "./components/Notification";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/homePage/HomePage";
 import { CreatePage } from "./pages/createPage/CreatePage";
 import { useEffect, useState } from "react";
-import { getUserToken } from "./firebase/firebase";
+import { getUserToken } from "./security/firebase";
 import axios from "axios";
 import { BASE_URL } from "./other/Constants";
+import { checkUserValidity } from "./security/security";
 
 function App() {
   const { loading, showNotification } = AppState();
@@ -44,6 +41,11 @@ function App() {
 
     return () => clearInterval(interval);
   }, [token]);
+
+  useEffect(() => {
+    const result = checkUserValidity();
+    console.log("Valid Token", result);
+  },[]);
 
   return (
     <ThemeProvider theme={writerAiTheme}>

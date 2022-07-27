@@ -38,8 +38,7 @@ export const ShareTab = ({
     <div className="home-page__tab-data">
       <div className="home-page__tab-data__section-label">{label}</div>
       <div className="home-page__tab-data__new-card-container">
-        {projects
-          .map((item, index) => (
+        {projects && projects.map((item, index) => (
             <div key={index} className="home-page__tab-data__content-card">
               <div className="home-page__tab-data__content-card__img">
                 <img
