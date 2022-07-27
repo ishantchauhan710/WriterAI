@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import YesNoDialog from "../../../components/YesNoDialog";
 
 export const ProfileTab = ({ logout, userDetails }) => {
@@ -26,18 +26,23 @@ export const ProfileTab = ({ logout, userDetails }) => {
           </tr>
 
           <tr>
-            <td>Account Created</td>
-            <td>7 Oct 2021</td>
-          </tr>
-
-          <tr>
-            <td>Total Projects</td>
-            <td>27</td>
-          </tr>
-
-          <tr>
             <td>WriterAI Usage</td>
             <td>{userDetails.data ? userDetails.data.apiReqCount : "null"}</td>
+          </tr>
+          <tr>
+            <td>Help</td>
+            <td>
+              <a
+                style={{
+                  textDecoration: "none",
+                  color: "var(--colorPrimary)",
+                  fontWeight: 500,
+                }}
+                href="#"
+              >
+                WriterAI Docs
+              </a>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -35,6 +35,7 @@ export const HomePage = () => {
   const [projects, setProjects] = useState([]);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [refreshProjects, setRefreshProjects] = useState(false);
+  const [refreshUser, setRefreshUser] = useState(false);
 
   const [showShareDialog, setShowShareDialog] = useState(false);
   const [shareProjectEmail, setShareProjectEmail] = useState("");
@@ -89,7 +90,7 @@ export const HomePage = () => {
 
   // Function to get user's details from DB
   const getUser = async () => {
-    setLoading(true);
+    //setLoading(true);
 
     try {
       const config = {
@@ -101,10 +102,10 @@ export const HomePage = () => {
       const response = await axios.get(`${BASE_URL}/user/getUser`, config);
       //console.log("Response: ", response);
       setUserDetails(response.data);
-      setLoading(false);
+      //setLoading(false);
     } catch (e) {
       notify(e.message, "error");
-      setLoading(false);
+      //setLoading(false);
     }
   };
 
@@ -299,6 +300,7 @@ export const HomePage = () => {
   useEffect(() => {
     if (token) {
       getUser();
+      console.log(userDetails);
       getProjects();
       getProjectsSharedToMe();
     }
@@ -311,6 +313,16 @@ export const HomePage = () => {
       setRefreshProjects(false);
     }
   }, [refreshProjects]);
+
+  // Fetch the user whenever needed
+  useEffect(() => {
+    if (refreshUser === true) {
+      setLoading(true);
+      getUser();
+      setLoading(false);
+      setRefreshUser(false);
+    }
+  }, [refreshUser]);
 
   // Whenever edit mode is enabled, navigate to create page
   useEffect(() => {
@@ -518,7 +530,11 @@ export const HomePage = () => {
           )}
 
           {showProfileTab === true && (
-            <ProfileTab userDetails={userDetails} logout={logout} />
+            <ProfileTab
+              userDetails={userDetails}
+              logout={logout}
+              setRefreshUser={setRefreshUser}
+            />
           )}
         </div>
       </div>

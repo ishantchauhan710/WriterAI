@@ -73,38 +73,55 @@ export const CreatePage = () => {
     }
   };
 
+  // Function to update API count in user's profile
+  const updateUserAPICount = async () => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      await axios.put(
+        `${BASE_URL}/user/updateApiCount`,
+        {
+          data: "writerai",
+        },
+        config
+      );
+
+      //console.log("User: ", result);
+    } catch (e) {
+      console.log("Error");
+      notify("Error updating API count", "error");
+    }
+  };
+
   // Function to generate content using AI
   const generateAiContent = async () => {
     // If AI is fetching data, prevent from making repeated API calls
     if (loadingAiContent) {
       return;
     }
-
     // Store the input field text in a variable
     const inputText = aiInput;
-
     // Validate the input data for null value and minimum words
     if (!inputText) {
       notify("Input text cannot be empty");
       return;
     }
-
     if (inputText.split(" ").length < 5) {
       notify("Input text should contain atleast five words");
       return;
     }
-
     // Show loading progress bar
     setLoadingAiContent(true);
-
     // Initialize the AI configuration variable
     const configuration = new Configuration({
       apiKey: process.env.REACT_APP_AI_API_KEY,
     });
-
     // Create the AI Instance
     const openai = new OpenAIApi(configuration);
-
     // Get data from AI and store it in respective state variables
     const response = await openai.createCompletion({
       model: "text-davinci-002",
@@ -118,6 +135,7 @@ export const CreatePage = () => {
     setGeneratedAiContent(content);
     //console.log("Content: ", response.data.choices);
     setLoadingAiContent(false);
+    updateUserAPICount();
   };
 
   // Function to copy AI generated text results to clipboard
@@ -138,7 +156,7 @@ export const CreatePage = () => {
   // A project will have a name, a title and a content body
   // By default, we set the project name and title as the user opens the page
   useEffect(() => {
-    if (editMode===false) {
+    if (editMode === false) {
       setTitle(projectName);
     }
   }, []);
