@@ -265,12 +265,11 @@
   background-color: #ddd;
 }
 
-.home-page__tab-data__publish-form {
+.home-page__tab-data__download-form {
   color: var(--colorText1);
 }
 
-.home-page__tab-data__publish-form__input-text,
-.home-page__tab-data__publish-form__input-dropdown {
+.home-page__tab-data__download-form__input-text {
   width: 100%;
   padding: 12px 20px;
   margin: 12px 0;
@@ -281,7 +280,7 @@
   outline: none;
 }
 
-.home-page__tab-data__publish-form__button {
+.home-page__tab-data__download-form__button {
   background-color: var(--colorSecondary);
   color: var(--colorOnSecondary);
   border: 1px solid var(--colorSecondary);
@@ -292,7 +291,7 @@
   font-weight: 500;
 }
 
-.home-page__tab-data__publish-form__button:hover {
+.home-page__tab-data__download-form__button:hover {
   background-color: var(--colorSecondaryHover);
 }
 

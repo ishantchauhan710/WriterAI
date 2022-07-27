@@ -3,7 +3,7 @@ import { isUserLoggedIn, logoutUser } from "../../firebase/firebase";
 import { ProfileTab } from "./components/ProfileTab";
 import { ProjectTab } from "./components/ProjectTab";
 import { AppState } from "../../AppContext";
-import { PublishTab } from "./components/PublishTab";
+import { DownloadTab } from "./components/DownloadTab";
 import { BASE_URL } from "../../other/Constants";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,6 +12,7 @@ import YesNoDialog from "../../components/YesNoDialog";
 import { setRef } from "@mui/material";
 import ShareProjectDialog from "./components/dialogs/ShareProjectDialog";
 import RevokeShareProjectDialog from "./components/dialogs/RevokeShareProjectDialog";
+import { ShareTab } from "./components/ShareTab";
 
 export const HomePage = () => {
   // States for showing dialog boxes, toggling tabs and storing data for token and projects
@@ -28,7 +29,7 @@ export const HomePage = () => {
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
   const [showProjectsTab, setShowProjectsTab] = useState(false);
   const [showSharedTab, setShowSharedTab] = useState(false);
-  const [showPublishTab, setShowPublishTab] = useState(false);
+  const [showDownloadTab, setShowDownloadTab] = useState(false);
   const [showProfileTab, setShowProfileTab] = useState(false);
   const [token, setToken] = useState(null);
   const [projects, setProjects] = useState([]);
@@ -61,28 +62,28 @@ export const HomePage = () => {
   const showProjects = () => {
     setShowProjectsTab(true);
     setShowSharedTab(false);
-    setShowPublishTab(false);
+    setShowDownloadTab(false);
     setShowProfileTab(false);
   };
 
   const showShared = () => {
     setShowProjectsTab(false);
     setShowSharedTab(true);
-    setShowPublishTab(false);
+    setShowDownloadTab(false);
     setShowProfileTab(false);
   };
 
-  const showPublish = () => {
+  const showDownload = () => {
     setShowProjectsTab(false);
     setShowSharedTab(false);
-    setShowPublishTab(true);
+    setShowDownloadTab(true);
     setShowProfileTab(false);
   };
 
   const showProfile = () => {
     setShowProjectsTab(false);
     setShowSharedTab(false);
-    setShowPublishTab(false);
+    setShowDownloadTab(false);
     setShowProfileTab(true);
   };
 
@@ -177,7 +178,7 @@ export const HomePage = () => {
       const result = await axios.post(
         `${BASE_URL}/project/share?toEmail=${shareProjectEmail}&projectId=${projectToShare.id}`,
         {
-          data: "hello",
+          data: "writerai",
         },
         config
       );
@@ -211,7 +212,7 @@ export const HomePage = () => {
       const result = await axios.post(
         `${BASE_URL}/project/revokeShare?shareId=${id}`,
         {
-          data: "hello",
+          data: "writerai",
         },
         config
       );
@@ -242,6 +243,31 @@ export const HomePage = () => {
     }
   };
 
+  const [projectsSharedToMe, setProjectsSharedToMe] = useState({});
+
+  // Function to get projects that are shared to him by others
+  const getProjectsSharedToMe = async () => {
+    try {
+      console.log(token);
+      setLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const result = await axios.get(
+        `${BASE_URL}/project/getSharedToMe`,
+        config
+      );
+      //console.log("Result: ", result);
+      setProjectsSharedToMe(result.data.data);
+      setLoading(false);
+    } catch (e) {
+      notify(e.message, "error");
+      setLoading(false);
+    }
+  };
+
   // When this page is opened, check if user is logged in. If not then navigate to landing page.
   useEffect(() => {
     const userLoggedIn = isUserLoggedIn();
@@ -264,6 +290,7 @@ export const HomePage = () => {
 
     if (userToken) {
       setToken(userToken);
+      console.log(token);
       //console.log("Token: ", token) [WILL GIVE NULL DUE TO SYNC EXECUTION];
     }
   }, []);
@@ -273,6 +300,7 @@ export const HomePage = () => {
     if (token) {
       getUser();
       getProjects();
+      getProjectsSharedToMe();
     }
   }, [token]);
 
@@ -398,27 +426,29 @@ export const HomePage = () => {
 
         <div
           className={`home-page__tab-item ${
-            showPublishTab === true ? "home-page__tab-item--active" : ""
+            showDownloadTab === true ? "home-page__tab-item--active" : ""
           }`}
-          onClick={() => showPublish()}
+          onClick={() => showDownload()}
         >
           <div className="home-page__tab-item__image">
             <i
               className={`material-icons home-page__tab-item__image__icon ${
-                showPublishTab === true
+                showDownloadTab === true
                   ? "home-page__tab-item__image__icon--active"
                   : ""
               }`}
             >
-              publish
+              cloud_download
             </i>
           </div>
           <div
             className={`home-page__tab-item__text ${
-              showPublishTab === true ? "home-page__tab-item__text--active" : ""
+              showDownloadTab === true
+                ? "home-page__tab-item__text--active"
+                : ""
             }`}
           >
-            Publish
+            Download
           </div>
         </div>
 
@@ -454,7 +484,7 @@ export const HomePage = () => {
           <div className="home-page__header__logo ">WriterAi</div>
 
           <div className="home-page__header__buttons">
-            {showProfileTab === false && showPublishTab === false && (
+            {showProfileTab === false && showDownloadTab === false && (
               <button onClick={() => createNew()} className="writerai-button">
                 Create New
               </button>
@@ -477,11 +507,15 @@ export const HomePage = () => {
           )}
 
           {showSharedTab === true && (
-            <ProjectTab projects={projects} label="Shared" />
+            <ShareTab projects={projectsSharedToMe} label="Shared To You" />
           )}
 
-          {showPublishTab === true && (
-            <PublishTab projects={projects} label="Publish Your Projects" />
+          {showDownloadTab === true && (
+            <DownloadTab
+              projectList={projects}
+              notify={notify}
+              setLoading={setLoading}
+            />
           )}
 
           {showProfileTab === true && (
