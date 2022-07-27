@@ -37,16 +37,6 @@ export const ShareTab = ({
   return (
     <div className="home-page__tab-data">
       <div className="home-page__tab-data__section-label">{label}</div>
-      <ProjectMenuDialog
-        open={showPopupMenu}
-        setOpen={setShowPopupMenu}
-        pos={popupMenuPos}
-        setPos={setPopupMenuPos}
-        setShowDeleteDialog={setShowDeleteDialog}
-        setProjectToDelete={setProjectToDelete}
-        setShowShareDialog={setShowShareDialog}
-        setShowRevokeProjectDialog={setShowRevokeProjectDialog}
-      />
       <div className="home-page__tab-data__new-card-container">
         {projects
           .map((item, index) => (
@@ -57,12 +47,6 @@ export const ShareTab = ({
                     item.coverPic === "" ? NO_IMAGE_PLACEHOLDER : item.coverPic
                   }
                 />
-                <div
-                  onClick={(e) => openMenu(e, item)}
-                  className="home-page__tab-data__content-card__menu_button"
-                >
-                  <i className="material-icons">more_vert</i>
-                </div>
               </div>
               <div
                 className="home-page__tab-data__content-card__data"
