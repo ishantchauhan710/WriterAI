@@ -184,7 +184,8 @@ export const HomePage = () => {
       console.log("Result: ", result);
 
       notify(`Project shared to ${shareProjectEmail} successfully!`, "success");
-      setLoading(false);
+      //setLoading(false);
+      setRefreshProjects(true);
     } catch (e) {
       notify(e.response.data.message, "error");
       setLoading(false);
@@ -193,6 +194,53 @@ export const HomePage = () => {
 
   const [revokeAccessProject, setRevokeAccessProject] = useState({});
   const [showRevokeProjectDialog, setShowRevokeProjectDialog] = useState(false);
+
+  // Function to revoke share access of a project with others
+  const revokeProjectAccess = async (id) => {
+    try {
+      setLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      //console.log("Config: ", config);
+      console.log("Token: ", token);
+      console.log(`Id: ${id}`);
+
+      const result = await axios.post(
+        `${BASE_URL}/project/revokeShare?shareId=${id}`,
+        {
+          data: "hello",
+        },
+        config
+      );
+      console.log("Result: ", result);
+
+      //notify(`Project access revoled`, "success");
+      //setLoading(false);
+    } catch (e) {
+      notify(e.response.data.message, "error");
+      setLoading(false);
+    }
+  };
+
+  // Function to revoke project access from multiple users
+  const revokeProjectAccessToUsers = async (users) => {
+    try {
+      users.map(async (id, count) => {
+        await revokeProjectAccess(id);
+
+        // When we reach last iteration
+        if (count === users.length - 1) {
+          setRefreshProjects(true);
+        }
+      });
+    } catch (e) {
+      notify(e.message, "error");
+      setLoading(false);
+    }
+  };
 
   // When this page is opened, check if user is logged in. If not then navigate to landing page.
   useEffect(() => {
@@ -283,13 +331,14 @@ export const HomePage = () => {
         open={showRevokeProjectDialog}
         setOpen={setShowRevokeProjectDialog}
         title="Revoke Share Access"
-        message="Uncheck the users from whom you want to revoke the project's access"
+        message="Check all the users from whom you want to revoke the project's access"
         yesText="Ok"
         noText="Cancel"
         notify={notify}
         input={shareProjectEmail}
         setInput={setShareProjectEmail}
         project={revokeAccessProject}
+        revokeFunction={revokeProjectAccessToUsers}
       />
 
       <div className="home-page__tab">
