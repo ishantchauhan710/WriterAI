@@ -511,11 +511,7 @@ export const HomePage = () => {
           )}
 
           {showDownloadTab === true && (
-            <DownloadTab
-              projectList={projects}
-              notify={notify}
-              setLoading={setLoading}
-            />
+            <DownloadTab projectList={projects} notify={notify} />
           )}
 
           {showProfileTab === true && (

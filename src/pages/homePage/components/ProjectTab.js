@@ -76,8 +76,7 @@ export const ProjectTab = ({
                 </div>
               </div>
             </div>
-          ))
-          .reverse()}
+          ))}
       </div>
     </div>
   );
