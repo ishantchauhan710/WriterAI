@@ -6,10 +6,10 @@ import OptionsFab from "./components/OptionsFab";
 import ShowPreview from "./components/ShowPreview";
 import axios from "axios";
 import { BASE_URL } from "../../other/Constants";
-import { isUserLoggedIn } from "../../security/firebase";
+import { isUserLoggedIn, logoutUser } from "../../security/firebase";
 const { Configuration, OpenAIApi } = require("openai");
 
-export const CreatePage = () => {
+export const CreatePage = ({ shouldLogout, setShouldLogout,token,setToken }) => {
   // State variables to store data for ai generator input, ai results, text editor title, content, split window state and other stuff
 
   const [aiInput, setAiInput] = useState("");
@@ -21,45 +21,12 @@ export const CreatePage = () => {
   const [splitWriter, setSplitWriter] = useState(true);
   const [showBackDialog, setShowBackDialog] = useState(false);
   const { setLoading, notify, projectName, setProjectName } = AppState();
-  const [token, setToken] = useState(null);
   const [coverImageUrl, setCoverImageUrl] = useState("");
   const [title, setTitle] = useState("");
 
   const navigate = useNavigate();
 
   const { editMode, setEditMode, editProject, setEditProject } = AppState();
-
-  // When this page is opened, check if user is logged in. If not then navigate to landing page
-  useEffect(() => {
-    const userLoggedIn = isUserLoggedIn();
-    if (userLoggedIn !== true) {
-      navigate("/");
-    }
-  }, []);
-
-  // Get token from local storage and store it in a state variable
-  useEffect(() => {
-    const userToken = JSON.parse(localStorage.getItem("userInfo"));
-    //console.log("Token in storage: ", userToken);
-
-    if (userToken) {
-      setToken(userToken);
-      //console.log("Token: ", token) [WILL GIVE NULL DUE TO SYNC EXECUTION];
-    }
-  }, []);
-
-  // Also assign corresponding values to text fields if in edit mode
-  useEffect(() => {
-    if (editMode === true) {
-      setProjectName(editProject.title);
-      setTitle(editProject.description);
-      setContent(editProject.content);
-      setCoverImageUrl(editProject.coverPic);
-      // console.log(
-      //   `Edit Mode:\nName: ${editProject.title}\nTitle: ${editProject.description}\nContent: ${editProject.content}\n Img: ${editProject.coverPic}\n`
-      // );
-    }
-  }, [editProject]);
 
   // Function to split writer and generator screens on small screen devices
   // 1 -> Show Writer, 2 -> Show Generator
@@ -269,6 +236,53 @@ export const CreatePage = () => {
       saveProject();
     }
   };
+
+  // When this page is opened, check if user is logged in. If not then navigate to landing page
+  useEffect(() => {
+    const userLoggedIn = isUserLoggedIn();
+    if (userLoggedIn !== true) {
+      navigate("/");
+    }
+  }, []);
+
+  // Get token from local storage and store it in a state variable
+  useEffect(() => {
+    const userToken = JSON.parse(localStorage.getItem("userInfo"));
+    //console.log("Token in storage: ", userToken);
+
+    if (userToken) {
+      setToken(userToken);
+      //console.log("Token: ", token) [WILL GIVE NULL DUE TO SYNC EXECUTION];
+    }
+  }, []);
+
+  // Also assign corresponding values to text fields if in edit mode
+  useEffect(() => {
+    if (editMode === true) {
+      setProjectName(editProject.title);
+      setTitle(editProject.description);
+      setContent(editProject.content);
+      setCoverImageUrl(editProject.coverPic);
+      // console.log(
+      //   `Edit Mode:\nName: ${editProject.title}\nTitle: ${editProject.description}\nContent: ${editProject.content}\n Img: ${editProject.coverPic}\n`
+      // );
+    }
+  }, [editProject]);
+
+  // Function to logout a user
+  const logout = () => {
+    logoutUser();
+    setToken(null);
+    navigate("/");
+  };
+
+  // Logout user if token is invalid
+  useEffect(() => {
+    if (shouldLogout === true) {
+      logout();
+      setShouldLogout(false);
+    }
+  }, [shouldLogout]);
 
   return (
     <div className="create-page">

@@ -14,7 +14,12 @@ import ShareProjectDialog from "./components/dialogs/ShareProjectDialog";
 import RevokeShareProjectDialog from "./components/dialogs/RevokeShareProjectDialog";
 import { ShareTab } from "./components/ShareTab";
 
-export const HomePage = () => {
+export const HomePage = ({
+  shouldLogout,
+  setShouldLogout,
+  token,
+  setToken,
+}) => {
   // States for showing dialog boxes, toggling tabs and storing data for token and projects
   const {
     setLoading,
@@ -31,7 +36,6 @@ export const HomePage = () => {
   const [showSharedTab, setShowSharedTab] = useState(false);
   const [showDownloadTab, setShowDownloadTab] = useState(false);
   const [showProfileTab, setShowProfileTab] = useState(false);
-  const [token, setToken] = useState(null);
   const [projects, setProjects] = useState([]);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [refreshProjects, setRefreshProjects] = useState(false);
@@ -46,6 +50,7 @@ export const HomePage = () => {
   // Function to logout a user
   const logout = () => {
     logoutUser();
+    setToken(null);
     navigate("/");
   };
 
@@ -291,7 +296,6 @@ export const HomePage = () => {
 
     if (userToken) {
       setToken(userToken);
-      console.log(token);
       //console.log("Token: ", token) [WILL GIVE NULL DUE TO SYNC EXECUTION];
     }
   }, []);
@@ -300,7 +304,7 @@ export const HomePage = () => {
   useEffect(() => {
     if (token) {
       getUser();
-      console.log(userDetails);
+      //console.log(userDetails);
       getProjects();
       getProjectsSharedToMe();
     }
@@ -330,6 +334,14 @@ export const HomePage = () => {
       openProject();
     }
   }, [editMode]);
+
+  // Logout user if token is invalid
+  useEffect(() => {
+    if (shouldLogout === true) {
+      logout();
+      setShouldLogout(false);
+    }
+  }, [shouldLogout]);
 
   return (
     <div className="home-page">
@@ -509,7 +521,7 @@ export const HomePage = () => {
             <ProjectTab
               setShowDeleteDialog={setShowDeleteDialog}
               setProjectToDelete={setProjectToDelete}
-              projects={projects?projects:[]}
+              projects={projects ? projects : []}
               label="Your Projects"
               setShowShareDialog={setShowShareDialog}
               setProjectToShare={setProjectToShare}
@@ -519,12 +531,19 @@ export const HomePage = () => {
           )}
 
           {showSharedTab === true && (
-            <ShareTab projects={projectsSharedToMe.length>0?projectsSharedToMe:[]} label="Shared To You" />
+            <ShareTab
+              projects={projectsSharedToMe.length > 0 ? projectsSharedToMe : []}
+              label="Shared To You"
+            />
           )}
 
           {showDownloadTab === true && (
             <DownloadTab
-              projectList={(projects.length>0 || projectsSharedToMe.length>0)?[...projects, ...projectsSharedToMe]:[]}
+              projectList={
+                projects.length > 0 || projectsSharedToMe.length > 0
+                  ? [...projects, ...projectsSharedToMe]
+                  : []
+              }
               notify={notify}
             />
           )}

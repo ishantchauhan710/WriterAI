@@ -19,16 +19,16 @@ import { BASE_URL } from "./other/Constants";
 import { checkUserValidity } from "./security/security";
 
 function App() {
-  const { loading, showNotification } = AppState();
+  const { loading, showNotification, notify } = AppState();
   const [token, setToken] = useState("");
 
   useEffect(() => {
     const tokenValue = localStorage.getItem("userInfo");
-    setToken(tokenValue);
+    setToken(JSON.parse(tokenValue));
     //console.log("Storage Token: ", tokenValue);
   }, []);
 
-  // Refresh Auth Token Every 10 Minutes
+  // Refresh Auth Token Every 30 Minutes
   useEffect(() => {
     const interval = setInterval(async () => {
       if (token) {
@@ -42,18 +42,64 @@ function App() {
     return () => clearInterval(interval);
   }, [token]);
 
+  const [shouldLogout, setShouldLogout] = useState(false);
+
+  // Check for token validity every 5 minutes
   useEffect(() => {
-    const result = checkUserValidity();
-    console.log("Valid Token", result);
-  },[]);
+    const interval = setInterval(async () => {
+      if (token) {
+        const result = await checkUserValidity(token);
+        console.log(result);
+        if (result === false) {
+          notify("You have been logged out due to token expiration", "error");
+          setShouldLogout(true);
+        }
+      }
+    }, 5 * 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, [token]);
+
+  // Also check for token validity on first run
+  useEffect(() => {
+    if (token) {
+      checkUserValidity(token).then((result) => {
+        console.log(result);
+        if (result === false) {
+          notify("You have been logged out due to token expiration", "error");
+          setShouldLogout(true);
+        }
+      });
+    }
+  }, [token]);
 
   return (
     <ThemeProvider theme={writerAiTheme}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/create" element={<CreatePage />} />
+          <Route
+            path="/home"
+            element={
+              <HomePage
+                shouldLogout={shouldLogout}
+                setShouldLogout={setShouldLogout}
+                token={token}
+                setToken={setToken}
+              />
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <CreatePage
+                shouldLogout={shouldLogout}
+                setShouldLogout={setShouldLogout}
+                token={token}
+                setToken={setToken}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
       {loading && <Loading />}
