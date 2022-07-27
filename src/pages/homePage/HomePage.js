@@ -511,7 +511,10 @@ export const HomePage = () => {
           )}
 
           {showDownloadTab === true && (
-            <DownloadTab projectList={projects} notify={notify} />
+            <DownloadTab
+              projectList={[...projects, ...projectsSharedToMe]}
+              notify={notify}
+            />
           )}
 
           {showProfileTab === true && (
