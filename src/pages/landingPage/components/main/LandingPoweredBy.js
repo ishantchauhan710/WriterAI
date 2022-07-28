@@ -34,7 +34,7 @@ export const LandingPoweredBy = () => {
 
   return (
     <div className="landing-page__poweredby">
-      <div className="landing-page__poweredby__heading">Built With</div>
+      <div id="poweredby" className="landing-page__poweredby__heading">Built With</div>
       <div className="landing-page__poweredby__container">
         {data.map((item, index) => (
           <div key={index} className="landing-page__poweredby__item">

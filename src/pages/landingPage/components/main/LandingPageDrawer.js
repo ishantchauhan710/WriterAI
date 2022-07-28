@@ -33,22 +33,22 @@ export default function LandingPageDrawer({ openLoginModal, openSignUpModal }) {
       <div className="landing-page__slider-menu-container">
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="#home">Home</a>
           </li>
           <li>
-            <a href="#">Features</a>
+            <a href="#features">Features</a>
           </li>
           <li>
-            <a href="#">Developers</a>
+            <a href="#poweredby">Built With</a>
           </li>
           <li>
-            <a href="#">Github</a>
+            <a target="_new" href="https://github.com/ishantchauhan710/WriterAI">Github</a>
           </li>
           <li>
-            <a href="#">Login</a>
+            <a onClick={() => openLoginModal()} href="#">Login</a>
           </li>
           <li>
-            <a href="#">Sign Up</a>
+            <a onClick={() => openSignUpModal()} href="#">Sign Up</a>
           </li>
         </ul>
       </div>

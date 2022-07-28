@@ -14,16 +14,16 @@ const LandingHeader = ({ openLoginModal, openSignUpModal }) => {
       <div className="landing-page__header__links">
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="#home">Home</a>
           </li>
           <li>
-            <a href="#">Features</a>
+            <a href="#features">Features</a>
           </li>
           <li>
-            <a href="#">Developers</a>
+            <a href="#poweredby">Built With</a>
           </li>
           <li>
-            <a href="#">Github</a>
+            <a target="_new" href="https://github.com/ishantchauhan710/WriterAI">Github</a>
           </li>
         </ul>
       </div>

@@ -29,7 +29,7 @@ export const LandingFeatures = () => {
   ];
 
   return (
-    <div className="landing-page__features">
+    <div id="features" className="landing-page__features">
       <div className="landing-page__features__heading">Features</div>
       <div className="landing-page__features__container">
         {data.map((item, index) => (

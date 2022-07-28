@@ -4,7 +4,7 @@ import React from "react";
 
 export const LandingHome = ({ openSignUpModal }) => {
   return (
-    <div className="landing-page__home">
+    <div id="home" className="landing-page__home">
       <div className="landing-page__home__left">
         <div className="landing-page__home__left__text-tertiary mv-10">
           Writing content is easy
@@ -25,7 +25,12 @@ export const LandingHome = ({ openSignUpModal }) => {
           >
             Try now
           </button>
-          <button className="writerai-button landing-page__home__left__button--secondary mv-10">
+          <button
+            onClick={() => {
+              window.open("https://github.com/ishantchauhan710/WriterAI");
+            }}
+            className="writerai-button landing-page__home__left__button--secondary mv-10"
+          >
             Source Code
           </button>
         </div>
