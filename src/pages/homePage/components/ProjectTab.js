@@ -14,7 +14,7 @@ export const ProjectTab = ({
 }) => {
   // We display this if no cover image of project exists
   const NO_IMAGE_PLACEHOLDER =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUjWAkNYLlQmBpc_dbcX-U_x5mQrZeBtDJYQ&usqp=CAU";
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAZlBMVEUzMzP///8cHBwsLCxqamopKSnS0tLq6ur8/PwmJia0tLT19fUfHx+Li4s4ODgRERGbm5uFhYV6enrFxcViYmKqqqoZGRldXV1vb2/g4OBJSUk3NzdAQEBSUlLw8PDW1tYGBgbBwcE0vFRNAAAB2ElEQVR4nO3ZXW+CMBSA4ZZS145uDhzoVvfh//+TawWNW4DdQeJ5Hy9MiBf1zaFAUAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB3wvxj7fUtzx7Lea9+7SUuzXx86n+0Ye1FLqzbaPcwJyXbr73IhXWVfimsMdZYm7/+MNZX+smuvcplbVOTtGEY772KYz/wTmaT6MvdV3sc/YHUJr7Oe+nbaBSpTVSVkjj9eLnARGWvGYQ2KQ65SBqU7nI01HUYdhehTcKH0y5F2RTDwdBoXRd9FKFNfNicb86a4b/nJClKfyZJbaJiilK9DDfxvnbnU6mPIraJsvvD+5AkNC43SZ/zniK2SVTpRrY/kE4clzeXPCp1IbhJZt59jPGc5Pr4l6LIbRLTraxut+ki/OuR2NXWim2ifJmmo/2ub6ck2RVy58SXVd5FTs7115x+SkQ38a+/puNmTjqpTVKSqSZS5yTsb04YmlyeAd3EoMhtUo4Piegmh2qCOwWhTbw6PsfnUdHIbPK0DUWY9C2vSffg3h7nnLRuhL0etc3k/nrxNfGW436FZjOvXXuFK7ChmCXuFToAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDd+gE3BBvfW5jSuQAAAABJRU5ErkJggg==";
 
   const { editMode, setEditMode, editProject, setEditProject } = AppState();
 
