@@ -5,7 +5,7 @@ export const LandingFeatures = () => {
     {
       title: "Inbuilt Text Editor",
       description:
-        "You can make use of the inbuilt text editor to write your blogs, emails, letters, thesis and other stuff",
+        "Make use of the inbuilt project editor to write and download your blogs, emails, letters and other stuff",
       img: "edit",
     },
     {
@@ -21,10 +21,10 @@ export const LandingFeatures = () => {
       img: "art_track",
     },
     {
-      title: "Publish Content",
+      title: "Share Projects",
       description:
-        "You can directly publish the content from WriterAI to multiple platforms such as Hashnode, Medium and Dev.to",
-      img: "publish",
+        "You can work on a project in team by providing others with the project access",
+      img: "screen_share",
     },
   ];
 

@@ -1,6 +1,7 @@
 .landing-page {
   width: 100vw;
   overflow: hidden;
+  background-image: var(--colorLandingGradient);
 }
 
 /* Header */
@@ -23,6 +24,8 @@
   color: var(--colorText1);
   height: max-content;
   width: 100%;
+  background-image: var(--colorLandingGradient);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
   /* position: fixed;
     z-index: 3;
     box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.10);
@@ -141,6 +144,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: var(--colorLandingGradient);
 }
 
 .landing-page__home__left,

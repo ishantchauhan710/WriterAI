@@ -1,20 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
+  --colorLandingGradient: linear-gradient(to left, #fff6ec, #ffffff);
+
   --colorPrimary: #006ba6;
   --colorPrimaryHover: #005481;
-  --colorOnPrimary: #ffffff;
-  --colorBackground: #ffffff;
-  --colorTransparentHover: rgba(0, 0, 0, 0.05);
+
+  --colorSecondary: #ff6600;
+  --colorSecondaryHover: #ff5100;
+
   --colorText1: #053159;
   --colorText2: #0c3868;
   --colorText3: #4e5b68;
   --colorText4: #868d92;
+
+  --colorOnPrimary: #ffffff;
+  --colorBackground: #ffffff;
+  --colorTransparentHover: rgba(0, 0, 0, 0.05);
+
   --colorBackgroundVariant: #fdfffc;
   --colorBackgroundCover: #f6f6f6;
   --colorBackgroundCoverVariant: #f5f9fc;
-  --colorSecondary: #ff6600;
-  --colorSecondaryHover: #ff5100;
   --colorSecondaryTint: #326afb;
   --colorSecondaryTintHover: #3e69f7;
   --colorOnSecondary: #ffffff;
@@ -22,6 +28,32 @@
   --colorTertiary: rgba(255, 255, 255, 0.1);
   --colorTertiaryHover: rgba(255, 255, 255, 0.2);
   --colorTransparent: rgba(0, 0, 0, 0);
+
+  /* --colorPrimary: #006ba6;
+  --colorPrimaryHover: #005481;
+
+  --colorSecondary: #ff6600;
+  --colorSecondaryHover: #ff5100;
+
+  --colorText1: #053159;
+  --colorText2: #0c3868;
+  --colorText3: #4e5b68;
+  --colorText4: #868d92;
+
+  --colorOnPrimary: #ffffff;
+  --colorBackground: #ffffff;
+  --colorTransparentHover: rgba(0, 0, 0, 0.05);
+
+  --colorBackgroundVariant: #fdfffc;
+  --colorBackgroundCover: #f6f6f6;
+  --colorBackgroundCoverVariant: #f5f9fc;
+  --colorSecondaryTint: #326afb;
+  --colorSecondaryTintHover: #3e69f7;
+  --colorOnSecondary: #ffffff;
+  --colorSecondaryVariant: #31cb52;
+  --colorTertiary: rgba(255, 255, 255, 0.1);
+  --colorTertiaryHover: rgba(255, 255, 255, 0.2);
+  --colorTransparent: rgba(0, 0, 0, 0); */
 }
 
 * {
