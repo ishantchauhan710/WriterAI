@@ -38,7 +38,8 @@ export const ProfileTab = ({ logout, userDetails }) => {
                   color: "var(--colorPrimary)",
                   fontWeight: 500,
                 }}
-                href="#"
+                target="_new"
+                href="https://github.com/ishantchauhan710/WriterAI/blob/master/Docs.md"
               >
                 WriterAI Docs
               </a>

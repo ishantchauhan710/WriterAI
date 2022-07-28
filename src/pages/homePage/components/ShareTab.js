@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AppState } from "../../../AppContext";
-import { ProjectMenuDialog } from "./ProjectMenuDialog";
+import { ProjectMenuDialog } from "../components/dialogs/ProjectMenuDialog";
 
 export const ShareTab = ({
   projects,
