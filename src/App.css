@@ -2,32 +2,25 @@
 
 :root {
   --colorPrimary: #006ba6;
+  --colorPrimaryHover: #005481;
   --colorOnPrimary: #ffffff;
   --colorBackground: #ffffff;
-  --colorPrimaryHover: #005481;
   --colorTransparentHover: rgba(0, 0, 0, 0.05);
-
   --colorText1: #053159;
   --colorText2: #0c3868;
   --colorText3: #4e5b68;
   --colorText4: #868d92;
-
   --colorBackgroundVariant: #fdfffc;
   --colorBackgroundCover: #f6f6f6;
   --colorBackgroundCoverVariant: #f5f9fc;
-
   --colorSecondary: #ff6600;
   --colorSecondaryHover: #ff5100;
-
   --colorSecondaryTint: #326afb;
   --colorSecondaryTintHover: #3e69f7;
   --colorOnSecondary: #ffffff;
-
   --colorSecondaryVariant: #31cb52;
-
   --colorTertiary: rgba(255, 255, 255, 0.1);
   --colorTertiaryHover: rgba(255, 255, 255, 0.2);
-
   --colorTransparent: rgba(0, 0, 0, 0);
 }
 
