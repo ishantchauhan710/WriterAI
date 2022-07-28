@@ -9,7 +9,7 @@ export const checkUserValidity = async (token) => {
       },
     };
 
-    console.log(`Token Passed: ${token}`);
+    //console.log(`Token Passed: ${token}`);
     const response = await axios.get(`${BASE_URL}/user/getUser`, config);
     return true;
   } catch (e) {

@@ -8,7 +8,7 @@ import LandingHeader from "./components/main/LandingHeader";
 import { LandingHome } from "./components/main/LandingHome";
 import { LandingPoweredBy } from "./components/main/LandingPoweredBy";
 
-export const LandingPage = () => {
+export const LandingPage = ({setToken}) => {
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [authTab, setAuthTab] = useState("1"); // 1: Login, 2: SignUp
   const navigate = useNavigate();
@@ -45,6 +45,7 @@ export const LandingPage = () => {
         setOpenAuthModal={setOpenAuthModal}
         authTab={authTab}
         setAuthTab={setAuthTab}
+        setToken={setToken}
       />
     </div>
   );

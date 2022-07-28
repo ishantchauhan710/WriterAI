@@ -155,7 +155,7 @@ export const HomePage = ({
         `${BASE_URL}/project/delete?projectId=${projectToDelete.id}`,
         config
       );
-      console.log("Result: ", result);
+      // console.log("Result: ", result);
       setLoading(false);
       notify("Project deleted successfully!", "success");
       setRefreshProjects(true);
@@ -178,8 +178,8 @@ export const HomePage = ({
         },
       };
 
-      console.log("Config: ", config);
-      console.log("Token: ", token);
+      // console.log("Config: ", config);
+      // console.log("Token: ", token);
 
       const result = await axios.post(
         `${BASE_URL}/project/share?toEmail=${shareProjectEmail}&projectId=${projectToShare.id}`,
@@ -188,7 +188,7 @@ export const HomePage = ({
         },
         config
       );
-      console.log("Result: ", result);
+      // console.log("Result: ", result);
 
       notify(`Project shared to ${shareProjectEmail} successfully!`, "success");
       //setLoading(false);
@@ -212,8 +212,8 @@ export const HomePage = ({
         },
       };
       //console.log("Config: ", config);
-      console.log("Token: ", token);
-      console.log(`Id: ${id}`);
+      //console.log("Token: ", token);
+      //console.log(`Id: ${id}`);
 
       const result = await axios.post(
         `${BASE_URL}/project/revokeShare?shareId=${id}`,
@@ -222,7 +222,7 @@ export const HomePage = ({
         },
         config
       );
-      console.log("Result: ", result);
+      //console.log("Result: ", result);
 
       //notify(`Project access revoled`, "success");
       //setLoading(false);
@@ -254,7 +254,7 @@ export const HomePage = ({
   // Function to get projects that are shared to him by others
   const getProjectsSharedToMe = async () => {
     try {
-      console.log(token);
+      //console.log(token);
       setLoading(true);
       const config = {
         headers: {

@@ -9,7 +9,12 @@ import { BASE_URL } from "../../other/Constants";
 import { isUserLoggedIn, logoutUser } from "../../security/firebase";
 const { Configuration, OpenAIApi } = require("openai");
 
-export const CreatePage = ({ shouldLogout, setShouldLogout,token,setToken }) => {
+export const CreatePage = ({
+  shouldLogout,
+  setShouldLogout,
+  token,
+  setToken,
+}) => {
   // State variables to store data for ai generator input, ai results, text editor title, content, split window state and other stuff
 
   const [aiInput, setAiInput] = useState("");
@@ -59,7 +64,7 @@ export const CreatePage = ({ shouldLogout, setShouldLogout,token,setToken }) => 
 
       //console.log("User: ", result);
     } catch (e) {
-      console.log("Error");
+      //console.log("Error");
       notify("Error updating API count", "error");
     }
   };
@@ -89,20 +94,31 @@ export const CreatePage = ({ shouldLogout, setShouldLogout,token,setToken }) => 
     });
     // Create the AI Instance
     const openai = new OpenAIApi(configuration);
-    // Get data from AI and store it in respective state variables
-    const response = await openai.createCompletion({
-      model: "text-davinci-002",
-      prompt: inputText,
-      max_tokens: 40,
-      temperature: 0.9,
-      n: 5,
-      echo: true,
-    });
-    const content = response.data.choices;
-    setGeneratedAiContent(content);
-    //console.log("Content: ", response.data.choices);
-    setLoadingAiContent(false);
-    updateUserAPICount();
+
+    try {
+      // Get data from AI and store it in respective state variables
+      const response = await openai.createCompletion({
+        model: "text-davinci-002",
+        prompt: inputText,
+        max_tokens: 40,
+        temperature: 0.9,
+        n: 5,
+        echo: true,
+      });
+
+      const content = response.data.choices;
+      setGeneratedAiContent(content);
+      //console.log("Content: ", response.data.choices);
+      setLoadingAiContent(false);
+      updateUserAPICount();
+    } catch (e) {
+      //console.log(e);
+      notify(
+        "Unable to generate AI content, it seems your credits have crossed the daily usage limit",
+        "error"
+      );
+      setLoadingAiContent(false);
+    }
   };
 
   // Function to copy AI generated text results to clipboard
@@ -201,7 +217,7 @@ export const CreatePage = ({ shouldLogout, setShouldLogout,token,setToken }) => 
 
       try {
         setLoading(true);
-        console.log("Cover Image URL: ", coverImageUrl);
+        //console.log("Cover Image URL: ", coverImageUrl);
         const result = await axios.put(
           `${BASE_URL}/project/update?projectId=${editProject.id}`,
           {

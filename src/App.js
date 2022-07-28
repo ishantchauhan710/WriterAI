@@ -35,7 +35,7 @@ function App() {
         const newToken = await getUserToken();
         localStorage.setItem("userInfo", JSON.stringify(newToken));
         setToken(newToken);
-        console.log("Token Refreshed", newToken);
+        //console.log("Token Refreshed", newToken);
       }
     }, 10 * 60 * 1000);
 
@@ -49,7 +49,7 @@ function App() {
     const interval = setInterval(async () => {
       if (token) {
         const result = await checkUserValidity(token);
-        console.log(result);
+        //console.log(result);
         if (result === false) {
           notify("You have been logged out due to token expiration", "error");
           setShouldLogout(true);
@@ -64,7 +64,7 @@ function App() {
   useEffect(() => {
     if (token) {
       checkUserValidity(token).then((result) => {
-        console.log(result);
+        //console.log(result);
         if (result === false) {
           notify("You have been logged out due to token expiration", "error");
           setShouldLogout(true);
@@ -77,7 +77,7 @@ function App() {
     <ThemeProvider theme={writerAiTheme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage setToken={setToken} />} />
           <Route
             path="/home"
             element={

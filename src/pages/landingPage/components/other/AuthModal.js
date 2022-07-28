@@ -37,6 +37,7 @@ export default function AuthModal({
   setOpenAuthModal,
   authTab,
   setAuthTab,
+  setToken,
 }) {
   const { setLoading, notify } = AppState();
 
@@ -51,6 +52,7 @@ export default function AuthModal({
 
   // Handles Auth Response, True or False
   const parseResult = async (result, action) => {
+    //console.log("Login");
     if (result === "TRUE") {
       const token = await getUserToken();
       // Uid to be stored in DB
@@ -89,6 +91,7 @@ export default function AuthModal({
 
       // For all 3 success cases, save auth token in local storage and redirect user to home page
       localStorage.setItem("userInfo", JSON.stringify(token));
+      setToken(token);
       navigate("/home");
     } else {
       notify(result, "error");
