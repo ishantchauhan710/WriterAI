@@ -1,1 +1,9 @@
-[[redirects]] from = "/*" to = "/" status = 200
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
