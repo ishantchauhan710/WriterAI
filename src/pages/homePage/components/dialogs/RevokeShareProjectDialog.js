@@ -66,8 +66,7 @@ export default function RevokeShareProjectDialog({
           <DialogContentText>{message}</DialogContentText>
 
           <div className="home-page__revoke-share-email-list-container">
-            {project.sharedTo &&
-              project.sharedTo.map((item, index) => (
+            {(project.sharedTo && project.sharedTo.length>0)?project.sharedTo.map((item, index) => (
                 <div key={index} className="home-page__revoke-share-email-list">
                   <Checkbox
                     onClick={() => {
@@ -77,7 +76,7 @@ export default function RevokeShareProjectDialog({
                   />
                   <span>{item.email}</span>
                 </div>
-              ))}
+              )):<span style={{color: "var(--colorText3)", fontSize: "0.9rem"}}>No users found</span>}
           </div>
         </DialogContent>
         <DialogActions>
