@@ -26,12 +26,6 @@ You can try this website by clicking on the link below 👇
 - **User Authentication** - Supports Email-Password authentication and Gmail authentication
 - **User Authorization** - WriterAI keeps on validating the user's auth tokens every 5 minutes automatically
 
-## Technical details
-
-- The frontend of WriterAI is created using technologies like CSS, ReactJS and MaterialUI. WriterAI is highly responsive and is tested on all popular browsers like Chrome, Safari and Opera Mini. For handling the react state\s, ContextAPI is used. The frontend code is highly structured and BEM convention is followed throughout the entire CSS code.
-
-- The backend of WriterAI is built using Ktor which is a Kotlin based framework for writing server side code! For storing the user's data, we have used PlatenScale which is a highly scalable MySQL database platform which supports horizontal sharding and unlimited connections. For authentication, we have used Firebase SDK. And for deployment of the backend, we have used Linode.
-
 ## 📸 Screenshots 
 
 |   |   |   |
@@ -39,6 +33,20 @@ You can try this website by clicking on the link below 👇
 |![](screenshots/desktop/landing.jpg)| ![](screenshots/desktop/create.jpg) | ![](screenshots/desktop/create_md.jpg)
 |![](screenshots/desktop/create_fab.jpg) | ![](screenshots/desktop/projects.jpg) |![](screenshots/desktop/share.jpg) 
 |![](screenshots/desktop/profile.jpg)|![](screenshots/desktop/download.jpg) | ![](screenshots/desktop/made_with.jpg)
+
+
+## Technical details
+
+- The frontend of WriterAI is created using technologies like CSS, ReactJS and MaterialUI. WriterAI is highly responsive and is tested on all popular browsers like Chrome, Safari and Opera Mini. For handling the react state\s, ContextAPI is used. The frontend code is highly structured and BEM convention is followed throughout the entire CSS code.
+
+- The backend of WriterAI is built using Ktor which is a Kotlin based framework for writing server side code! For storing the user's data, we have used PlatenScale which is a highly scalable MySQL database platform which supports horizontal sharding and unlimited connections. For authentication, we have used Firebase SDK. And for deployment of the backend, we have used Linode.
+
+## Insights 🔎
+|   |   | 
+|---|---|
+|![](screenshots/mockups/0.png)| ![](screenshots/mockups/1.png)
+|![](screenshots/mockups/2.png)| ![](screenshots/mockups/3.png)
+|![](screenshots/mockups/4.png)| ![](screenshots/mockups/5.png)
 
 ## Setup [Frontend]
 If you want to clone this project and customize it further, you need to do a couple of tasks first:
@@ -58,12 +66,12 @@ REACT_APP_FIREBASE_MEASUREMENT_ID=XXXXXXXX
 REACT_APP_AI_API_KEY=XXXXXXXX
 REACT_APP_BASE_URL=XXXXXXXX
 ```
+
+
 * Get the value of first 7 variables by creating a firebase account, enabling user authentication and downloading the firebase configuration json file
 * Get the API key to enable AI support from OpenAI
 * Get a domain and enable SSL on it in order to use it. Not doing so may result in CORS errors. See backend documentation for more.
 * Save the file and then in frontend and backend terminal, write npm start and enjoy the project :)
-
-<img src="graphics/linode.png" style="width: 100%;" />
 
 ## Built With [Frontend] 🛠
 
@@ -75,6 +83,7 @@ REACT_APP_BASE_URL=XXXXXXXX
 * [Axios](https://www.npmjs.com/package/axios) - Axios is an NPM package that lets you easily send HTTP requests to a particular URL
 * [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken) - It is a package that lets you make use of JWT authentication in your app
 * [Firebase](https://en.wikipedia.org/wiki/Firebase) - Firebase is a platform developed by Google for adding backend functionalities like authentication in projects.
+
 
 ## Project Structure [Frontend] :open_file_folder:
 
@@ -95,6 +104,9 @@ REACT_APP_BASE_URL=XXXXXXXX
     │   ├── AppContext.js   # ReactJS ContextAPI file to allow all components access a particular react state easily
     │   └── index.js        # A ReactJS file to render all the data on web page
     └──
+
+## Setup [Backend]
+For this, you can refer to the [Backend Repository](https://github.com/Vaibhav2002/WriterAI-Backend) of WriterAI to setup and deploy the backend
 
 ## Attribution
 The project is built using [PlanetScale](https://planetscale.com/) for the [Hashnode X PlanetScale Hackathon](https://townhall.hashnode.com/planetscale-hackathon).
