@@ -12,14 +12,14 @@ export const LandingPoweredBy = () => {
     {
       title: "ReactJS",
       description:
-        "A frontend JavaScript library created by Facebook, it is widely used for building amazing user interfaces",
+        "A frontend JavaScript library created by Facebook, it is widely used for building amazing web user interfaces",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/862px-React-icon.svg.png",
       size: 10,
     },
     {
       title: "Ktor",
       description:
-        "Ktor is a Kotlin based framework that enable developers to write asynchronous clients and servers applications in Kotlin language",
+        "A Kotlin based framework that enable developers to write the backend server code in kotlin language",
       img: "https://avatars.githubusercontent.com/u/28214161?s=280&v=4",
       size: 10,
     },

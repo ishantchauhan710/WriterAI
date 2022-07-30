@@ -14,9 +14,7 @@ export const LandingHome = ({ openSignUpModal }) => {
         </div>
         <div className="landing-page__home__left__text-secondary mv-10">
           WriterAI is an AI based content writing tool that helps users easily
-          write blogs and directly publish them to platforms like hashnode,
-          medium, and dev.to! Just provide the AI with an overview of the topic
-          and you will get the results instantly.
+          write high quality emails, blogs, letters, thesis and other stuff. One can share their project with others and work as a team.
         </div>
         <div className="landing-page__home__left__buttons">
           <button

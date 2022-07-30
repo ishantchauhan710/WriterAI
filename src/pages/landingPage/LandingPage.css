@@ -25,7 +25,7 @@
   height: max-content;
   width: 100%;
   background-image: var(--colorLandingGradient);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   /* position: fixed;
     z-index: 3;
     box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.10);
@@ -346,6 +346,9 @@
 
 /* Footer */
 .landing-page__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   color: var(--colorText1);
@@ -472,6 +475,10 @@
   .landing-page__home__left__button--secondary {
     width: 100%;
     margin: 10px 0px;
+  }
+
+  .landing-page__footer__icon {
+    display: none;
   }
 }
 
