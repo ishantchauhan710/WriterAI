@@ -24,6 +24,18 @@ You can try this website by clicking on the link below 👇
 - **Markdown Support** - You can add images, tables, hyperlinks and code snippets in your projects by using markdown
 - **Project Download** - You can download your projects in JSON, XML and Markdown format
 - **User Authentication** - Supports Email-Password authentication and Gmail authentication
-- **User Authorization** - WriterAI keeps on validating the user
+- **User Authorization** - WriterAI keeps on validating the user's auth tokens every 5 minutes automatically
 
 ## Technical details
+
+- The frontend of WriterAI is created using technologies like CSS, ReactJS and MaterialUI. WriterAI is highly responsive and is tested on all popular browsers like Chrome, Safari and Opera Mini. For handling the react state\s, ContextAPI is used. The frontend code is highly structured and BEM convention is followed throughout the entire CSS code.
+
+- The backend of WriterAI is built using Ktor which is a Kotlin based framework for writing server side code! For storing the user's data, we have used PlatenScale which is a highly scalable MySQL database platform which supports horizontal sharding and unlimited connections. For authentication, we have used Firebase SDK. And for deployment of the backend, we have used Linode.
+
+## 📸 Screenshots 
+
+|   |   |   |
+|---|---|---|
+|![](screenshots/desktop/landing.jpg)| ![](screenshots/desktop/create.jpg) | ![](screenshots/desktop/create_md.jpg)
+|![](screenshots/desktop/create_fab.jpg) | ![](screenshots/desktop/projects.jpg) |![](screenshots/desktop/share.jpg) 
+|![](screenshots/desktop/profile.jpg)|![](screenshots/desktop/download.jpg) | ![](screenshots/desktop/made_with.jpg)
