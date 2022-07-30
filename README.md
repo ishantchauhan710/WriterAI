@@ -39,3 +39,32 @@ You can try this website by clicking on the link below 👇
 |![](screenshots/desktop/landing.jpg)| ![](screenshots/desktop/create.jpg) | ![](screenshots/desktop/create_md.jpg)
 |![](screenshots/desktop/create_fab.jpg) | ![](screenshots/desktop/projects.jpg) |![](screenshots/desktop/share.jpg) 
 |![](screenshots/desktop/profile.jpg)|![](screenshots/desktop/download.jpg) | ![](screenshots/desktop/made_with.jpg)
+
+## Setup [Frontend]
+If you want to clone this project and customize it further, you need to do a couple of tasks first:
+* Clone this project. You can directly download the source code, or you can use the CLI in terminal
+* Once successful, open your terminal in the project folder and write npm install
+* After this, in the root folder of the project, create a new file with the exact name of ".env"
+* In the .env file, write:<br><br>
+
+```
+REACT_APP_FIREBASE_API_KEY=XXXXXXXX
+REACT_APP_FIREBASE_AUTH_DOMAIN=XXXXXXXX
+REACT_APP_FIREBASE_PROJECT_ID=XXXXXXXX
+REACT_APP_FIREBASE_STORAGE_BUCKET=XXXXXXXX
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=XXXXXXXX
+REACT_APP_FIREBASE_APP_ID=XXXXXXXX
+REACT_APP_FIREBASE_MEASUREMENT_ID=XXXXXXXX
+REACT_APP_AI_API_KEY=XXXXXXXX
+REACT_APP_BASE_URL=XXXXXXXX
+```
+* Get the value of first 7 variables by creating a firebase account, enabling user authentication and downloading the firebase configuration json file
+* Get the API key to enable AI support from OpenAI
+* Get a domain and enable SSL on it in order to use it. Not doing so may result in CORS errors. See backend documentation for more.
+* Save the file and then in frontend and backend terminal, write npm start and enjoy the project :)
+
+## Setup [Backend]
+For this, you can refer to the [Backend Repository](https://github.com/Vaibhav2002/WriterAI-Backend) of WriterAI to setup the backend server
+
+
+
