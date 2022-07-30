@@ -63,8 +63,44 @@ REACT_APP_BASE_URL=XXXXXXXX
 * Get a domain and enable SSL on it in order to use it. Not doing so may result in CORS errors. See backend documentation for more.
 * Save the file and then in frontend and backend terminal, write npm start and enjoy the project :)
 
-## Setup [Backend]
-For this, you can refer to the [Backend Repository](https://github.com/Vaibhav2002/WriterAI-Backend) of WriterAI to setup the backend server
+<img src="graphics/linode.png" style="width: 100%;" />
+
+## Built With [Frontend] 🛠
+
+* [GPT-3 AI](https://en.wikipedia.org/wiki/GPT-3) - Generative Pre-trained Transformer 3 is an autoregressive language model that uses deep learning to produce human-like text
+* [ReactJS](https://reactjs.org/docs/getting-started.html) - ReactJS is a javascript library created by Facebook. This library lets you create beautiful web pages in couple of minutes
+* [MaterialUI](https://mui.com/) - MaterialUI is a ReactJS library developed by google that lets you create beautiful UI elements in a quick go!
+* [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start) - React Router DOM is a NPM package that easily lets you tell the app about which web page or screen component to render depending upon a particular URL
+* [Lottie React](https://www.npmjs.com/package/lottie-react) - Lottie React is an npm package that lets you render Lottie JSON animations on the web page
+* [Axios](https://www.npmjs.com/package/axios) - Axios is an NPM package that lets you easily send HTTP requests to a particular URL
+* [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken) - It is a package that lets you make use of JWT authentication in your app
+* [Firebase](https://en.wikipedia.org/wiki/Firebase) - Firebase is a platform developed by Google for adding backend functionalities like authentication in projects.
+
+## Project Structure [Frontend] :open_file_folder:
+
+    # Root Package
+    .
+    ├── src                 # Our core frontend code consisting of all views and react components
+    |   ├── components      # Contains UI component files for dialog boxes, notifications etc
+    |   ├── other           # Contains files for constant variables and placeholder data
+    |   ├── components      # Contains UI component files for dialog boxes, snackbars, single user in inbox etc
+    │   ├── pages           # Contains files to represent the screen for each route like LandingPage.js for '/', HomePage.js for '/home' etc
+    │   ├── res             # Contains resource files for animations
+    │   ├── util            # Contains utility functions for formatting strings and dates
+    │   ├── security        # Contains firebase configuration, firebase methods and other security related functions
+    │   ├── style           # Contains configurations for MaterialUI setup
+    │   ├── App.css         # CSS file to provide a common styling to our app such as font family and box sizing
+    │   ├── index.css       # Currently of no use, however you can use it to provide a global style to your app
+    │   ├── App.js          # Our main frontend ReactJS file that is executed when server starts
+    │   ├── AppContext.js   # ReactJS ContextAPI file to allow all components access a particular react state easily
+    │   └── index.js        # A ReactJS file to render all the data on web page
+    └──
+
+## Attribution
+The project is built using [PlanetScale](https://planetscale.com/) for the [Hashnode X PlanetScale Hackathon](https://townhall.hashnode.com/planetscale-hackathon).
+
+## Contact
+For any queries, you can mail me at developerishant710@gmail.com
 
 
 
