@@ -6,7 +6,7 @@
 
 This project is developed by **Team 404** for Hashnode x PlanetScale hackathon. This team comprises of [Ishant](https://github.com/ishantchauhan710/) and [Vaibhav](https://github.com/Vaibhav2002).
 
-## About
+## About :dart:
 
 WriterAI is a web app where a user can make use of artificial intelligence to quickly write high quality content. Just provide the AI with a sample input of one to two lines and the AI will generate 5 different paragraphs for you!
 
@@ -16,7 +16,7 @@ You can try this website by clicking on the link below 👇
 
 [https://writerai.netlify.app/](https://writerai.netlify.app/)
 
-## WriterAI Features
+## WriterAI Features :fire:
 
 - **Auto Text Completion** - Generates over 120 words with an input of just 5 words
 - **Inbuilt Text Editor** - For writing your blogs, emails, thesis, letters and other release
@@ -26,7 +26,7 @@ You can try this website by clicking on the link below 👇
 - **User Authentication** - Supports Email-Password authentication and Gmail authentication
 - **User Authorization** - WriterAI keeps on validating the user's auth tokens every 5 minutes automatically
 
-## 📸 Screenshots 
+## 📸 Screenshots :computer:
 
 |   |   |   |
 |---|---|---|
@@ -35,7 +35,7 @@ You can try this website by clicking on the link below 👇
 |![](screenshots/desktop/profile.jpg)|![](screenshots/desktop/download.jpg) | ![](screenshots/desktop/made_with.jpg)
 
 
-## Technical details
+## Technical details :bulb:
 
 - The frontend of WriterAI is created using technologies like CSS, ReactJS and MaterialUI. WriterAI is highly responsive and is tested on all popular browsers like Chrome, Safari and Opera Mini. For handling the react state\s, ContextAPI is used. The frontend code is highly structured and BEM convention is followed throughout the entire CSS code.
 
@@ -48,7 +48,7 @@ You can try this website by clicking on the link below 👇
 |![](screenshots/mockups/2.png)| ![](screenshots/mockups/3.png)
 |![](screenshots/mockups/4.png)| ![](screenshots/mockups/5.png)
 
-## Setup [Frontend]
+## Setup [Frontend] :pencil:
 If you want to clone this project and customize it further, you need to do a couple of tasks first:
 * Clone this project. You can directly download the source code, or you can use the CLI in terminal
 * Once successful, open your terminal in the project folder and write npm install
@@ -105,7 +105,11 @@ REACT_APP_BASE_URL=XXXXXXXX
     │   └── index.js        # A ReactJS file to render all the data on web page
     └──
 
-## Setup [Backend]
+## Production Build :computer:
+* To build the project for production purpose, open the frontend folder and write npm run build
+* Once the build is completed, simply write npm start to run the website in production mode
+
+## Setup [Backend] 🛠
 For this, you can refer to the [Backend Repository](https://github.com/Vaibhav2002/WriterAI-Backend) of WriterAI to setup and deploy the backend
 
 ## Attribution
