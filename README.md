@@ -25,7 +25,7 @@ You can try this website by clicking on the link below 👇
 
 ## WriterAI Features :fire:
 
-- **Auto Text Completion** - Generates over 120 words with an input of just 5 words
+- **Auto Text Completion** - Generates upto 120 words with an input of just 5 words
 - **Inbuilt Text Editor** - For writing your blogs, emails, thesis, letters and other release
 - **Project Sharing** - You can share your project with unlimited number of users and work in teams
 - **Markdown Support** - You can add images, tables, hyperlinks and code snippets in your projects by using markdown
