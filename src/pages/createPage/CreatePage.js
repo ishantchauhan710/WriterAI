@@ -231,7 +231,7 @@ export const CreatePage = ({
           },
         })
         .then(function (res) {
-          console.log(res);
+          // console.log(res);
           if (res.data.status === 200) {
             //console.log("HTTP request successful");
             notify("Project saved successfully", "success");
