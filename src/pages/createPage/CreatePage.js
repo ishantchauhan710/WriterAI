@@ -208,40 +208,110 @@ export const CreatePage = ({
       notify("Project content cannot be blank", "error");
       return;
     } else {
-      // Make the API Call
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      setLoading(true);
+      //console.log("Project: ", editProject);
+      //console.log("Project ID: ", editProject.id);
+
+      const body = {
+        title: projectName,
+        description: title,
+        content: content,
+        coverImage: coverImageUrl ? coverImageUrl : "",
+        timeStamp: `${new Date().getTime()}`,
       };
 
-      try {
-        setLoading(true);
-        //console.log("Cover Image URL: ", coverImageUrl);
-        const result = await axios.put(
-          `${BASE_URL}/project/update?projectId=${editProject.id}`,
-          {
-            title: projectName,
-            description: title,
-            content: content,
-            coverImage: coverImageUrl ? coverImageUrl : "",
-            timeStamp: new Date().getTime(),
-          },
-          config
-        );
+      const URL = `${BASE_URL}/project/update?projectId=${editProject.id}`;
 
-        if (result.data.status === 200) {
-          notify("Project saved successfully", "success");
-          resetVariables();
-          navigate("/home");
-        } else {
+      await axios
+        .put(URL, body, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(function (res) {
+          console.log(res);
+          if (res.data.status === 200) {
+            //console.log("HTTP request successful");
+            notify("Project saved successfully", "success");
+            resetVariables();
+            navigate("/home");
+            //console.log("Res: ", res);
+          } else {
+            //console.log("HTTP request unsuccessful");
+            notify("An unknown error occurred", "error");
+            setLoading(false);
+          }
+        })
+        .catch(function (error) {
           notify("An unknown error occurred", "error");
           setLoading(false);
-        }
-      } catch (e) {
-        notify(e.message, "error");
-        setLoading(false);
-      }
+          //console.log("Error: ", error);
+        });
+
+      // fetch(URL, {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-type": "application/json",
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      //   body: JSON.stringify(body),
+      // })
+      //   .then((res) => {
+      //     if (res.ok) {
+      //       console.log("HTTP request successful");
+      //       notify("Project saved successfully", "success");
+      //       resetVariables();
+      //       navigate("/home");
+      //       console.log("Res: ", res);
+      //     } else {
+      //       console.log("HTTP request unsuccessful");
+      //       notify("An unknown error occurred", "error");
+      //       setLoading(false);
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     notify("An unknown error occurred", "error");
+      //     setLoading(false);
+      //     console.log("Error: ", error);
+      //   });
+
+      // try {
+      //   setLoading(true);
+      //   //console.log("Cover Image URL: ", coverImageUrl);
+
+      //   // Make the API Call
+      //   const config = {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   };
+
+      //   const body = {
+      //     title: "Edit Test sssBlog",
+      //     description: "Edited Heyo",
+      //     content: "This is an edited testing 2 blog",
+      //     coverImage: "",
+      //     timeStamp: 719731937193,
+      //   };
+
+      //   const URL = `${BASE_URL}/project/update?projectId=${editProject.id}`
+
+      //   const result = await axios.put(
+      //     URL,
+      //     body,
+      //     config
+      //   );
+
+      //   notify("Project saved successfully", "success");
+      //   resetVariables();
+      //   navigate("/home");
+      // } catch (e) {
+      //   console.log("Error: ", e);
+      //   notify(e.message, "error");
+      //   setLoading(false);
+      // }
     }
   };
 
