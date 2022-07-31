@@ -16,10 +16,17 @@ You can try this website by clicking on the link below 👇
 
 [https://writerai.netlify.app/](https://writerai.netlify.app/)
 
+## Insights Into Project 🔎
+|   |   | 
+|---|---|
+|![](screenshots/mockups/0.png)| ![](screenshots/mockups/1.png)
+|![](screenshots/mockups/2.png)| ![](screenshots/mockups/3.png)
+|![](screenshots/mockups/4.png)| ![](screenshots/mockups/5.png)
+
 ## WriterAI Features :fire:
 
-- **Auto Text Completion** - Generates over 120 words with an input of just 5 words
-- **Inbuilt Text Editor** - For writing your blogs, emails, thesis, letters and other release
+- **Auto Text Completion** - Generates upto 120 words with an input of just 5 words
+- **Inbuilt Text Editor** - For writing your blogs, emails, thesis, letters and other stuff
 - **Project Sharing** - You can share your project with unlimited number of users and work in teams
 - **Markdown Support** - You can add images, tables, hyperlinks and code snippets in your projects by using markdown
 - **Project Download** - You can download your projects in JSON, XML and Markdown format
@@ -34,6 +41,15 @@ You can try this website by clicking on the link below 👇
 |![](screenshots/desktop/create_fab.jpg) | ![](screenshots/desktop/projects.jpg) |![](screenshots/desktop/share.jpg) 
 |![](screenshots/desktop/profile.jpg)|![](screenshots/desktop/download.jpg) | ![](screenshots/desktop/made_with.jpg)
 
+## 📸 Screenshots :iphone:
+
+|   |   |   |
+|---|---|---|
+|![](screenshots/mobile/landing.jpg)| ![](screenshots/mobile/landing2.jpg) | ![](screenshots/mobile/auth_dialog.jpg)
+|![](screenshots/mobile/projects.jpg) | ![](screenshots/mobile/project_create.jpg) |![](screenshots/mobile/create.jpg) 
+|![](screenshots/mobile/ai1.jpg)|![](screenshots/mobile/ai2.jpg) | ![](screenshots/mobile/markdown.jpg)
+|![](screenshots/mobile/share.jpg)|![](screenshots/mobile/download.jpg) | ![](screenshots/mobile/profile.jpg)
+
 
 ## Technical details :bulb:
 
@@ -41,12 +57,6 @@ You can try this website by clicking on the link below 👇
 
 - The backend of WriterAI is built using Ktor which is a Kotlin based framework for writing server side code! For storing the user's data, we have used PlatenScale which is a highly scalable MySQL database platform which supports horizontal sharding and unlimited connections. For authentication, we have used Firebase SDK. And for deployment of the backend, we have used Linode.
 
-## Insights 🔎
-|   |   | 
-|---|---|
-|![](screenshots/mockups/0.png)| ![](screenshots/mockups/1.png)
-|![](screenshots/mockups/2.png)| ![](screenshots/mockups/3.png)
-|![](screenshots/mockups/4.png)| ![](screenshots/mockups/5.png)
 
 ## Setup [Frontend] :pencil:
 If you want to clone this project and customize it further, you need to do a couple of tasks first:
