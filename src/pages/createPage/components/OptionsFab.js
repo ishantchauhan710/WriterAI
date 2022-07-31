@@ -92,12 +92,12 @@ export default function OptionsFab({
         open={showCoverImageDialog}
         setOpen={setShowCoverImageDialog}
         title="Add Cover Image"
-        message="Paste the URL of the image you want to set as this project's cover"
+        message="Paste the Image URL. It should have png or jpg file path otherwise you may get an error"
         yesText="Ok"
         noText="Cancel"
         input={coverImageUrl}
         setInput={setCoverImageUrl}
-        fieldPlaceholder="Paste URL here"
+        fieldPlaceholder="Eg. https://www.example.com/image.jpg"
       />
       <Backdrop
         sx={{ position: "absolute", width: "100%", height: "100%" }}
