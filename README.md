@@ -12,7 +12,7 @@ WriterAI is a web app where a user can make use of artificial intelligence to qu
 
 ## Blog :writing_hand:
 To know more about how we built this project, read my article here: <br>
-[https://ishantchauhan.hashnode.dev/writerai-a-revolutionary-ai-based-content-writing-tool)
+(https://ishantchauhan.hashnode.dev/writerai-a-revolutionary-ai-based-content-writing-tool)
 
 ## Website Demo
 
