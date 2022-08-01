@@ -14,11 +14,13 @@ WriterAI is a web app where a user can make use of artificial intelligence to qu
 To know more about how we built this project, read my article here: <br>
 https://ishantchauhan.hashnode.dev/writerai-a-revolutionary-ai-based-content-writing-tool
 
-## Website Demo
+## Demo
 
-You can try this website by clicking on the link below 👇
+You can experience the power of WriterAI by visiting: https://writerai.netlify.app/
 
-[https://writerai.netlify.app/](https://writerai.netlify.app/)
+### Video Demo
+
+[Here](https://youtu.be/m9J6BRdM-yo) is a short video on how to use WriterAI
 
 ## Insights Into Project 🔎
 |   |   | 
