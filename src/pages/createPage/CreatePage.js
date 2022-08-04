@@ -26,7 +26,7 @@ export const CreatePage = ({
   const [splitWriter, setSplitWriter] = useState(true);
   const [showBackDialog, setShowBackDialog] = useState(false);
   const { setLoading, notify, projectName, setProjectName } = AppState();
-  const [coverImageUrl, setCoverImageUrl] = useState("");
+  const [coverPicUrl, setcoverPicUrl] = useState("");
   const [title, setTitle] = useState("");
 
   const navigate = useNavigate();
@@ -173,7 +173,7 @@ export const CreatePage = ({
             title: projectName,
             description: title,
             content: content,
-            coverImage: coverImageUrl ? coverImageUrl : "",
+            coverPic: coverPicUrl ? coverPicUrl : "",
             timeStamp: new Date().getTime(),
           },
           config
@@ -216,7 +216,7 @@ export const CreatePage = ({
         title: projectName,
         description: title,
         content: content,
-        coverImage: coverImageUrl ? coverImageUrl : "",
+        coverPic: coverPicUrl ? coverPicUrl : "",
         timeStamp: `${new Date().getTime()}`,
       };
 
@@ -279,7 +279,7 @@ export const CreatePage = ({
 
       // try {
       //   setLoading(true);
-      //   //console.log("Cover Image URL: ", coverImageUrl);
+      //   //console.log("Cover Image URL: ", coverPicUrl);
 
       //   // Make the API Call
       //   const config = {
@@ -292,7 +292,7 @@ export const CreatePage = ({
       //     title: "Edit Test sssBlog",
       //     description: "Edited Heyo",
       //     content: "This is an edited testing 2 blog",
-      //     coverImage: "",
+      //     coverPic: "",
       //     timeStamp: 719731937193,
       //   };
 
@@ -348,7 +348,7 @@ export const CreatePage = ({
       setProjectName(editProject.title);
       setTitle(editProject.description);
       setContent(editProject.content);
-      setCoverImageUrl(editProject.coverPic);
+      setcoverPicUrl(editProject.coverPic);
       // console.log(
       //   `Edit Mode:\nName: ${editProject.title}\nTitle: ${editProject.description}\nContent: ${editProject.content}\n Img: ${editProject.coverPic}\n`
       // );
@@ -452,8 +452,8 @@ export const CreatePage = ({
             content={content}
             setContent={setContent}
             handleSplitScreen={handleSplitScreen}
-            coverImageUrl={coverImageUrl}
-            setCoverImageUrl={setCoverImageUrl}
+            coverPicUrl={coverPicUrl}
+            setcoverPicUrl={setcoverPicUrl}
           />
         </div>
 
