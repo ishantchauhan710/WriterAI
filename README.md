@@ -10,11 +10,17 @@ This project is developed by **Team 404** for Hashnode x PlanetScale hackathon. 
 
 WriterAI is a web app where a user can make use of artificial intelligence to quickly write high quality content. Just provide the AI with a sample input of one to two lines and the AI will generate 5 different paragraphs for you!
 
-## Website Demo
+## Blog :writing_hand:
+To know more about how we built this project, read my article here: <br>
+https://ishantchauhan.hashnode.dev/writerai-a-revolutionary-ai-based-content-writing-tool
 
-You can try this website by clicking on the link below 👇
+## Demo
 
-[https://writerai.netlify.app/](https://writerai.netlify.app/)
+You can experience the power of WriterAI by visiting: https://writerai.netlify.app/
+
+### Video Demo
+
+[Here](https://youtu.be/m9J6BRdM-yo) is a short video on how to use WriterAI
 
 ## Insights Into Project 🔎
 |   |   | 
