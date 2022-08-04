@@ -24,7 +24,7 @@ const actions = [
   {
     icon: <CollectionsIcon />,
     name: "Cover",
-    markdownContent: "CoverImageAction",
+    markdownContent: "CoverPicAction",
   },
   {
     icon: <AddPhotoAlternateOutlinedIcon />,
@@ -55,14 +55,14 @@ export default function OptionsFab({
   content,
   setContent,
   handleSplitScreen,
-  coverImageUrl,
-  setCoverImageUrl,
+  coverPicUrl,
+  setCoverPicUrl,
 }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [showCoverImageDialog, setShowCoverImageDialog] = React.useState(false);
+  const [showCoverPicDialog, setShowCoverPicDialog] = React.useState(false);
 
   const addMarkdown = (markdownText) => {
     setContent(content + "\n" + markdownText + "\n<br/>\n");
@@ -73,8 +73,8 @@ export default function OptionsFab({
     if (markdown === "AitextAction") {
       handleSplitScreen(2);
       handleClose();
-    } else if (markdown === "CoverImageAction") {
-      setShowCoverImageDialog(true);
+    } else if (markdown === "CoverPicAction") {
+      setShowCoverPicDialog(true);
       handleClose();
     } else {
       addMarkdown(markdown);
@@ -82,21 +82,21 @@ export default function OptionsFab({
     handleClose();
   };
 
-  const setCoverImage = (url) => {
-    setCoverImage(url);
+  const setCoverPic = (url) => {
+    setCoverPic(url);
   };
 
   return (
     <>
       <AddCoverImageDialog
-        open={showCoverImageDialog}
-        setOpen={setShowCoverImageDialog}
+        open={showCoverPicDialog}
+        setOpen={setShowCoverPicDialog}
         title="Add Cover Image"
         message="Paste the Image URL. It should have png or jpg file path otherwise you may get an error"
         yesText="Ok"
         noText="Cancel"
-        input={coverImageUrl}
-        setInput={setCoverImageUrl}
+        input={coverPicUrl}
+        setInput={setCoverPicUrl}
         fieldPlaceholder="Eg. https://www.example.com/image.jpg"
       />
       <Backdrop

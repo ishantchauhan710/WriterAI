@@ -26,7 +26,7 @@ export const CreatePage = ({
   const [splitWriter, setSplitWriter] = useState(true);
   const [showBackDialog, setShowBackDialog] = useState(false);
   const { setLoading, notify, projectName, setProjectName } = AppState();
-  const [coverPicUrl, setcoverPicUrl] = useState("");
+  const [coverPicUrl, setCoverPicUrl] = useState("");
   const [title, setTitle] = useState("");
 
   const navigate = useNavigate();
@@ -348,7 +348,7 @@ export const CreatePage = ({
       setProjectName(editProject.title);
       setTitle(editProject.description);
       setContent(editProject.content);
-      setcoverPicUrl(editProject.coverPic);
+      setCoverPicUrl(editProject.coverPic);
       // console.log(
       //   `Edit Mode:\nName: ${editProject.title}\nTitle: ${editProject.description}\nContent: ${editProject.content}\n Img: ${editProject.coverPic}\n`
       // );
@@ -453,7 +453,7 @@ export const CreatePage = ({
             setContent={setContent}
             handleSplitScreen={handleSplitScreen}
             coverPicUrl={coverPicUrl}
-            setcoverPicUrl={setcoverPicUrl}
+            setCoverPicUrl={setCoverPicUrl}
           />
         </div>
 
